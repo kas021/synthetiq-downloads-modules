@@ -1,0 +1,53 @@
+{
+  "id": "synthetiq-anime-v1",
+  "name": "Synthetiq Anime",
+  "contentType": "video",
+  "contractVersion": 4,
+  "moduleVersion": "1.1.0",
+  "version": "1.1.0",
+  "moduleFamilyId": "synthetiq_anime_v1",
+  "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
+  "moduleIdentityNumber": 74,
+  "releaseTrack": "stable",
+  "moduleStatus": "active",
+  "description": "English anime Sub/Dub with a Netflix-style discovery catalogue for Synthetiq Downloads (trending, seasonal, top rated, genres, movies). Fresh Vidhawk HLS with a hard media check on every play. Second server when available.",
+  "presentation": {
+    "category": "Anime",
+    "purpose": "English Anime",
+    "recommended": true,
+    "language": "English Sub/Dub",
+    "languages": ["sub", "dub"],
+    "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
+  },
+  "config": {
+    "language": "English",
+    "contentLanguage": "en",
+    "baseUrl": "https://anicrowd.xyz/",
+    "presentation": {
+      "category": "Anime",
+      "purpose": "English Anime",
+      "recommended": true,
+      "language": "English Sub/Dub",
+      "languages": ["sub", "dub"],
+      "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
+    },
+    "runtime": {
+      "entry": "index.js",
+      "mode": "local"
+    },
+    "capabilities": {
+      "discovery_v1": true
+    },
+    "caps": {
+      "homeMaxResults": 40,
+      "maxResponseBytes": 2500000,
+      "timeoutMs": 25000,
+      "maxConcurrentRequests": 4
+    },
+    "streamHeaders": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+      "Referer": "https://vidhawk.buzz/",
+      "Origin": "https://vidhawk.buzz"
+    }
+  }
+}

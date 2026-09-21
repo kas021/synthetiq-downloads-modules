@@ -6,7 +6,7 @@
   "minAppVersion": "0.2.0",
   "modules": [
     {
-      "file": "modules/Synthetiq-Movies-1.2.5.zip",
+      "file": "modules/Synthetiq-Movies-1.3.0.zip",
       "presentation": {
         "category": "Movies & TV",
         "purpose": "Most Reliable Movies",
@@ -15,32 +15,25 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
       },
       "changelog": [
-        "1.2.5: Owner-approved beta.5 playback code promoted unchanged",
-        "English StreamUnity routing with available server alternatives",
-        "Cinejoy-first subtitles with Wyzie fallback and bounded on-demand caching",
-        "Available Arabic and other subtitle languages appear in the normal player list",
-        "Reject obvious non-English script mismatches in English subtitle candidates",
-        "Background cross-provider 4K enrichment is not included"
+        "1.3.0: Netflix-style discovery — 10 home rows (Trending, Popular Movies/TV, Top Rated, Now Playing, Coming Soon, genres), every row paginated for endless scrolling in Synthetiq Downloads.",
+        "Richer details for the new show page: cast, rating, year, genres, backdrop, runtime.",
+        "Playback, StreamUnity and the subtitle stack are unchanged from the owner-approved 1.2.5 build."
       ]
     },
     {
-      "file": "modules/Synthetiq-Anime-1.0.2.zip",
+      "file": "modules/Synthetiq-Anime-1.1.0.zip",
       "presentation": {
         "category": "Anime",
         "purpose": "English Anime",
         "recommended": true,
         "language": "English Sub/Dub",
-        "languages": [
-          "sub",
-          "dub"
-        ],
-        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime-1.0.2.png"
+        "languages": ["sub", "dub"],
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.0.2: Owner-approved public promotion of 1.0.1-beta.5, with the supplied Synthetiq Anime artwork; playback JavaScript unchanged.",
-        "Fresh provider links, available server alternatives, and provider captions with language labels.",
-        "Short probes decoded 30/30 Sub and 29/30 Dub samples. These are not full-device playback or spoken-language certification.",
-        "Known issues remain: Spy x Family episode 1 Dub returned Japanese audio; Naruto episode 1 Dub failed one seeked media sample. See the release QA notes."
+        "1.1.0: Netflix-style discovery — 9 home rows (Trending, This Season, All-Time Popular, Top Rated, Airing Now, Anime Movies, genres), every row paginated for endless scrolling in Synthetiq Downloads.",
+        "Richer details for the new show page: backdrop banner, rating, format, episode count, cast.",
+        "Adult titles filtered from every row; Vidhawk playback code is unchanged from the owner-approved 1.0.2 build."
       ]
     }
   ]
