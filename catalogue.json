@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "repositoryId": "synthetiq-downloads-modules",
+  "name": "Synthetiq Downloads Modules",
+  "enabled": true,
+  "minAppVersion": "0.2.0",
+  "modules": [
+    {
+      "file": "modules/Synthetiq-Movies-1.2.5.zip",
+      "presentation": {
+        "category": "Movies & TV",
+        "purpose": "Most Reliable Movies",
+        "recommended": true,
+        "language": "English",
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
+      },
+      "changelog": [
+        "1.2.5: Owner-approved beta.5 playback code promoted unchanged",
+        "English StreamUnity routing with available server alternatives",
+        "Cinejoy-first subtitles with Wyzie fallback and bounded on-demand caching",
+        "Available Arabic and other subtitle languages appear in the normal player list",
+        "Reject obvious non-English script mismatches in English subtitle candidates",
+        "Background cross-provider 4K enrichment is not included"
+      ]
+    },
+    {
+      "file": "modules/Synthetiq-Anime-1.0.2.zip",
+      "presentation": {
+        "category": "Anime",
+        "purpose": "English Anime",
+        "recommended": true,
+        "language": "English Sub/Dub",
+        "languages": [
+          "sub",
+          "dub"
+        ],
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime-1.0.2.png"
+      },
+      "changelog": [
+        "1.0.2: Owner-approved public promotion of 1.0.1-beta.5, with the supplied Synthetiq Anime artwork; playback JavaScript unchanged.",
+        "Fresh provider links, available server alternatives, and provider captions with language labels.",
+        "Short probes decoded 30/30 Sub and 29/30 Dub samples. These are not full-device playback or spoken-language certification.",
+        "Known issues remain: Spy x Family episode 1 Dub returned Japanese audio; Naruto episode 1 Dub failed one seeked media sample. See the release QA notes."
+      ]
+    }
+  ]
+}
