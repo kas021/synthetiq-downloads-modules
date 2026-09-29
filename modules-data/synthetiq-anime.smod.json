@@ -1,0 +1,855 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "synthetiq-anime-v1",
+  "name": "Synthetiq Anime",
+  "version": "1.3.1",
+  "moduleFamilyId": "synthetiq_anime_v1",
+  "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
+  "contentType": "anime",
+  "origins": [
+    "https://graphql.anilist.co",
+    "https://anicrowd.xyz",
+    "https://vidhawk.buzz",
+    "https://proxy.vidhawk.buzz",
+    "https://s4.anilist.co",
+    "https://api.jikan.moe",
+    "https://jikan.moe",
+    "https://cdn.myanimelist.net",
+    "https://megaplay.buzz"
+  ],
+  "languages": [{ "id": "sub", "label": "Sub" }, { "id": "dub", "label": "Dub" }],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://anicrowd.xyz",
+        "template": "https://anicrowd.xyz/anime/{{contentId}}",
+        "values": { "contentId": "positiveInteger" }
+      },
+      "aliases": [
+        {
+          "kind": "https",
+          "origin": "https://anicrowd.xyz",
+          "template": "https://anicrowd.xyz/anime/{{contentId}}/",
+          "values": { "contentId": "positiveInteger" }
+        },
+        {
+          "kind": "opaque",
+          "template": "anicrowd:{{contentId}}",
+          "values": { "contentId": "positiveInteger" }
+        },
+        {
+          "kind": "https",
+          "origin": "https://anicrowd.xyz",
+          "template": "https://anicrowd.xyz/mal/{{externalId}}",
+          "values": { "externalId": "positiveInteger" }
+        },
+        {
+          "kind": "opaque",
+          "template": "anicrowd:mal:{{externalId}}",
+          "values": { "externalId": "positiveInteger" }
+        }
+      ]
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://anicrowd.xyz",
+        "template": "https://anicrowd.xyz/anime/{{contentId}}/watch?ep={{episodeNumber}}",
+        "values": {
+          "contentId": "positiveInteger",
+          "episodeNumber": "positiveInteger"
+        }
+      },
+      "aliases": [
+        {
+          "kind": "https",
+          "origin": "https://anicrowd.xyz",
+          "template": "https://anicrowd.xyz/anime/{{contentId}}/watch?ep={{episodeNumber}}",
+          "values": {
+            "contentId": "positiveInteger",
+            "episodeNumber": "positiveInteger"
+          }
+        },
+        {
+          "kind": "opaque",
+          "template": "anicrowd:{{contentId}}:{{episodeNumber}}",
+          "values": {
+            "contentId": "positiveInteger",
+            "episodeNumber": "positiveInteger"
+          }
+        },
+        {
+          "kind": "https",
+          "origin": "https://anicrowd.xyz",
+          "template": "https://anicrowd.xyz/mal/{{externalId}}/watch?ep={{episodeNumber}}",
+          "values": {
+            "externalId": "positiveInteger",
+            "episodeNumber": "positiveInteger"
+          }
+        },
+        {
+          "kind": "opaque",
+          "template": "anicrowd:mal:{{externalId}}:{{episodeNumber}}",
+          "values": {
+            "externalId": "positiveInteger",
+            "episodeNumber": "positiveInteger"
+          }
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://graphql.anilist.co",
+          "path": "/",
+          "method": "POST",
+          "body": {
+            "query": "query($search:String,$page:Int){Page(page:$page,perPage:30){media(search:$search,type:ANIME,sort:SEARCH_MATCH){id idMal title{english romaji userPreferred}description(asHtml:false)bannerImage coverImage{extraLarge large medium}format status episodes duration seasonYear averageScore genres isAdult}}}",
+            "variables": {
+              "search": { "parameter": "query" },
+              "page": { "parameter": "page" }
+            }
+          }
+        },
+        "itemsPath": "data.Page.media",
+        "item": {
+          "id": "id",
+          "anilistId": "id",
+          "malId": "idMal",
+          "href": {
+            "kind": "template",
+            "origin": "https://anicrowd.xyz",
+            "template": "/anime/{{id}}",
+            "values": { "id": "id" }
+          },
+          "title": ["title.english", "title.romaji", "title.userPreferred"],
+          "image": {
+            "kind": "field",
+            "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"],
+            "baseOrigin": "https://s4.anilist.co"
+          },
+          "backdrop": {
+            "kind": "field",
+            "paths": ["bannerImage"],
+            "baseOrigin": "https://s4.anilist.co"
+          },
+          "year": "seasonYear",
+          "rating": "averageScore",
+          "kind": { "value": "anime" },
+          "format": "format",
+          "excludeIf": [{ "path": "isAdult", "equals": true }]
+        },
+        "fallbacks": [
+          {
+            "request": {
+              "origin": "https://api.jikan.moe",
+              "path": "/v4/anime",
+              "method": "GET",
+              "query": {
+                "q": {
+                  "parameter": "query"
+                },
+                "limit": 20,
+                "page": {
+                  "parameter": "page"
+                },
+                "sfw": true
+              },
+              "headers": {
+                "Accept": "application/json"
+              }
+            },
+            "itemsPath": "data",
+            "item": {
+              "id": "mal_id",
+              "malId": "mal_id",
+              "href": {
+                "kind": "template",
+                "origin": "https://anicrowd.xyz",
+                "template": "/mal/{{id}}",
+                "values": {
+                  "id": "mal_id"
+                }
+              },
+              "title": [
+                "title_english",
+                "title"
+              ],
+              "image": {
+                "kind": "field",
+                "paths": [
+                  "images.jpg.large_image_url",
+                  "images.jpg.image_url",
+                  "images.webp.large_image_url"
+                ],
+                "baseOrigin": "https://cdn.myanimelist.net"
+              },
+              "year": [
+                "year",
+                "aired.prop.from.year"
+              ],
+              "rating": "score",
+              "kind": {
+                "value": "anime"
+              },
+              "format": "type"
+            },
+            "pagination": {
+              "pagePath": "pagination.current_page",
+              "hasMorePath": "pagination.has_next_page"
+            }
+          }
+        ]
+      }
+    },
+    "home": {
+      "sections": [
+        { "id": "trending", "title": "Trending Anime", "feedId": "trending", "style": "hero" },
+        { "id": "popular", "title": "Popular Anime", "feedId": "popular", "style": "poster" },
+        { "id": "top-rated", "title": "Top Rated", "feedId": "top-rated", "style": "poster" }
+      ]
+    },
+    "feeds": {
+      "trending": {
+        "request": {
+          "origin": "https://graphql.anilist.co",
+          "path": "/",
+          "method": "POST",
+          "body": {
+            "query": "query($page:Int){Page(page:$page,perPage:30){pageInfo{hasNextPage}media(type:ANIME,sort:TRENDING_DESC){id idMal title{english romaji userPreferred}bannerImage coverImage{extraLarge large medium}format status episodes seasonYear averageScore isAdult genres}}}",
+            "variables": { "page": { "parameter": "page" } }
+          }
+        },
+        "itemsPath": "data.Page.media",
+        "item": {
+          "id": "id",
+          "anilistId": "id",
+          "malId": "idMal",
+          "href": { "kind": "template", "origin": "https://anicrowd.xyz", "template": "/anime/{{id}}", "values": { "id": "id" } },
+          "title": ["title.english", "title.romaji", "title.userPreferred"],
+          "image": { "kind": "field", "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"], "baseOrigin": "https://s4.anilist.co" },
+          "backdrop": { "kind": "field", "paths": ["bannerImage"], "baseOrigin": "https://s4.anilist.co" },
+          "year": "seasonYear",
+          "rating": "averageScore",
+          "kind": { "value": "anime" },
+          "format": "format",
+          "genres": "genres",
+          "excludeIf": [{ "path": "isAdult", "equals": true }]
+        },
+        "pagination": { "hasMorePath": "data.Page.pageInfo.hasNextPage" }
+      },
+      "popular": {
+        "request": {
+          "origin": "https://graphql.anilist.co",
+          "path": "/",
+          "method": "POST",
+          "body": {
+            "query": "query($page:Int){Page(page:$page,perPage:30){pageInfo{hasNextPage}media(type:ANIME,sort:POPULARITY_DESC){id idMal title{english romaji userPreferred}bannerImage coverImage{extraLarge large medium}format status episodes seasonYear averageScore isAdult genres}}}",
+            "variables": { "page": { "parameter": "page" } }
+          }
+        },
+        "itemsPath": "data.Page.media",
+        "item": {
+          "id": "id",
+          "anilistId": "id",
+          "malId": "idMal",
+          "href": { "kind": "template", "origin": "https://anicrowd.xyz", "template": "/anime/{{id}}", "values": { "id": "id" } },
+          "title": ["title.english", "title.romaji", "title.userPreferred"],
+          "image": { "kind": "field", "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"], "baseOrigin": "https://s4.anilist.co" },
+          "backdrop": { "kind": "field", "paths": ["bannerImage"], "baseOrigin": "https://s4.anilist.co" },
+          "year": "seasonYear",
+          "rating": "averageScore",
+          "kind": { "value": "anime" },
+          "format": "format",
+          "genres": "genres",
+          "excludeIf": [{ "path": "isAdult", "equals": true }]
+        },
+        "pagination": { "hasMorePath": "data.Page.pageInfo.hasNextPage" },
+        "fallbacks": [
+          {
+            "request": {
+              "origin": "https://api.jikan.moe",
+              "path": "/v4/top/anime",
+              "method": "GET",
+              "query": {
+                "limit": 20,
+                "page": {
+                  "parameter": "page"
+                }
+              },
+              "headers": {
+                "Accept": "application/json"
+              }
+            },
+            "itemsPath": "data",
+            "item": {
+              "id": "mal_id",
+              "malId": "mal_id",
+              "href": {
+                "kind": "template",
+                "origin": "https://anicrowd.xyz",
+                "template": "/mal/{{id}}",
+                "values": {
+                  "id": "mal_id"
+                }
+              },
+              "title": [
+                "title_english",
+                "title"
+              ],
+              "image": {
+                "kind": "field",
+                "paths": [
+                  "images.jpg.large_image_url",
+                  "images.jpg.image_url",
+                  "images.webp.large_image_url"
+                ],
+                "baseOrigin": "https://cdn.myanimelist.net"
+              },
+              "year": [
+                "year",
+                "aired.prop.from.year"
+              ],
+              "rating": "score",
+              "kind": {
+                "value": "anime"
+              },
+              "format": "type"
+            },
+            "pagination": {
+              "pagePath": "pagination.current_page",
+              "hasMorePath": "pagination.has_next_page"
+            }
+          }
+        ]
+      },
+      "top-rated": {
+        "request": {
+          "origin": "https://graphql.anilist.co",
+          "path": "/",
+          "method": "POST",
+          "body": {
+            "query": "query($page:Int){Page(page:$page,perPage:30){pageInfo{hasNextPage}media(type:ANIME,sort:SCORE_DESC){id idMal title{english romaji userPreferred}bannerImage coverImage{extraLarge large medium}format status episodes seasonYear averageScore isAdult genres}}}",
+            "variables": { "page": { "parameter": "page" } }
+          }
+        },
+        "itemsPath": "data.Page.media",
+        "item": {
+          "id": "id",
+          "anilistId": "id",
+          "malId": "idMal",
+          "href": { "kind": "template", "origin": "https://anicrowd.xyz", "template": "/anime/{{id}}", "values": { "id": "id" } },
+          "title": ["title.english", "title.romaji", "title.userPreferred"],
+          "image": { "kind": "field", "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"], "baseOrigin": "https://s4.anilist.co" },
+          "backdrop": { "kind": "field", "paths": ["bannerImage"], "baseOrigin": "https://s4.anilist.co" },
+          "year": "seasonYear",
+          "rating": "averageScore",
+          "kind": { "value": "anime" },
+          "format": "format",
+          "genres": "genres",
+          "excludeIf": [{ "path": "isAdult", "equals": true }]
+        },
+        "pagination": { "hasMorePath": "data.Page.pageInfo.hasNextPage" }
+      }
+    },
+    "browse": {
+      "facets": [
+        { "id": "sort", "label": "Sort", "kind": "single", "default": "TRENDING_DESC", "options": [{ "value": "TRENDING_DESC", "label": "Trending" }, { "value": "POPULARITY_DESC", "label": "Most popular" }, { "value": "SCORE_DESC", "label": "Top rated" }, { "value": "START_DATE_DESC", "label": "Newest" }, { "value": "TITLE_ROMAJI", "label": "A–Z" }] },
+        { "id": "year", "label": "Year", "kind": "year", "min": 1960, "max": 2027 },
+        { "id": "season", "label": "Season", "kind": "single", "options": [{ "value": "WINTER", "label": "Winter" }, { "value": "SPRING", "label": "Spring" }, { "value": "SUMMER", "label": "Summer" }, { "value": "FALL", "label": "Fall" }] },
+        { "id": "genres", "label": "Genres", "kind": "multi", "options": [{ "value": "Action", "label": "Action" }, { "value": "Adventure", "label": "Adventure" }, { "value": "Comedy", "label": "Comedy" }, { "value": "Drama", "label": "Drama" }, { "value": "Ecchi", "label": "Ecchi" }, { "value": "Fantasy", "label": "Fantasy" }, { "value": "Horror", "label": "Horror" }, { "value": "Mahou Shoujo", "label": "Mahou Shoujo" }, { "value": "Mecha", "label": "Mecha" }, { "value": "Music", "label": "Music" }, { "value": "Mystery", "label": "Mystery" }, { "value": "Psychological", "label": "Psychological" }, { "value": "Romance", "label": "Romance" }, { "value": "Sci-Fi", "label": "Sci-Fi" }, { "value": "Slice of Life", "label": "Slice of Life" }, { "value": "Sports", "label": "Sports" }, { "value": "Supernatural", "label": "Supernatural" }, { "value": "Thriller", "label": "Thriller" }] },
+        { "id": "formats", "label": "Format", "kind": "multi", "options": [{ "value": "TV", "label": "TV" }, { "value": "MOVIE", "label": "Movie" }, { "value": "OVA", "label": "OVA" }, { "value": "ONA", "label": "ONA" }, { "value": "SPECIAL", "label": "Special" }, { "value": "TV_SHORT", "label": "TV short" }] },
+        { "id": "status", "label": "Status", "kind": "single", "options": [{ "value": "RELEASING", "label": "Airing" }, { "value": "FINISHED", "label": "Finished" }, { "value": "NOT_YET_RELEASED", "label": "Upcoming" }] }
+      ],
+      "query": {
+        "request": {
+          "origin": "https://graphql.anilist.co",
+          "path": "/",
+          "method": "POST",
+          "body": {
+            "query": "query($page:Int,$year:Int,$season:MediaSeason,$genres:[String],$formats:[MediaFormat],$status:MediaStatus,$sort:[MediaSort]){Page(page:$page,perPage:50){pageInfo{hasNextPage}media(type:ANIME,isAdult:false,seasonYear:$year,season:$season,genre_in:$genres,format_in:$formats,status:$status,sort:$sort){id idMal title{english romaji userPreferred}bannerImage coverImage{extraLarge large medium}format status episodes seasonYear averageScore isAdult genres}}}",
+            "variables": {
+              "page": { "parameter": "page" },
+              "year": { "filter": "year" },
+              "season": { "filter": "season" },
+              "genres": { "filter": "genres" },
+              "formats": { "filter": "formats" },
+              "status": { "filter": "status" },
+              "sort": { "filter": "sort" }
+            }
+          }
+        },
+        "itemsPath": "data.Page.media",
+        "item": {
+          "id": "id",
+          "anilistId": "id",
+          "malId": "idMal",
+          "href": { "kind": "template", "origin": "https://anicrowd.xyz", "template": "/anime/{{id}}", "values": { "id": "id" } },
+          "title": ["title.english", "title.romaji", "title.userPreferred"],
+          "image": { "kind": "field", "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"], "baseOrigin": "https://s4.anilist.co" },
+          "backdrop": { "kind": "field", "paths": ["bannerImage"], "baseOrigin": "https://s4.anilist.co" },
+          "year": "seasonYear",
+          "rating": "averageScore",
+          "kind": { "value": "anime" },
+          "format": "format",
+          "genres": "genres",
+          "excludeIf": [{ "path": "isAdult", "equals": true }]
+        },
+        "pagination": { "hasMorePath": "data.Page.pageInfo.hasNextPage" }
+      }
+    },
+    "details": {
+      "request": {
+        "origin": "https://graphql.anilist.co",
+        "path": "/",
+        "method": "POST",
+        "body": {
+          "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{english romaji userPreferred}description(asHtml:false)bannerImage coverImage{extraLarge large medium}format status episodes duration seasonYear averageScore genres isAdult nextAiringEpisode{episode}}}",
+          "variables": {
+            "id": { "parameter": "contentId" }
+          }
+        }
+      },
+      "externalIdRequest": {
+        "origin": "https://graphql.anilist.co",
+        "path": "/",
+        "method": "POST",
+        "body": {
+          "query": "query($idMal:Int){Media(idMal:$idMal,type:ANIME){id idMal title{english romaji userPreferred}description(asHtml:false)bannerImage coverImage{extraLarge large medium}format status episodes duration seasonYear averageScore genres isAdult nextAiringEpisode{episode}}}",
+          "variables": {
+            "idMal": { "parameter": "externalId" }
+          }
+        }
+      },
+      "itemPath": "data.Media",
+      "fields": {
+        "title": ["title.english", "title.romaji", "title.userPreferred"],
+        "description": "description",
+        "image": { "kind": "field", "paths": ["coverImage.extraLarge", "coverImage.large", "coverImage.medium"], "baseOrigin": "https://s4.anilist.co" },
+        "backdrop": { "kind": "field", "paths": ["bannerImage"], "baseOrigin": "https://s4.anilist.co" },
+        "year": "seasonYear",
+        "rating": "averageScore",
+        "genres": "genres",
+        "status": "status",
+        "format": "format",
+        "contentId": "id",
+        "externalId": "idMal",
+        "episodeCount": {
+          "path": "episodes",
+          "upperBound": {
+            "path": "nextAiringEpisode.episode",
+            "offset": -1,
+            "useWhenMissing": true
+          }
+        }
+      },
+      "fallbacks": [
+        {
+          "request": {
+            "origin": "https://api.jikan.moe",
+            "pathTemplate": {
+              "template": "/v4/anime/{{id}}",
+              "values": {
+                "id": {
+                  "parameter": "externalId"
+                }
+              }
+            },
+            "method": "GET",
+            "headers": {
+              "Accept": "application/json",
+              "Referer": "https://jikan.moe/"
+            }
+          },
+          "itemPath": "data",
+          "fields": {
+            "title": [
+              "title_english",
+              "title"
+            ],
+            "description": "synopsis",
+            "image": {
+              "kind": "field",
+              "paths": [
+                "images.jpg.large_image_url",
+                "images.jpg.image_url",
+                "images.webp.large_image_url"
+              ],
+              "baseOrigin": "https://cdn.myanimelist.net"
+            },
+            "year": [
+              "year",
+              "aired.prop.from.year"
+            ],
+            "rating": "score",
+            "genres": {
+              "path": "genres",
+              "itemPath": "name"
+            },
+            "status": "status",
+            "format": "type",
+            "externalId": "mal_id",
+            "episodeCount": "episodes"
+          },
+          "whenMissing": [
+            "title",
+            "episodeCount"
+          ]
+        }
+      ]
+    },
+    "episodes": { "source": "detailsEpisodeCount" },
+    "download": {
+      "alternatives": [
+        {
+          "id": "flow",
+          "label": "Flow",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/stream/resolve",
+                "method": "GET",
+                "query": {
+                  "episode": { "parameter": "episodeNumber" },
+                  "audio": { "parameter": "language" },
+                  "parentHost": "anicrowd.xyz",
+                  "fast": "1",
+                  "server": "flow",
+                  "anilistId": { "parameter": "contentId" }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/play",
+                "method": "GET",
+                "query": { "t": { "fromResponse": { "step": 0, "path": "ticket" } } },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              }
+            }
+          ],
+          "candidatesPath": "tracks",
+          "candidate": {
+            "id": "id",
+            "label": { "value": "HLS" },
+            "url": { "kind": "field", "paths": "src" },
+            "kind": { "value": "hls" },
+            "audioLanguage": "id",
+            "filterLanguage": "id"
+          },
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://vidhawk.buzz",
+            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "captions.sub",
+              "item": {
+                "id": "src",
+                "label": ["label", "language", "lang"],
+                "language": ["label", "language", "lang"],
+                "format": { "value": "unknown" },
+                "url": { "kind": "field", "paths": ["src", "file", "url"] },
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "captions.dub",
+              "item": {
+                "id": "src",
+                "label": ["label", "language", "lang"],
+                "language": ["label", "language", "lang"],
+                "format": { "value": "unknown" },
+                "url": { "kind": "field", "paths": ["src", "file", "url"] },
+                "default": "default"
+              }
+            }
+          }
+        },
+        {
+          "id": "zuri",
+          "label": "Zuri",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/stream/resolve",
+                "method": "GET",
+                "query": {
+                  "episode": { "parameter": "episodeNumber" },
+                  "audio": { "parameter": "language" },
+                  "parentHost": "anicrowd.xyz",
+                  "fast": "1",
+                  "server": "zuri",
+                  "anilistId": { "parameter": "contentId" }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/play",
+                "method": "GET",
+                "query": { "t": { "fromResponse": { "step": 0, "path": "ticket" } } },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              }
+            }
+          ],
+          "candidatesPath": "tracks",
+          "candidate": {
+            "id": "id",
+            "label": { "value": "HLS" },
+            "url": { "kind": "field", "paths": "src" },
+            "kind": { "value": "hls" },
+            "audioLanguage": "id",
+            "filterLanguage": "id"
+          },
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://vidhawk.buzz",
+            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "captions.sub",
+              "item": {
+                "id": "src",
+                "label": ["label", "language", "lang"],
+                "language": ["label", "language", "lang"],
+                "format": { "value": "unknown" },
+                "url": { "kind": "field", "paths": ["src", "file", "url"] },
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "captions.dub",
+              "item": {
+                "id": "src",
+                "label": ["label", "language", "lang"],
+                "language": ["label", "language", "lang"],
+                "format": { "value": "unknown" },
+                "url": { "kind": "field", "paths": ["src", "file", "url"] },
+                "default": "default"
+              }
+            }
+          }
+        },
+        {
+          "id": "megaplay",
+          "label": "MegaPlay",
+          "runWhenNoCandidates": true,
+          "steps": [
+            {
+              "request": {
+                "origin": "https://anicrowd.xyz",
+                "path": "/api/stream",
+                "method": "GET",
+                "query": {
+                  "server": "english",
+                  "anilistId": {
+                    "parameter": "contentId"
+                  },
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "subdub": {
+                    "parameter": "language"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json",
+                  "Referer": "https://anicrowd.xyz/"
+                }
+              },
+              "response": {
+                "format": "json"
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "url"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,*/*"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "[data-id]",
+                "fields": {
+                  "id": {
+                    "kind": "attribute",
+                    "attribute": "data-id"
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSourcesNew",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "fromResponse": {
+                      "step": 1,
+                      "path": "items.0.id"
+                    }
+                  },
+                  "type": {
+                    "parameter": "language"
+                  }
+                },
+                "headers": {
+                  "Accept": "*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/"
+                }
+              },
+              "response": {
+                "format": "json"
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "objectOrUrl",
+              "path": "sources",
+              "candidate": {
+                "id": {
+                  "value": "primary"
+                },
+                "label": {
+                  "value": "HLS"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://megaplay.buzz"
+                },
+                "kind": {
+                  "value": "hls"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "tracks",
+              "item": {
+                "id": "label",
+                "label": [
+                  "label",
+                  "kind"
+                ],
+                "language": [
+                  "label",
+                  "kind"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file"
+                  ],
+                  "baseOrigin": "https://megaplay.buzz"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": [
+                      "captions",
+                      "subtitles"
+                    ]
+                  }
+                ]
+              }
+            },
+            "dub": {
+              "itemsPath": "tracks",
+              "item": {
+                "id": "label",
+                "label": [
+                  "label",
+                  "kind"
+                ],
+                "language": [
+                  "label",
+                  "kind"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file"
+                  ],
+                  "baseOrigin": "https://megaplay.buzz"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": [
+                      "captions",
+                      "subtitles"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

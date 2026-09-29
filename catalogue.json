@@ -6,34 +6,21 @@
   "minAppVersion": "0.2.0",
   "modules": [
     {
-      "file": "modules/Synthetiq-Movies-1.3.0.zip",
-      "presentation": {
-        "category": "Movies & TV",
-        "purpose": "Most Reliable Movies",
-        "recommended": true,
-        "language": "English",
-        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
-      },
-      "changelog": [
-        "1.3.0: Netflix-style discovery — 10 home rows (Trending, Popular Movies/TV, Top Rated, Now Playing, Coming Soon, genres), every row paginated for endless scrolling in Synthetiq Downloads.",
-        "Richer details for the new show page: cast, rating, year, genres, backdrop, runtime.",
-        "Playback, StreamUnity and the subtitle stack are unchanged from the owner-approved 1.2.5 build."
-      ]
-    },
-    {
-      "file": "modules/Synthetiq-Anime-1.1.0.zip",
+      "file": "modules-data/synthetiq-anime.smod.json",
       "presentation": {
         "category": "Anime",
-        "purpose": "English Anime",
-        "recommended": true,
-        "language": "English Sub/Dub",
-        "languages": ["sub", "dub"],
+        "purpose": "English anime downloads",
+        "language": "English SUB / DUB",
+        "languages": [
+          "sub",
+          "dub"
+        ],
+        "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.1.0: Netflix-style discovery — 9 home rows (Trending, This Season, All-Time Popular, Top Rated, Airing Now, Anime Movies, genres), every row paginated for endless scrolling in Synthetiq Downloads.",
-        "Richer details for the new show page: backdrop banner, rating, format, episode count, cast.",
-        "Adult titles filtered from every row; Vidhawk playback code is unchanged from the owner-approved 1.0.2 build."
+        "1.3.1: Bounded data-only source; Anime search, details, SUB/DUB server choices and caption mappings.",
+        "Live source resolution observed; full download and offline playback on both phones remain unverified."
       ]
     }
   ]

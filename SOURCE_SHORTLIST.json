@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 1,
+  "kind": "non-installable-player-source-shortlist",
+  "sourceSnapshot": {
+    "repository": "kas021/Synthetiq-Modules",
+    "revision": "874d797b769d855bbbe60176949f89eda93cb1c1"
+  },
+  "purpose": "Owner-selected upstream source inventory and compatibility review for Synthetiq Downloads. These records are planning metadata, not app catalogue/install entries.",
+  "notice": "No executable JavaScript or ZIP contents are included here. Upstream package URLs and hashes identify published Player archives for provenance only; they are not recommendations or Downloads install targets.",
+  "modules": [
+    {
+      "selectedName": "Synthetiq Movies",
+      "selectionGroup": "movies_tv",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "synthetiq-movies-v1",
+        "moduleFamilyId": "synthetiq_movies_v1",
+        "moduleIdentity": "SP-VID-059-SYNTHETIQ-MOVIES",
+        "moduleIdentityNumber": 59,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.2.5",
+        "releaseTrack": "stable",
+        "packageFile": "Synthetiq-Movies-1.2.5.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-synthetiq-movies-v1-v1.2.5/Synthetiq-Movies-1.2.5.zip",
+        "sha256": "f48fa9a64489db1b92487b92b6e33c3e07fa3ce452ed4096187f3ea40c327208",
+        "presentation": {
+          "category": "Movies & TV",
+          "purpose": "Most Reliable Movies",
+          "recommended": true,
+          "language": "English",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/synthetiq-movies.png?v=20260818-1"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
+          "Downloads review found TMDB credential and third-party resolver paths without an established rights basis."
+        ]
+      }
+    },
+    {
+      "selectedName": "Alpha Movies",
+      "selectionGroup": "movies_tv",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "alpha-movies",
+        "moduleFamilyId": "alpha_movies_v1",
+        "moduleIdentity": "SP-VID-079-ALPHA-MOVIES",
+        "moduleIdentityNumber": 79,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "0.2.0-beta.2",
+        "releaseTrack": "beta",
+        "packageFile": "Alpha-Movies-0.2.0-beta.2.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-alpha-movies-v0.2.0-beta.2/Alpha-Movies-0.2.0-beta.2.zip",
+        "sha256": "cc480d1df82fd6fb584dd0db4efdc6a7baa737db6c804a20adc31d269c2345b6",
+        "presentation": {
+          "category": "Movies & TV",
+          "purpose": "Multi-source movies & TV (Beta)",
+          "recommended": false,
+          "language": "Original audio / any-language subtitles",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/alpha-movies.png?v=20260919-1"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
+          "Downloads review found third-party stream-provider/resolver paths without authorization evidence."
+        ]
+      }
+    },
+    {
+      "selectedName": "X-Stream",
+      "selectionGroup": "movies_tv",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "xstream-v1",
+        "moduleFamilyId": "xstream_v1",
+        "moduleIdentity": "SP-VID-048-XSTREAM",
+        "moduleIdentityNumber": 48,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.3.1",
+        "releaseTrack": "stable",
+        "packageFile": "X-Stream-1.3.1.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-xstream-v1-v1.3.1/X-Stream-1.3.1.zip",
+        "sha256": "bfe8ea7c95bc3489f0fdb9913ae4bbc5e444d1b64134f65782596c5cab628381",
+        "presentation": {
+          "category": "Movies & TV",
+          "purpose": "Movies & TV",
+          "language": "English",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/xstream.png"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
+          "Downloads review found no authorization evidence for the external stream resolution path."
+        ]
+      }
+    },
+    {
+      "selectedName": "Synthetiq Anime",
+      "selectionGroup": "anime",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "synthetiq-anime-v1",
+        "moduleFamilyId": "synthetiq_anime_v1",
+        "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
+        "moduleIdentityNumber": 74,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.0.5-beta.2",
+        "releaseTrack": "beta",
+        "packageFile": "Synthetiq-Anime-1.0.5-beta.2.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-synthetiq-anime-v1-v1.0.5-beta.2/Synthetiq-Anime-1.0.5-beta.2.zip",
+        "sha256": "9f2e60c3b0284c26da5ffc9222d01047ca154b64b9d9570104ea39c1a0687bb4",
+        "presentation": {
+          "category": "Anime",
+          "purpose": "English Anime",
+          "recommended": true,
+          "language": "English Sub/Dub",
+          "languages": [
+            "sub",
+            "dub"
+          ],
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/synthetiq-anime-1.0.2.png"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "separate-downloads-definition-under-coordinator-review",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "This record identifies the upstream Player ZIP only; it is not the separate Downloads .smod.json definition and does not certify that definition."
+        ]
+      }
+    },
+    {
+      "selectedName": "AniPM",
+      "selectionGroup": "anime",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "anipm-v1",
+        "moduleFamilyId": "anipm-v1",
+        "moduleIdentity": "SP-VID-084-ANIPM",
+        "moduleIdentityNumber": 84,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "0.1.0-beta.3",
+        "releaseTrack": "beta",
+        "packageFile": "AniPM-0.1.0-beta.3.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-anipm-v1-v0.1.0-beta.3/AniPM-0.1.0-beta.3.zip",
+        "sha256": "610acac3d6ce301623f462c4d5a90d9bce9cc81a2b8931fe1575c746fed25311",
+        "presentation": {
+          "category": "Anime",
+          "purpose": "English Anime (AniPM)",
+          "recommended": true,
+          "language": "English Sub/Dub",
+          "languages": [
+            "sub",
+            "dub"
+          ],
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/anipm.png?v=20260927-1"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "No authorized Downloads data-only definition is included.",
+          "Module review reports AniPM terms prohibit scraping, automation, bulk download and stream redistribution."
+        ]
+      }
+    },
+    {
+      "selectedName": "AnimeAV1",
+      "selectionGroup": "anime",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "animeav1-v1",
+        "moduleFamilyId": "animeav1_v1",
+        "moduleIdentity": "SP-VID-060-ANIMEAV1",
+        "moduleIdentityNumber": 60,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.3.0-beta.4",
+        "releaseTrack": "beta",
+        "packageFile": "AnimeAV1-1.3.0-beta.4.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-animeav1-v1-v1.3.0-beta.4/AnimeAV1-1.3.0-beta.4.zip",
+        "sha256": "3b039a10a2952569bb879d6a18ca9f979ccdc53cbfecfe72dd3a2241b0fc6175",
+        "presentation": {
+          "category": "Anime",
+          "purpose": "Spanish Anime",
+          "language": "Spanish (Castellano / Latino / VOSE)",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/animeav1.png?v=20260814-1"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+        ]
+      }
+    },
+    {
+      "selectedName": "Mugiwara Streaming",
+      "selectionGroup": "anime",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "mugiwara-v1",
+        "moduleFamilyId": "mugiwara_v1",
+        "moduleIdentity": "SP-VID-071-MUGIWARA",
+        "moduleIdentityNumber": 71,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.1.0-beta.5",
+        "releaseTrack": "beta",
+        "packageFile": "Mugiwara-1.1.0-beta.5.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-mugiwara-v1-v1.1.0-beta.5/Mugiwara-1.1.0-beta.5.zip",
+        "sha256": "be79e89310c221091d52c7cc7aaf15ba5aeda2a7b87a74fe9ea66d45901be857",
+        "presentation": {
+          "category": "Anime",
+          "purpose": "French Anime",
+          "language": "French (VOSTFR / VF)",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/mugiwara.png"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+        ]
+      }
+    },
+    {
+      "selectedName": "Aniworld",
+      "selectionGroup": "anime",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "aniworld-v1",
+        "moduleFamilyId": "aniworld_v1",
+        "moduleIdentity": "SP-VID-050-ANIWORLD",
+        "moduleIdentityNumber": 50,
+        "contentType": "video",
+        "contractVersion": 4,
+        "version": "1.3.2",
+        "releaseTrack": "beta",
+        "packageFile": "Aniworld-1.3.2.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-aniworld-v1-v1.3.2/Aniworld-1.3.2.zip",
+        "sha256": "0a56360b7e14e121d48fca5ec749f540751fd56c85852557efc279bc50ffd3ff",
+        "presentation": {
+          "category": "Anime",
+          "purpose": "German Anime",
+          "language": "German",
+          "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/aniworld.png?v=20260812-2"
+        }
+      },
+      "downloadsCompatibility": {
+        "installable": false,
+        "status": "not-ready",
+        "targetFormat": "data-only .smod.json",
+        "blockers": [
+          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+        ]
+      }
+    }
+  ]
+}
