@@ -9,7 +9,7 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
 | Source | Downloads version | Minimum host / app | Recorded evidence |
 | --- | --- | --- | --- |
-| Synthetiq Anime | 1.3.3 | Host 5 / 1.0.72 | Exact SUB/DUB fallback and playlist inspection after primary HTTP 502s; sampled SUB returned seven caption tracks |
+| Synthetiq Anime | 1.3.4 | Host 7 / 1.0.76 | Current Player provider/header adaptation; Death Note E1 SUB/DUB HLS inspection (312 segments); mobile relative-URL regression fixed in app; full physical transfer pending |
 | AniPM | 0.1.0-experimental.1 | Host 6 / 1.0.75 | Search/details/episode fixtures, response identity guards, live SUB/DUB playlist inspection; sampled episode returned no captions |
 | Synthetiq Movies | 1.0.0-experimental.1 | Host 6 / 1.0.75 | Keyless search/details and movie/TV identity fixtures; original audio and Italian dub flags checked before the embed; live media inspection returned HTTP 403 |
 
@@ -41,3 +41,17 @@ this catalogue. No provider is silently substituted.
 
 This public repository is readable by the app without credentials. Do not add
 secrets, private request tokens, signed media links or personal data.
+
+## Anime 1.3.4 update — 2026-10-01
+
+Install app 1.0.76 or later before updating Anime through the module manager.
+The source family, module identity and existing episode aliases are retained.
+The definition uses only bounded data operations. Five AniKage provider rows
+and three Koto MegaPlay embed positions are declared; no Player JavaScript is
+executed. EchoVideo and packed resolver routines remain outside this definition.
+
+The mobile host now resolves relative HLS variants correctly. The isolated
+Hermes/native-HTTP check reached the Death Note episode 1 SUB/DUB playlists,
+but its simulator background-transfer service was unavailable. This is not
+physical transfer or offline playback certification. Flux was compared as a
+reference; a separate Downloads Flux definition is not published here yet.
