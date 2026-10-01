@@ -35,12 +35,21 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "experimental-bounded-streamingunity-vix-candidates",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
-          "Downloads review found TMDB credential and third-party resolver paths without an established rights basis."
-        ]
+          "The keyless StreamingUnity search, details, movie and selected-season routes are mapped with compound content ID plus title slug references. Movie routes check returned ID, slug, movie type and requested audio flag before the iframe. TV preflight selects the requested source episode row and checks title, slug, TV type, season, episode ID, episode number and requested audio flag before the iframe. The bounded definition follows only declared Vix embed/playlist URLs and reads literal streams/masterPlaylist initializers without executing page code. A live Vix master-playlist request returned HTTP 403, so mapped HLS candidates have not passed live inspection and playable audio, quality, captions, transfer and native offline acceptance remain unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork records/CDN mapping and generic catalogue facets are not mapped in this experimental definition."
+        ],
+        "downloadsDefinition": {
+          "file": "modules-data/synthetiq-movies-downloads.smod.json",
+          "version": "1.0.0-experimental.1",
+          "minHostVersion": 6,
+          "minAppVersion": "1.0.75",
+          "sha256": "f490b88c907b663e108dd63ef396786163c8a19c924383b14c845ad23c867328",
+          "installable": true,
+          "experimental": true
+        }
       }
     },
     {
@@ -70,11 +79,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "bounded-gcm-helper-only-no-source-definition",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
-          "Downloads review found third-party stream-provider/resolver paths without authorization evidence."
+          "A bounded AES-GCM helper decodes public Vidrock resolver rows. Search/details and TV season/episode-to-resolver identity are not mapped in the Downloads host, so no Alpha source definition or operational route is present."
         ]
       }
     },
@@ -104,11 +113,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "gap-provider-logic-outside-bounded-host",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "Player package is contract-v4 executable JavaScript, not a Downloads data-only definition.",
-          "Downloads review found no authorization evidence for the external stream resolution path."
+          "The current module's multi-provider resolution and source-specific parsing are not represented by an available complete bounded route; its catalogue also depends on the Player TMDB configuration."
         ]
       }
     },
@@ -143,11 +152,21 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "separate-downloads-definition-under-coordinator-review",
+        "status": "reviewed-bounded-fallback-live-inspection",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "This record identifies the upstream Player ZIP only; it is not the separate Downloads .smod.json definition and does not certify that definition."
-        ]
+          "The bounded fallback route and live inspection have been reviewed. Full media transfer and native offline acceptance remain pending, so the source is experimental and non-recommended."
+        ],
+        "downloadsDefinition": {
+          "file": "modules-data/synthetiq-anime.smod.json",
+          "version": "1.3.3",
+          "minHostVersion": 5,
+          "minAppVersion": "1.0.72",
+          "sha256": "678312ff676c21b2e9a8556fdba2dca7cd3018ae54e51e1855c06e1cc8182b0b",
+          "installable": true,
+          "experimental": true
+        }
       }
     },
     {
@@ -181,12 +200,21 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "experimental-host6-megaplay-route",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "No authorized Downloads data-only definition is included.",
-          "Module review reports AniPM terms prohibit scraping, automation, bulk download and stream redistribution."
-        ]
+          "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. The provider numeric path segment remains opaque and is not independently bound to the episode ID. Coordinator live inspection reached the HLS playlist for both Sub and Dub (321 segments, 1,477.974 seconds; seven requests each, six HTTP 200 and one HTTP 206), with zero caption tracks and no media transfer. Physical-device/offline acceptance remains pending."
+        ],
+        "downloadsDefinition": {
+          "file": "modules-data/anipm-downloads.smod.json",
+          "version": "0.1.0-experimental.1",
+          "minHostVersion": 6,
+          "minAppVersion": "1.0.75",
+          "sha256": "65c7a38177b83d9228215cc921f9deb737f314148daf7d44ad4b7393b1376616",
+          "installable": true,
+          "experimental": true
+        }
       }
     },
     {
@@ -215,10 +243,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "gap-custom-player-resolution",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+          "Current candidate player and embed resolution uses source-specific routines that the bounded host cannot represent without additional narrowly scoped response decoding."
         ]
       }
     },
@@ -248,10 +277,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "gap-dynamic-episode-script-initializer",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+          "Episode discovery depends on dynamic `var epsN=[...]` script initializers; the bounded inert parser currently only supports declared literal bindings and cannot evaluate this construction."
         ]
       }
     },
@@ -281,12 +311,14 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "not-ready",
+        "status": "gap-dynamic-hoster-resolution",
         "targetFormat": "data-only .smod.json",
+        "recommended": false,
         "blockers": [
-          "No authorized Downloads data-only definition has been validated; the upstream Player ZIP remains metadata-only here."
+          "Episode hoster rows are followed by provider-specific dynamic resolution routines outside the bounded host's declared selectors and response decoders."
         ]
       }
     }
-  ]
+  ],
+  "compatibilityMatrixFile": "SOURCE_COMPATIBILITY.json"
 }

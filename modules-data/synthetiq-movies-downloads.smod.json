@@ -1,0 +1,1247 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "synthetiq-movies-v1",
+  "name": "Synthetiq Movies",
+  "version": "1.0.0-experimental.1",
+  "minHostVersion": 6,
+  "moduleFamilyId": "synthetiq_movies_v1",
+  "moduleIdentity": "SP-VID-059-SYNTHETIQ-MOVIES",
+  "contentType": "video",
+  "languages": [
+    {
+      "id": "sub",
+      "label": "Original audio"
+    },
+    {
+      "id": "dub",
+      "label": "Italian dub"
+    }
+  ],
+  "origins": [
+    "https://streamingunity.vip",
+    "https://vixcloud.co"
+  ],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://streamingunity.vip",
+        "template": "https://streamingunity.vip/en/titles/{{contentId}}-{{sourceId}}",
+        "values": {
+          "contentId": "positiveInteger",
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": []
+    },
+    "movie": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://streamingunity.vip",
+        "template": "https://streamingunity.vip/en/titles/{{contentId}}-{{sourceId}}/movie",
+        "values": {
+          "contentId": "positiveInteger",
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": [
+        {
+          "kind": "legacyPath",
+          "origin": "https://streamingunity.vip",
+          "template": "/streamingunity/movie/{{contentId}}/{{ignored1}}/{{ignored2}}/{{sourceId}}",
+          "values": {
+            "contentId": "positiveInteger",
+            "ignored1": "ignoredSegment",
+            "ignored2": "ignoredSegment",
+            "sourceId": "boundedString"
+          }
+        }
+      ]
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://streamingunity.vip",
+        "template": "https://streamingunity.vip/en/titles/{{contentId}}-{{sourceId}}/season-{{seasonNumber}}/episode/{{sourceEpisodeId}}-{{episodeNumber}}",
+        "values": {
+          "contentId": "positiveInteger",
+          "sourceId": "boundedString",
+          "seasonNumber": "positiveInteger",
+          "sourceEpisodeId": "boundedString",
+          "episodeNumber": "positiveInteger"
+        }
+      },
+      "aliases": [
+        {
+          "kind": "legacyPath",
+          "origin": "https://streamingunity.vip",
+          "template": "/streamingunity/episode/{{contentId}}/{{seasonNumber}}/{{sourceEpisodeId}}/{{ignored1}}/{{ignored2}}/{{sourceId}}",
+          "values": {
+            "contentId": "positiveInteger",
+            "seasonNumber": "positiveInteger",
+            "sourceEpisodeId": "boundedString",
+            "ignored1": "ignoredSegment",
+            "ignored2": "ignoredSegment",
+            "sourceId": "boundedString"
+          }
+        }
+      ]
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://streamingunity.vip",
+          "path": "/en/search",
+          "method": "GET",
+          "query": {
+            "q": {
+              "parameter": "query"
+            },
+            "page": {
+              "parameter": "page"
+            }
+          },
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://streamingunity.vip/"
+          }
+        },
+        "response": {
+          "format": "htmlPageData",
+          "selector": {
+            "kind": "attribute",
+            "attribute": "data-page"
+          }
+        },
+        "itemsPath": "props.titles",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://streamingunity.vip",
+            "template": "/en/titles/{{id}}-{{slug}}",
+            "values": {
+              "id": "id",
+              "slug": "slug"
+            }
+          },
+          "title": [
+            "name",
+            "title",
+            "original_name"
+          ],
+          "kind": "type",
+          "isMovie": {
+            "path": "type",
+            "equals": "movie"
+          },
+          "subAvailable": {
+            "path": "audio_orig",
+            "equals": 1
+          },
+          "dubAvailable": {
+            "path": "dub_ita",
+            "equals": 1
+          }
+        },
+        "pagination": {
+          "totalCountPath": "props.totalCount",
+          "pageSize": 60
+        }
+      }
+    },
+    "details": {
+      "request": {
+        "origin": "https://streamingunity.vip",
+        "pathTemplate": {
+          "template": "/en/titles/{{contentId}}-{{sourceId}}",
+          "values": {
+            "contentId": {
+              "parameter": "contentId"
+            },
+            "sourceId": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+          "Referer": "https://streamingunity.vip/"
+        }
+      },
+      "response": {
+        "format": "htmlPageData",
+        "selector": {
+          "kind": "attribute",
+          "attribute": "data-page"
+        }
+      },
+      "itemPath": "props.title",
+      "fields": {
+        "title": "name",
+        "description": "plot",
+        "genres": {
+          "path": "genres",
+          "itemPath": [
+            "name",
+            "title"
+          ]
+        },
+        "status": "status",
+        "type": "type",
+        "isMovie": {
+          "path": "type",
+          "equals": "movie"
+        },
+        "seasonNumbers": {
+          "path": "seasons",
+          "itemPath": [
+            "number",
+            "season_number"
+          ]
+        },
+        "subAvailable": {
+          "path": "audio_orig",
+          "equals": 1
+        },
+        "dubAvailable": {
+          "path": "dub_ita",
+          "equals": 1
+        },
+        "runtime": "runtime",
+        "contentId": "id"
+      }
+    },
+    "episodes": {
+      "source": "movieOrSeasonRequest",
+      "request": {
+        "origin": "https://streamingunity.vip",
+        "pathTemplate": {
+          "template": "/en/titles/{{contentId}}-{{sourceId}}/season-{{seasonNumber}}",
+          "values": {
+            "contentId": {
+              "parameter": "contentId"
+            },
+            "sourceId": {
+              "parameter": "sourceId"
+            },
+            "seasonNumber": {
+              "parameter": "seasonNumber"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+          "Referer": "https://streamingunity.vip/"
+        }
+      },
+      "response": {
+        "format": "htmlPageData",
+        "selector": {
+          "kind": "attribute",
+          "attribute": "data-page"
+        }
+      },
+      "itemsPath": "props.loadedSeason.episodes",
+      "item": {
+        "id": "id",
+        "number": "number",
+        "title": [
+          "name",
+          "title"
+        ],
+        "subAvailable": {
+          "path": "audio_orig",
+          "equals": 1
+        },
+        "dubAvailable": {
+          "path": "dub_ita",
+          "equals": 1
+        }
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "streamingunity-movie-original",
+          "label": "StreamingUnity movie via VixCloud · Original audio",
+          "contentKinds": [
+            "movie"
+          ],
+          "variants": [
+            "sub"
+          ],
+          "languageValues": {
+            "sub": "en",
+            "dub": "ita"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/titles/{{contentId}}-{{sourceId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "attribute": "data-page"
+                }
+              },
+              "responseMatches": [
+                {
+                  "path": "props.title.id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "props.title.slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "props.title.type",
+                  "value": "movie"
+                },
+                {
+                  "path": "props.title.audio_orig",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/iframe/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "iframe[src]",
+                "fields": {
+                  "src": {
+                    "kind": "attribute",
+                    "attribute": "src"
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "items",
+                    "selectFromArray": {
+                      "valuePath": "src",
+                      "origin": "https://vixcloud.co",
+                      "pathPrefixes": [
+                        "/embed/",
+                        "/e/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlScriptInitializers",
+                "bindings": {
+                  "streams": "window.streams",
+                  "masterPlaylist": "window.masterPlaylist",
+                  "canPlayFHD": "window.canPlayFHD"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://vixcloud.co/",
+            "Origin": "https://vixcloud.co"
+          },
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "streams",
+              "preferBoolean": {
+                "path": "active",
+                "value": true
+              },
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": "name",
+                "label": {
+                  "value": "VixCloud stream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            },
+            {
+              "shape": "objectOrUrl",
+              "path": "masterPlaylist.url",
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": {
+                  "value": "master"
+                },
+                "label": {
+                  "value": "VixCloud master"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "streamingunity-movie-italian-dub",
+          "label": "StreamingUnity movie via VixCloud · Italian dub",
+          "contentKinds": [
+            "movie"
+          ],
+          "variants": [
+            "dub"
+          ],
+          "languageValues": {
+            "sub": "en",
+            "dub": "ita"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/titles/{{contentId}}-{{sourceId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "attribute": "data-page"
+                }
+              },
+              "responseMatches": [
+                {
+                  "path": "props.title.id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "props.title.slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "props.title.type",
+                  "value": "movie"
+                },
+                {
+                  "path": "props.title.dub_ita",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/iframe/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "iframe[src]",
+                "fields": {
+                  "src": {
+                    "kind": "attribute",
+                    "attribute": "src"
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "items",
+                    "selectFromArray": {
+                      "valuePath": "src",
+                      "origin": "https://vixcloud.co",
+                      "pathPrefixes": [
+                        "/embed/",
+                        "/e/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlScriptInitializers",
+                "bindings": {
+                  "streams": "window.streams",
+                  "masterPlaylist": "window.masterPlaylist",
+                  "canPlayFHD": "window.canPlayFHD"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://vixcloud.co/",
+            "Origin": "https://vixcloud.co"
+          },
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "streams",
+              "preferBoolean": {
+                "path": "active",
+                "value": true
+              },
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": "name",
+                "label": {
+                  "value": "VixCloud stream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            },
+            {
+              "shape": "objectOrUrl",
+              "path": "masterPlaylist.url",
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": {
+                  "value": "master"
+                },
+                "label": {
+                  "value": "VixCloud master"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "streamingunity-episode-original",
+          "label": "StreamingUnity episode via VixCloud · Original audio",
+          "contentKinds": [
+            "episode"
+          ],
+          "variants": [
+            "sub"
+          ],
+          "languageValues": {
+            "sub": "en",
+            "dub": "ita"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/titles/{{contentId}}-{{sourceId}}/season-{{seasonNumber}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "seasonNumber": {
+                      "parameter": "seasonNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "attribute": "data-page"
+                }
+              },
+              "jsonRowSelect": {
+                "itemsPath": "props.loadedSeason.episodes",
+                "matchField": "id",
+                "parameter": "sourceEpisodeId",
+                "resultField": "selectedEpisode"
+              },
+              "responseMatches": [
+                {
+                  "path": "props.title.id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "props.title.slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "props.loadedSeason.number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selectedEpisode.id",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "selectedEpisode.number",
+                  "parameter": "episodeNumber",
+                  "whenParameterPresent": true
+                },
+                {
+                  "path": "props.title.type",
+                  "value": "tv"
+                },
+                {
+                  "path": "selectedEpisode.audio_orig",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/iframe/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "episode_id": {
+                    "parameter": "sourceEpisodeId"
+                  },
+                  "next_episode": "1"
+                },
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "iframe[src]",
+                "fields": {
+                  "src": {
+                    "kind": "attribute",
+                    "attribute": "src"
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "items",
+                    "selectFromArray": {
+                      "valuePath": "src",
+                      "origin": "https://vixcloud.co",
+                      "pathPrefixes": [
+                        "/embed/",
+                        "/e/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlScriptInitializers",
+                "bindings": {
+                  "streams": "window.streams",
+                  "masterPlaylist": "window.masterPlaylist",
+                  "canPlayFHD": "window.canPlayFHD"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://vixcloud.co/",
+            "Origin": "https://vixcloud.co"
+          },
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "streams",
+              "preferBoolean": {
+                "path": "active",
+                "value": true
+              },
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": "name",
+                "label": {
+                  "value": "VixCloud stream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            },
+            {
+              "shape": "objectOrUrl",
+              "path": "masterPlaylist.url",
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": {
+                  "value": "master"
+                },
+                "label": {
+                  "value": "VixCloud master"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "streamingunity-episode-italian-dub",
+          "label": "StreamingUnity episode via VixCloud · Italian dub",
+          "contentKinds": [
+            "episode"
+          ],
+          "variants": [
+            "dub"
+          ],
+          "languageValues": {
+            "sub": "en",
+            "dub": "ita"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/titles/{{contentId}}-{{sourceId}}/season-{{seasonNumber}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "seasonNumber": {
+                      "parameter": "seasonNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "attribute": "data-page"
+                }
+              },
+              "jsonRowSelect": {
+                "itemsPath": "props.loadedSeason.episodes",
+                "matchField": "id",
+                "parameter": "sourceEpisodeId",
+                "resultField": "selectedEpisode"
+              },
+              "responseMatches": [
+                {
+                  "path": "props.title.id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "props.title.slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "props.loadedSeason.number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selectedEpisode.id",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "selectedEpisode.number",
+                  "parameter": "episodeNumber",
+                  "whenParameterPresent": true
+                },
+                {
+                  "path": "props.title.type",
+                  "value": "tv"
+                },
+                {
+                  "path": "selectedEpisode.dub_ita",
+                  "value": 1
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://streamingunity.vip",
+                "pathTemplate": {
+                  "template": "/en/iframe/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "episode_id": {
+                    "parameter": "sourceEpisodeId"
+                  },
+                  "next_episode": "1"
+                },
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "iframe[src]",
+                "fields": {
+                  "src": {
+                    "kind": "attribute",
+                    "attribute": "src"
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "items",
+                    "selectFromArray": {
+                      "valuePath": "src",
+                      "origin": "https://vixcloud.co",
+                      "pathPrefixes": [
+                        "/embed/",
+                        "/e/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://streamingunity.vip/"
+                }
+              },
+              "response": {
+                "format": "htmlScriptInitializers",
+                "bindings": {
+                  "streams": "window.streams",
+                  "masterPlaylist": "window.masterPlaylist",
+                  "canPlayFHD": "window.canPlayFHD"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://vixcloud.co/",
+            "Origin": "https://vixcloud.co"
+          },
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "streams",
+              "preferBoolean": {
+                "path": "active",
+                "value": true
+              },
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": "name",
+                "label": {
+                  "value": "VixCloud stream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            },
+            {
+              "shape": "objectOrUrl",
+              "path": "masterPlaylist.url",
+              "urlPathContains": "/playlist/",
+              "candidate": {
+                "id": {
+                  "value": "master"
+                },
+                "label": {
+                  "value": "VixCloud master"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://vixcloud.co"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "appendQuery": {
+                  "token": {
+                    "path": "masterPlaylist.params.token",
+                    "scope": "response"
+                  },
+                  "expires": {
+                    "path": "masterPlaylist.params.expires",
+                    "scope": "response"
+                  },
+                  "asn": {
+                    "path": "masterPlaylist.params.asn",
+                    "scope": "response"
+                  },
+                  "h": {
+                    "value": "1",
+                    "when": {
+                      "path": "canPlayFHD",
+                      "equals": true,
+                      "scope": "response"
+                    }
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

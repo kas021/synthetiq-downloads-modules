@@ -1,0 +1,784 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "anipm-v1",
+  "name": "AniPM",
+  "version": "0.1.0-experimental.1",
+  "minHostVersion": 6,
+  "moduleFamilyId": "anipm-v1",
+  "moduleIdentity": "SP-VID-084-ANIPM",
+  "contentType": "anime",
+  "languages": [
+    {
+      "id": "sub",
+      "label": "Sub"
+    },
+    {
+      "id": "dub",
+      "label": "Dub"
+    }
+  ],
+  "origins": [
+    "https://ani.pm",
+    "https://megaplay.buzz",
+    "https://fetch.nexabloom.top",
+    "https://c9yjh.phantomharbor.world"
+  ],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://ani.pm",
+        "template": "https://ani.pm/anime/{{sourceId}}",
+        "values": {
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": []
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://ani.pm",
+        "template": "https://ani.pm/anime/{{sourceId}}/episode/{{episodeNumber}}?sourceEp={{sourceEpisodeId}}",
+        "values": {
+          "sourceId": "boundedString",
+          "episodeNumber": "positiveInteger",
+          "sourceEpisodeId": "boundedString"
+        }
+      },
+      "aliases": []
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://ani.pm",
+          "path": "/api/anime/search",
+          "method": "GET",
+          "query": {
+            "q": {
+              "parameter": "query"
+            }
+          },
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Referer": "https://ani.pm/"
+          }
+        },
+        "response": {
+          "format": "json"
+        },
+        "itemsPath": "items",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://ani.pm",
+            "template": "/anime/{{id}}",
+            "values": {
+              "id": "id"
+            }
+          },
+          "title": [
+            "title",
+            "native"
+          ],
+          "image": {
+            "kind": "field",
+            "paths": [
+              "poster",
+              "banner"
+            ],
+            "baseOrigin": "https://ani.pm"
+          },
+          "year": "year",
+          "kind": {
+            "value": "anime"
+          }
+        }
+      }
+    },
+    "details": {
+      "request": {
+        "origin": "https://ani.pm",
+        "pathTemplate": {
+          "template": "/api/anime/series/{{id}}",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "query": {
+          "phase": "core"
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Referer": "https://ani.pm/"
+        }
+      },
+      "itemPath": "",
+      "fields": {
+        "title": "title",
+        "description": "synopsis",
+        "image": {
+          "kind": "field",
+          "paths": [
+            "poster",
+            "banner"
+          ],
+          "baseOrigin": "https://ani.pm"
+        },
+        "year": "year",
+        "genres": "genres",
+        "status": "status"
+      }
+    },
+    "episodes": {
+      "source": "request",
+      "request": {
+        "origin": "https://ani.pm",
+        "pathTemplate": {
+          "template": "/api/anime/series/{{id}}",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "query": {
+          "phase": "core"
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Referer": "https://ani.pm/"
+        }
+      },
+      "itemsPath": "episodes",
+      "item": {
+        "id": "number",
+        "number": "number",
+        "title": "title",
+        "subAvailable": "sub",
+        "dubAvailable": "dub"
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "anipm-megaplay-sub",
+          "label": "AniPM MegaPlay SUB (experimental)",
+          "languageValues": {
+            "sub": "sub",
+            "dub": "dub"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/series/{{id}}",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "phase": "core"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/playback-bootstrap/{{source}}/{{id}}",
+                  "values": {
+                    "source": {
+                      "fromResponse": {
+                        "step": 0,
+                        "path": "source"
+                      }
+                    },
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  },
+                  "backup": "1"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "availability.sub",
+                  "value": true
+                },
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "requestedLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "effectiveLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "backupEmbed.available",
+                  "value": true
+                },
+                {
+                  "path": "backupEmbed.episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "backupEmbed.language",
+                  "parameter": "language"
+                }
+              ],
+              "responseUrlMatches": [
+                {
+                  "path": "backupEmbed.url",
+                  "origin": "https://megaplay.buzz",
+                  "pathTemplate": {
+                    "template": "/stream/s-2/{{id}}/{{audio}}",
+                    "values": {
+                      "id": {
+                        "positiveInteger": true
+                      },
+                      "audio": {
+                        "parameter": "language"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "backupEmbed.url"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "div.fix-area[data-id]",
+                "fields": {
+                  "playerId": {
+                    "kind": "attribute",
+                    "attribute": "data-id",
+                    "transforms": [
+                      "firstPositiveInteger"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSourcesNew",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "fromResponse": {
+                      "step": 2,
+                      "path": "items.0.playerId"
+                    }
+                  },
+                  "type": {
+                    "parameter": "language"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/"
+                }
+              },
+              "response": {
+                "format": "aesCbcJson",
+                "ciphertextPath": "enc",
+                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
+                "ivHex": "57303b3237546f6155706c5f50252763"
+              }
+            }
+          ],
+          "candidatesPath": "items",
+          "candidate": {
+            "id": {
+              "value": "primary"
+            },
+            "label": {
+              "value": "Auto"
+            },
+            "url": {
+              "kind": "field",
+              "paths": [
+                "file",
+                "url",
+                "file.file",
+                "file.url",
+                "sources.0.file",
+                "sources.0.url"
+              ],
+              "baseOrigin": "https://fetch.nexabloom.top"
+            },
+            "kind": {
+              "value": "hls"
+            },
+            "quality": [
+              "quality",
+              "label",
+              "file.quality",
+              "file.label"
+            ]
+          },
+          "headers": {
+            "Accept": "*/*",
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "file",
+                  "url",
+                  "src"
+                ],
+                "label": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "language"
+                ],
+                "language": [
+                  "label",
+                  "name",
+                  "language",
+                  "srclang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ],
+                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                },
+                "forced": "forced",
+                "sdh": "sdh",
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "file",
+                  "url",
+                  "src"
+                ],
+                "label": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "language"
+                ],
+                "language": [
+                  "label",
+                  "name",
+                  "language",
+                  "srclang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ],
+                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                },
+                "forced": "forced",
+                "sdh": "sdh",
+                "default": "default"
+              }
+            }
+          },
+          "variants": [
+            "sub"
+          ]
+        },
+        {
+          "id": "anipm-megaplay-dub",
+          "label": "AniPM MegaPlay DUB (experimental)",
+          "languageValues": {
+            "sub": "sub",
+            "dub": "dub"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/series/{{id}}",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "phase": "core"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/playback-bootstrap/{{source}}/{{id}}",
+                  "values": {
+                    "source": {
+                      "fromResponse": {
+                        "step": 0,
+                        "path": "source"
+                      }
+                    },
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  },
+                  "backup": "1"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "availability.dub",
+                  "value": true
+                },
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "requestedLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "effectiveLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "backupEmbed.available",
+                  "value": true
+                },
+                {
+                  "path": "backupEmbed.episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "backupEmbed.language",
+                  "parameter": "language"
+                }
+              ],
+              "responseUrlMatches": [
+                {
+                  "path": "backupEmbed.url",
+                  "origin": "https://megaplay.buzz",
+                  "pathTemplate": {
+                    "template": "/stream/s-2/{{id}}/{{audio}}",
+                    "values": {
+                      "id": {
+                        "positiveInteger": true
+                      },
+                      "audio": {
+                        "parameter": "language"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 1,
+                    "path": "backupEmbed.url"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "div.fix-area[data-id]",
+                "fields": {
+                  "playerId": {
+                    "kind": "attribute",
+                    "attribute": "data-id",
+                    "transforms": [
+                      "firstPositiveInteger"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSourcesNew",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "fromResponse": {
+                      "step": 2,
+                      "path": "items.0.playerId"
+                    }
+                  },
+                  "type": {
+                    "parameter": "language"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/"
+                }
+              },
+              "response": {
+                "format": "aesCbcJson",
+                "ciphertextPath": "enc",
+                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
+                "ivHex": "57303b3237546f6155706c5f50252763"
+              }
+            }
+          ],
+          "candidatesPath": "items",
+          "candidate": {
+            "id": {
+              "value": "primary"
+            },
+            "label": {
+              "value": "Auto"
+            },
+            "url": {
+              "kind": "field",
+              "paths": [
+                "file",
+                "url",
+                "file.file",
+                "file.url",
+                "sources.0.file",
+                "sources.0.url"
+              ],
+              "baseOrigin": "https://fetch.nexabloom.top"
+            },
+            "kind": {
+              "value": "hls"
+            },
+            "quality": [
+              "quality",
+              "label",
+              "file.quality",
+              "file.label"
+            ]
+          },
+          "headers": {
+            "Accept": "*/*",
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "file",
+                  "url",
+                  "src"
+                ],
+                "label": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "language"
+                ],
+                "language": [
+                  "label",
+                  "name",
+                  "language",
+                  "srclang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ],
+                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                },
+                "forced": "forced",
+                "sdh": "sdh",
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "file",
+                  "url",
+                  "src"
+                ],
+                "label": [
+                  "label",
+                  "name",
+                  "srclang",
+                  "language"
+                ],
+                "language": [
+                  "label",
+                  "name",
+                  "language",
+                  "srclang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ],
+                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                },
+                "forced": "forced",
+                "sdh": "sdh",
+                "default": "default"
+              }
+            }
+          },
+          "variants": [
+            "dub"
+          ]
+        }
+      ]
+    }
+  }
+}

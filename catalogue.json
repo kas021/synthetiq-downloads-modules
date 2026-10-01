@@ -7,9 +7,13 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
+      "version": "1.3.3",
+      "minHostVersion": 5,
+      "minAppVersion": "1.0.72",
+      "sha256": "678312ff676c21b2e9a8556fdba2dca7cd3018ae54e51e1855c06e1cc8182b0b",
       "presentation": {
         "category": "Anime",
-        "purpose": "English anime downloads",
+        "purpose": "Synthetiq Anime downloads (experimental)",
         "language": "English SUB / DUB",
         "languages": [
           "sub",
@@ -19,9 +23,52 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.3.1: Bounded data-only source; Anime search, details, SUB/DUB server choices and caption mappings.",
-        "Live source resolution observed; full download and offline playback on both phones remain unverified."
+        "1.3.3: Bounded data-only download definition; requires content host 5.",
+        "SUB/DUB resolver and playlist inspections passed. Complete transfers, caption files and physical offline playback remain pending."
+      ]
+    },
+    {
+      "file": "modules-data/anipm-downloads.smod.json",
+      "version": "0.1.0-experimental.1",
+      "minHostVersion": 6,
+      "minAppVersion": "1.0.75",
+      "sha256": "65c7a38177b83d9228215cc921f9deb737f314148daf7d44ad4b7393b1376616",
+      "presentation": {
+        "category": "Anime",
+        "purpose": "AniPM downloads (experimental)",
+        "language": "English SUB / DUB",
+        "languages": [
+          "sub",
+          "dub"
+        ],
+        "recommended": false
+      },
+      "changelog": [
+        "0.1.0-experimental.1: Bounded data-only download definition; requires content host 6.",
+        "SUB/DUB resolver and playlist inspections passed. Complete transfers, caption files and physical offline playback remain pending."
+      ]
+    },
+    {
+      "file": "modules-data/synthetiq-movies-downloads.smod.json",
+      "version": "1.0.0-experimental.1",
+      "minHostVersion": 6,
+      "minAppVersion": "1.0.75",
+      "sha256": "f490b88c907b663e108dd63ef396786163c8a19c924383b14c845ad23c867328",
+      "presentation": {
+        "category": "Movies & TV",
+        "purpose": "Synthetiq Movies downloads (experimental)",
+        "language": "Original audio / Italian dub",
+        "languages": [
+          "sub",
+          "dub"
+        ],
+        "recommended": false
+      },
+      "changelog": [
+        "1.0.0-experimental.1: Bounded data-only download definition; requires content host 6.",
+        "Metadata and identity fixtures passed; live Vix playlist inspection returned HTTP 403. Tracks, quality, captions, full transfers and offline phone playback remain unverified."
       ]
     }
-  ]
+  ],
+  "compatibilityMatrix": "SOURCE_COMPATIBILITY.json"
 }

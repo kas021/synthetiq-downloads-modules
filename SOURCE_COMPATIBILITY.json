@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Technical mapping and compatibility matrix for the eight selected Player source identities.",
+  "hostRequirement": 6,
+  "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
+  "sources": [
+    {
+      "name": "Synthetiq Movies",
+      "id": "synthetiq-movies-v1",
+      "familyId": "synthetiq_movies_v1",
+      "identity": "SP-VID-059-SYNTHETIQ-MOVIES",
+      "publishedVersion": "1.2.5",
+      "playerDevelopmentVersion": "1.2.3",
+      "downloadsDefinitionVersion": "1.0.0-experimental.1",
+      "implementation": "experimental-bounded-streamingunity-vix-candidates",
+      "recommended": false,
+      "capabilities": {
+        "browse": "keyless-search-data-page-mapped-60-results-per-page; generic-facets-unmapped",
+        "details": "compound-contentId-and-sourceSlug-data-page-mapped",
+        "seasons": "selected-season-request-mapped-with-compound-contentId-and-sourceSlug",
+        "episodes": "exact-sourceEpisodeId-and-number-selected-from-returned-season-row",
+        "audio": "original-audio-audio_orig-and-italian-dub-dub_ita-checked-before-iframe; playlist-track-unverified",
+        "serverResolve": "declared-iframe-and-literal-vix-playlist-candidates-mapped; live-master-http-403",
+        "quality": "unverified-master-playlist-http-403",
+        "captions": "unverified-hls-media-playlist-http-403",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "The keyless StreamingUnity search, details, movie and selected-season routes are mapped with compound content ID plus title slug references. Movie routes check returned ID, slug, movie type and requested audio flag before the iframe. TV preflight selects the requested source episode row and checks title, slug, TV type, season, episode ID, episode number and requested audio flag before the iframe. The bounded definition follows only declared Vix embed/playlist URLs and reads literal streams/masterPlaylist initializers without executing page code. A live Vix master-playlist request returned HTTP 403, so mapped HLS candidates have not passed live inspection and playable audio, quality, captions, transfer and native offline acceptance remain unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork records/CDN mapping and generic catalogue facets are not mapped in this experimental definition."
+    },
+    {
+      "name": "Alpha Movies",
+      "id": "alpha-movies",
+      "familyId": "alpha_movies_v1",
+      "identity": "SP-VID-079-ALPHA-MOVIES",
+      "publishedVersion": "0.2.0-beta.2",
+      "playerDevelopmentVersion": "0.2.0-beta.2",
+      "downloadsDefinitionVersion": null,
+      "implementation": "bounded-gcm-helper-only-no-source-definition",
+      "recommended": false,
+      "capabilities": {
+        "browse": "unmapped",
+        "details": "unmapped",
+        "seasons": "unmapped",
+        "episodes": "unmapped",
+        "audio": "unmapped",
+        "serverResolve": "bounded-aes-gcm-rows-decoded-without-content-identity-binding",
+        "quality": "unmapped",
+        "captions": "unmapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "A bounded AES-GCM helper decodes public Vidrock resolver rows. Search/details and TV season/episode-to-resolver identity are not mapped in the Downloads host, so no Alpha source definition or operational route is present."
+    },
+    {
+      "name": "X-Stream",
+      "id": "xstream-v1",
+      "familyId": "xstream_v1",
+      "identity": "SP-VID-048-XSTREAM",
+      "publishedVersion": "1.3.1",
+      "playerDevelopmentVersion": "1.3.1",
+      "downloadsDefinitionVersion": null,
+      "implementation": "gap-provider-logic-outside-bounded-host",
+      "recommended": false,
+      "capabilities": {
+        "browse": "unmapped",
+        "details": "unmapped",
+        "seasons": "unmapped",
+        "episodes": "unmapped",
+        "audio": "unmapped",
+        "serverResolve": "unmapped",
+        "quality": "unmapped",
+        "captions": "unmapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "The current module's multi-provider resolution and source-specific parsing are not represented by an available complete bounded route; its catalogue also depends on the Player TMDB configuration."
+    },
+    {
+      "name": "Synthetiq Anime",
+      "id": "synthetiq-anime-v1",
+      "familyId": "synthetiq_anime_v1",
+      "identity": "SP-VID-074-SYNTHETIQ-ANIME",
+      "publishedVersion": "1.0.5-beta.2",
+      "playerDevelopmentVersion": "1.0.6-beta.1",
+      "downloadsDefinitionVersion": "1.3.3",
+      "implementation": "reviewed-bounded-fallback-live-inspection",
+      "recommended": false,
+      "capabilities": {
+        "browse": "mapped-search-catalogue",
+        "details": "mapped",
+        "seasons": "not-mapped",
+        "episodes": "mapped-numbered-episodes",
+        "audio": "sub-dub-request-bound",
+        "serverResolve": "mapped-multiple-bounded-routes",
+        "quality": "auto-master-only",
+        "captions": "mapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "The bounded fallback route and live inspection have been reviewed. Full media transfer and native offline acceptance remain pending, so the source is experimental and non-recommended."
+    },
+    {
+      "name": "AniPM",
+      "id": "anipm-v1",
+      "familyId": "anipm-v1",
+      "identity": "SP-VID-084-ANIPM",
+      "publishedVersion": "0.1.0-beta.3",
+      "playerDevelopmentVersion": "0.1.0-beta.3",
+      "downloadsDefinitionVersion": "0.1.0-experimental.1",
+      "implementation": "experimental-host6-megaplay-route",
+      "recommended": false,
+      "capabilities": {
+        "browse": "search-only-mapped",
+        "details": "mapped",
+        "seasons": "not-applicable-flat-numbered-series",
+        "episodes": "numbered-episodes-mapped",
+        "audio": "requested-sub-dub-bound-to-bootstrap-identity",
+        "serverResolve": "live-hls-playlist-inspection-passed-bootstrap-identity-checked",
+        "quality": "single-auto-playlist-inspected-no-quality-selector",
+        "captions": "zero-tracks-in-live-inspection-fixture-track-map-present",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. The provider numeric path segment remains opaque and is not independently bound to the episode ID. Coordinator live inspection reached the HLS playlist for both Sub and Dub (321 segments, 1,477.974 seconds; seven requests each, six HTTP 200 and one HTTP 206), with zero caption tracks and no media transfer. Physical-device/offline acceptance remains pending."
+    },
+    {
+      "name": "AnimeAV1",
+      "id": "animeav1-v1",
+      "familyId": "animeav1_v1",
+      "identity": "SP-VID-060-ANIMEAV1",
+      "publishedVersion": "1.3.0-beta.4",
+      "playerDevelopmentVersion": "1.3.0-beta.4",
+      "downloadsDefinitionVersion": null,
+      "implementation": "gap-custom-player-resolution",
+      "recommended": false,
+      "capabilities": {
+        "browse": "unmapped",
+        "details": "unmapped",
+        "seasons": "unmapped",
+        "episodes": "unmapped",
+        "audio": "unmapped",
+        "serverResolve": "unmapped",
+        "quality": "unmapped",
+        "captions": "unmapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "Current candidate player and embed resolution uses source-specific routines that the bounded host cannot represent without additional narrowly scoped response decoding."
+    },
+    {
+      "name": "Mugiwara Streaming",
+      "id": "mugiwara-v1",
+      "familyId": "mugiwara_v1",
+      "identity": "SP-VID-071-MUGIWARA",
+      "publishedVersion": "1.1.0-beta.5",
+      "playerDevelopmentVersion": "1.1.0-beta.5",
+      "downloadsDefinitionVersion": null,
+      "implementation": "gap-dynamic-episode-script-initializer",
+      "recommended": false,
+      "capabilities": {
+        "browse": "unmapped",
+        "details": "unmapped",
+        "seasons": "unmapped",
+        "episodes": "unmapped",
+        "audio": "unmapped",
+        "serverResolve": "unmapped",
+        "quality": "unmapped",
+        "captions": "unmapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "Episode discovery depends on dynamic `var epsN=[...]` script initializers; the bounded inert parser currently only supports declared literal bindings and cannot evaluate this construction."
+    },
+    {
+      "name": "Aniworld",
+      "id": "aniworld-v1",
+      "familyId": "aniworld_v1",
+      "identity": "SP-VID-050-ANIWORLD",
+      "publishedVersion": "1.3.2",
+      "playerDevelopmentVersion": "1.3.2",
+      "downloadsDefinitionVersion": null,
+      "implementation": "gap-dynamic-hoster-resolution",
+      "recommended": false,
+      "capabilities": {
+        "browse": "unmapped",
+        "details": "unmapped",
+        "seasons": "unmapped",
+        "episodes": "unmapped",
+        "audio": "unmapped",
+        "serverResolve": "unmapped",
+        "quality": "unmapped",
+        "captions": "unmapped",
+        "offlineAcceptance": "unverified-native"
+      },
+      "technicalGap": "Episode hoster rows are followed by provider-specific dynamic resolution routines outside the bounded host's declared selectors and response decoders."
+    }
+  ]
+}
