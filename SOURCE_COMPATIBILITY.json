@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Technical mapping and compatibility matrix for the eight selected Player source identities.",
-  "hostRequirement": 7,
+  "hostRequirement": 8,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
     {
@@ -80,7 +80,7 @@
       "identity": "SP-VID-074-SYNTHETIQ-ANIME",
       "publishedVersion": "1.0.5-beta.2",
       "playerDevelopmentVersion": "1.0.6-beta.1",
-      "downloadsDefinitionVersion": "1.3.4",
+      "downloadsDefinitionVersion": "1.3.5",
       "implementation": "host7-bounded-player-provider-parity",
       "recommended": false,
       "capabilities": {
@@ -89,12 +89,12 @@
         "seasons": "not-mapped",
         "episodes": "mapped-numbered-episodes",
         "audio": "sub-dub-request-bound",
-        "serverResolve": "five-anikage-provider-direct-row-routes-and-three-koto-megaplay-selections; two-primary-routes-and-legacy-route-retained",
+        "serverResolve": "12 bounded alternatives including exact Wave EchoVideo fallback; live reported Ramparts E1 SUB resolves",
         "quality": "auto-master-only",
         "captions": "mapped-direct-caption-tracks; death-note-e1-inspection-returned-zero-module-declared-tracks; playlist-caption-count-unconfirmed",
         "offlineAcceptance": "unverified-native"
       },
-      "technicalGap": "Current Player Anime 1.0.5-beta.2 and development 1.0.6-beta.1 were compared with Flux 1.0.3-beta.4 as inert references. Five AniKage provider direct-row routes plus three bounded Koto MegaPlay selections are declared with explicit browser User-Agent and root Referer; exact watch-slug Referer cannot be response-bound by this host. EchoVideo path parsing and packed Vidplay/FlixCloud/AnimeApps routines are not ported or advertised as supported. Direct row isM3U8 metadata is not proof of media usability; the app inspects each candidate. Hermes/native HTTP inspection of Death Note episode 1 SUB/DUB with Anime 1.3.3 passed after the app URL polyfill; updated 1.3.4 live SUB/DUB resolution and HLS inspection passed via AniKage MegaPlay (312 segments, 1,377 seconds, zero module-declared tracks; playlist-caption count unconfirmed). Flow/Zuri returned HTTP 502 and opaque Koto/Wave direct paths returned 404; fallback stayed on the exact requested title/episode/audio. Isolated simulator native HLS admission failed with background-session service error 4097 and zero bytes. Complete physical transfer, caption files and repeated offline playback remain pending. A follow-up inspection hit HTTP 429, so repeated live availability is rate-limited and further retries were stopped."
+      "technicalGap": "Compared fresh published Player Anime 1.0.5-beta.2 (verified archive hash); the previously cited development 1.0.6-beta.1 was not located in registered local worktrees in this pass. Added bounded Wave EchoVideo embed-1 path extraction, descriptor and HLS mapping. Direct opaque source tokens are rejected. Live exact Ramparts of Ice Season 2 E1 SUB resolution and 155-segment HLS inspection pass. Primary Flow/Zuri still return HTTP 502. Black Clover E1 SUB complete paced workstation transfer passed 325/325 segments with H.264/AAC and matching duration; unrestricted transfer hit HTTP 429 and is explicitly a failure. This is not native-phone acceptance. Optional captions depend on actual returned tracks; no external tracks were returned for these checked routes. EchoVideo embed-20 direct-file and packed players remain unsupported. Complete native phone transfer, background/return, caption selection and repeated offline playback remain unverified."
     },
     {
       "name": "AniPM",

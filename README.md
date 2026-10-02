@@ -55,3 +55,7 @@ Hermes/native-HTTP check reached the Death Note episode 1 SUB/DUB playlists,
 but its simulator background-transfer service was unavailable. This is not
 physical transfer or offline playback certification. Flux was compared as a
 reference; a separate Downloads Flux definition is not published here yet.
+
+## Anime 1.3.5 — Host 8
+
+Requires Downloads 1.0.80 or later. Adds the published Player Wave/EchoVideo fallback as data, with declared origins and bounded URL path extraction. Update an installed Anime module separately from the app; app upgrades do not silently replace user-installed definitions. Existing module family IDs and episode aliases are retained. Full native phone acceptance remains pending; see SOURCE_COMPATIBILITY.json.
