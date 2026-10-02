@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Technical mapping and compatibility matrix for the eight selected Player source identities.",
-  "hostRequirement": 8,
+  "hostRequirement": 9,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
     {
@@ -81,7 +81,7 @@
       "publishedVersion": "1.0.5-beta.2",
       "playerDevelopmentVersion": "1.0.6-beta.1",
       "downloadsDefinitionVersion": "1.3.5",
-      "implementation": "host7-bounded-player-provider-parity",
+      "implementation": "host8-bounded-player-provider-parity",
       "recommended": false,
       "capabilities": {
         "browse": "mapped-search-catalogue",
@@ -94,7 +94,8 @@
         "captions": "mapped-direct-caption-tracks; death-note-e1-inspection-returned-zero-module-declared-tracks; playlist-caption-count-unconfirmed",
         "offlineAcceptance": "unverified-native"
       },
-      "technicalGap": "Compared fresh published Player Anime 1.0.5-beta.2 (verified archive hash); the previously cited development 1.0.6-beta.1 was not located in registered local worktrees in this pass. Added bounded Wave EchoVideo embed-1 path extraction, descriptor and HLS mapping. Direct opaque source tokens are rejected. Live exact Ramparts of Ice Season 2 E1 SUB resolution and 155-segment HLS inspection pass. Primary Flow/Zuri still return HTTP 502. Black Clover E1 SUB complete paced workstation transfer passed 325/325 segments with H.264/AAC and matching duration; unrestricted transfer hit HTTP 429 and is explicitly a failure. This is not native-phone acceptance. Optional captions depend on actual returned tracks; no external tracks were returned for these checked routes. EchoVideo embed-20 direct-file and packed players remain unsupported. Complete native phone transfer, background/return, caption selection and repeated offline playback remain unverified."
+      "technicalGap": "Compared fresh published Player Anime 1.0.5-beta.2 (verified archive hash); the previously cited development 1.0.6-beta.1 was not located in registered local worktrees in this pass. Added bounded Wave EchoVideo embed-1 path extraction, descriptor and HLS mapping. Direct opaque source tokens are rejected. Live exact Ramparts of Ice Season 2 E1 SUB resolution and 155-segment HLS inspection pass. Primary Flow/Zuri still return HTTP 502. Black Clover E1 SUB complete paced workstation transfer passed 325/325 segments with H.264/AAC and matching duration; unrestricted transfer hit HTTP 429 and is explicitly a failure. This is not native-phone acceptance. Optional captions depend on actual returned tracks; no external tracks were returned for these checked routes. EchoVideo embed-20 direct-file and packed players remain unsupported. Complete native phone transfer, background/return, caption selection and repeated offline playback remain unverified.",
+      "minimumContentHostVersion": 8
     },
     {
       "name": "AniPM",
@@ -126,21 +127,22 @@
       "identity": "SP-VID-060-ANIMEAV1",
       "publishedVersion": "1.3.0-beta.4",
       "playerDevelopmentVersion": "1.3.0-beta.4",
-      "downloadsDefinitionVersion": null,
-      "implementation": "gap-custom-player-resolution",
+      "downloadsDefinitionVersion": "0.1.0-experimental.1",
+      "minimumContentHostVersion": 9,
+      "implementation": "experimental-host9-sveltekit-mp4upload-sub",
       "recommended": false,
       "capabilities": {
-        "browse": "unmapped",
-        "details": "unmapped",
-        "seasons": "unmapped",
-        "episodes": "unmapped",
-        "audio": "unmapped",
-        "serverResolve": "unmapped",
-        "quality": "unmapped",
-        "captions": "unmapped",
-        "offlineAcceptance": "unverified-native"
+        "browse": "catalogo-search-title-poster-mapped-through-production-host",
+        "details": "live-captured-sveltekit-title-synopsis-and-count-mapped",
+        "seasons": "not-applicable-flat-series",
+        "episodes": "live-captured-flat-numbered-episodes-and-source-ids-mapped",
+        "audio": "exact-sub-route-only;sample-E1-audio-autodetected-as-Japanese;spoken-language-unverified-across-titles",
+        "serverResolve": "live-captured-mp4upload-player-src-through-production-host;exact-MP4Upload-row-and-HTTPS-port-183-bound",
+        "quality": "source-quality-unknown-and-omitted;data-saver-policy-unverified",
+        "captions": "no-selectable-sidecar-track;sample-E1-hardcoded-Spanish-visible-in-16-frame-inspection",
+        "offlineAcceptance": "paced-private-workstation-E1-transfer-passed;native-offline-acceptance-pending"
       },
-      "technicalGap": "Current candidate player and embed resolution uses source-specific routines that the bounded host cannot represent without additional narrowly scoped response decoding."
+      "technicalGap": "The experimental Host 9 definition preserves the published AnimeAV1 identity and maps catalog search, captured SvelteKit details, 37 flat numbered episodes, exact episode ID/number, one exact MP4Upload SUB embed row, and a literal player.src source through the production host. The embed's nonce-prefixed 24-hex `-text/javascript` MIME is read only by the inert, bounded player-call decoder. Its one declared media origin is https://a1.mp4upload.com:183; wrong ports and undeclared redirect origins are rejected, and playlist-derived-origin policy is unchanged. A paced private workstation transfer completed 152,379,679 bytes in 37 range requests; full-file inspection reported a 1,377.376-second AV1 Main 1920x1080 video plus AAC LC 2-channel 48 kHz audio, with both language tags `und`, no embedded subtitle stream, and a full decode pass. In a 20-second E1 audio sample, language auto-detection indicated Japanese; 16 sampled frames showed hardcoded Spanish captions. Neither the SUB route label nor that one episode proves language or caption behavior across the catalogue. The route exposes no selectable subtitle track; resolution/quality remains unknown and omitted. AV1 Main requires device decode support; no phone playback or native offline acceptance is claimed. Data Saver handling for unknown direct-file quality remains unverified."
     },
     {
       "name": "Mugiwara Streaming",
@@ -158,12 +160,12 @@
         "seasons": "unmapped",
         "episodes": "unmapped",
         "audio": "unmapped",
-        "serverResolve": "unmapped",
+        "serverResolve": "observed candidates denied or non-media; no identity-bound playable route",
         "quality": "unmapped",
         "captions": "unmapped",
-        "offlineAcceptance": "unverified-native"
+        "offlineAcceptance": "unsupported; no verified native package"
       },
-      "technicalGap": "Episode discovery depends on dynamic `var epsN=[...]` script initializers; the bounded inert parser currently only supports declared literal bindings and cannot evaluate this construction."
+      "technicalGap": "Latest captured episode arrays are inert literals, but observed Sibnet denies and Ansembed candidate selection returns a favicon rather than playable media. No identity-bound playable route or complete transfer is evidenced."
     },
     {
       "name": "Aniworld",
@@ -181,12 +183,12 @@
         "seasons": "unmapped",
         "episodes": "unmapped",
         "audio": "unmapped",
-        "serverResolve": "unmapped",
+        "serverResolve": "sampled literal/redirect path inspected; no certified complete package",
         "quality": "unmapped",
         "captions": "unmapped",
-        "offlineAcceptance": "unverified-native"
+        "offlineAcceptance": "unsupported; no verified native package"
       },
-      "technicalGap": "Episode hoster rows are followed by provider-specific dynamic resolution routines outside the bounded host's declared selectors and response decoders."
+      "technicalGap": "The sampled Death Note S1 E1 DE Subs/Vidmoly route resolves to clear HLS, but the complete paced 70-segment workstation transfer fails strict FFmpeg copy remux at about 110.2 seconds with duplicate/non-monotonic DTS in segment 6 of 70; the playlist declares no discontinuity. Native mobile TS-append/local-HLS behavior is a distinct unverified path. Two short audio samples detected Japanese, which is not a per-title language guarantee; subtitle language was not verified. No definition/Host10 expansion until a non-lossy package passes."
     }
   ]
 }

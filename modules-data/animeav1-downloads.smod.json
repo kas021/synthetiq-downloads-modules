@@ -1,0 +1,309 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "animeav1-v1",
+  "name": "AnimeAV1",
+  "version": "0.1.0-experimental.1",
+  "minHostVersion": 9,
+  "moduleFamilyId": "animeav1_v1",
+  "moduleIdentity": "SP-VID-060-ANIMEAV1",
+  "contentType": "anime",
+  "languages": [
+    {
+      "id": "sub",
+      "label": "SUB"
+    }
+  ],
+  "origins": [
+    "https://animeav1.com",
+    "https://cdn.animeav1.com",
+    "https://www.mp4upload.com",
+    "https://a1.mp4upload.com:183"
+  ],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://animeav1.com",
+        "template": "https://animeav1.com/media/{{sourceId}}",
+        "values": {
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": []
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://animeav1.com",
+        "template": "https://animeav1.com/media/{{sourceId}}/{{episodeNumber}}?sourceEp={{sourceEpisodeId}}",
+        "values": {
+          "sourceId": "boundedString",
+          "episodeNumber": "positiveInteger",
+          "sourceEpisodeId": "boundedString"
+        }
+      },
+      "aliases": []
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://animeav1.com",
+          "path": "/catalogo",
+          "method": "GET",
+          "query": {
+            "search": {
+              "parameter": "query"
+            }
+          },
+          "headers": {
+            "Accept": "text/html",
+            "Referer": "https://animeav1.com/"
+          }
+        },
+        "response": {
+          "format": "htmlRows",
+          "collectionSelector": "article",
+          "fields": {
+            "href": {
+              "kind": "attribute",
+              "selector": "a[href]",
+              "attribute": "href"
+            },
+            "title": {
+              "kind": "text",
+              "selector": "h3",
+              "transforms": [
+                "trim"
+              ]
+            },
+            "poster": {
+              "kind": "attribute",
+              "selector": "img",
+              "attribute": "src"
+            }
+          }
+        },
+        "itemsPath": "items",
+        "item": {
+          "href": {
+            "kind": "field",
+            "paths": "href",
+            "baseOrigin": "https://animeav1.com"
+          },
+          "title": "title",
+          "image": {
+            "kind": "field",
+            "paths": "poster",
+            "baseOrigin": "https://cdn.animeav1.com"
+          },
+          "kind": {
+            "value": "anime"
+          }
+        }
+      }
+    },
+    "details": {
+      "request": {
+        "origin": "https://animeav1.com",
+        "pathTemplate": {
+          "template": "/media/{{slug}}",
+          "values": {
+            "slug": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "Referer": "https://animeav1.com/"
+        }
+      },
+      "response": {
+        "format": "htmlSvelteKitData",
+        "bindings": {
+          "title": "media.title",
+          "description": "media.synopsis",
+          "count": "media.episodesCount"
+        }
+      },
+      "itemPath": "",
+      "fields": {
+        "title": "title",
+        "description": "description",
+        "episodeCount": "count"
+      }
+    },
+    "episodes": {
+      "source": "request",
+      "request": {
+        "origin": "https://animeav1.com",
+        "pathTemplate": {
+          "template": "/media/{{slug}}",
+          "values": {
+            "slug": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "Referer": "https://animeav1.com/"
+        }
+      },
+      "response": {
+        "format": "htmlSvelteKitData",
+        "bindings": {
+          "episodes": "media.episodes"
+        }
+      },
+      "itemsPath": "episodes",
+      "item": {
+        "id": "id",
+        "number": "number"
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "animeav1-mp4upload-sub",
+          "label": "AnimeAV1 MP4Upload SUB (experimental)",
+          "variants": [
+            "sub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://animeav1.com",
+                "pathTemplate": {
+                  "template": "/media/{{slug}}/{{number}}",
+                  "values": {
+                    "slug": {
+                      "parameter": "sourceId"
+                    },
+                    "number": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html",
+                  "Referer": "https://animeav1.com/"
+                }
+              },
+              "response": {
+                "format": "htmlSvelteKitData",
+                "bindings": {
+                  "mediaSlug": "media.slug",
+                  "episodeId": "episode.id",
+                  "episodeNumber": "episode.number",
+                  "subEmbeds": "embeds.SUB"
+                }
+              },
+              "jsonRowSelect": {
+                "itemsPath": "subEmbeds",
+                "matchField": "server",
+                "value": "MP4Upload",
+                "resultField": "selectedEmbed"
+              },
+              "responseMatches": [
+                {
+                  "path": "mediaSlug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "episodeId",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "episodeNumber",
+                  "parameter": "episodeNumber"
+                }
+              ]
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "selectedEmbed.url"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html",
+                  "Referer": "https://animeav1.com/"
+                }
+              },
+              "response": {
+                "format": "htmlScriptCallArgument",
+                "callee": "player.src"
+              },
+              "extractUrl": {
+                "path": "arguments",
+                "select": {
+                  "valuePath": "src",
+                  "origin": "https://a1.mp4upload.com:183",
+                  "pathPrefixes": [
+                    "/d/"
+                  ]
+                },
+                "resultField": "media",
+                "fields": {
+                  "directory": {
+                    "pathSegment": 0
+                  },
+                  "file": {
+                    "pathSegment": 2
+                  }
+                }
+              },
+              "responseMatches": [
+                {
+                  "path": "arguments.0.type",
+                  "value": "video/mp4"
+                },
+                {
+                  "path": "media.directory",
+                  "value": "d"
+                },
+                {
+                  "path": "media.file",
+                  "value": "video.mp4"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "object",
+              "path": "media",
+              "candidate": {
+                "id": {
+                  "value": "mp4upload-sub"
+                },
+                "label": {
+                  "value": "Original file"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "value": "file"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Referer": "https://www.mp4upload.com/"
+          }
+        }
+      ]
+    }
+  }
+}

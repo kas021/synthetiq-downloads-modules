@@ -34,19 +34,19 @@
         }
       },
       "downloadsCompatibility": {
-        "installable": false,
+        "installable": true,
         "status": "experimental-bounded-streamingunity-vix-candidates",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "The keyless StreamingUnity search, details, movie and selected-season routes are mapped with compound content ID plus title slug references. Movie routes check returned ID, slug, movie type and requested audio flag before the iframe. TV preflight selects the requested source episode row and checks title, slug, TV type, season, episode ID, episode number and requested audio flag before the iframe. The bounded definition follows only declared Vix embed/playlist URLs and reads literal streams/masterPlaylist initializers without executing page code. A live Vix master-playlist request returned HTTP 403, so mapped HLS candidates have not passed live inspection and playable audio, quality, captions, transfer and native offline acceptance remain unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork records/CDN mapping and generic catalogue facets are not mapped in this experimental definition."
+          "Canonical browse/details/movie/TV routes now use the live streamingunity.fun domain; .vip remains solely for legacy saved movie/episode reference aliases, with source IDs and module identity preserved. The bounded definition maps compound title ID plus slug, preflights movie/TV/audio request identity, and follows only declared Vix embed/playlist URLs and literal stream initializers without executing page code. Live .fun movie search/details and three Vix candidate routes were checked; Vix masters and a media playlist returned HTTP 200. The selected video variant references an external audio group (English default with Italian alternative), and its media playlist uses AES-128; Downloads does not yet package separate audio or save encrypted HLS, so no complete media transfer was attempted. Captions were not confirmed, and native offline acceptance remains unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork and generic catalogue facets are not mapped."
         ],
         "downloadsDefinition": {
           "file": "modules-data/synthetiq-movies-downloads.smod.json",
-          "version": "1.0.0-experimental.1",
+          "version": "1.0.1-experimental.1",
           "minHostVersion": 6,
           "minAppVersion": "1.0.75",
-          "sha256": "f490b88c907b663e108dd63ef396786163c8a19c924383b14c845ad23c867328",
+          "sha256": "b35f33febfbaf3bfaf052f31aeec58ad8ba0283145681683150be602dbf8ee3f",
           "installable": true,
           "experimental": true
         }
@@ -83,7 +83,7 @@
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "A bounded AES-GCM helper decodes public Vidrock resolver rows. Search/details and TV season/episode-to-resolver identity are not mapped in the Downloads host, so no Alpha source definition or operational route is present."
+          "The bounded AES-GCM helper decoded live Alpha Vidrock rows for a known movie ID. Candidate inspection found dynamic CDN origins: one candidate's first media segment returned HTTP 403, while a second candidate's first segment parsed as H.264/AAC. Neither candidate is tied to a Downloads search/details/episode identity, the changing CDN origins do not fit the static declared-origin contract, and no full transfer or native acceptance was performed. No Alpha source definition is present."
         ]
       }
     },
@@ -117,7 +117,7 @@
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "The current module's multi-provider resolution and source-specific parsing are not represented by an available complete bounded route; its catalogue also depends on the Player TMDB configuration."
+          "Live Vidzee v1/v2 probes for a known movie ID returned JSON routes that still require provider-specific Goodstream/Hubcloud resolution; a MoviesAPI page probe exposed no direct media URL. Search/details identity and a bounded complete resolver are unmapped, and the Player module's TMDB configuration was not reused. No full media transfer or native acceptance was performed."
         ]
       }
     },
@@ -151,19 +151,19 @@
         }
       },
       "downloadsCompatibility": {
-        "installable": false,
-        "status": "reviewed-bounded-fallback-live-inspection",
+        "installable": true,
+        "status": "host8-bounded-player-provider-parity",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "The bounded fallback route and live inspection have been reviewed. Full media transfer and native offline acceptance remain pending, so the source is experimental and non-recommended."
+          "Compared fresh published Player Anime 1.0.5-beta.2 (verified archive hash); the previously cited development 1.0.6-beta.1 was not located in registered local worktrees in this pass. Added bounded Wave EchoVideo embed-1 path extraction, descriptor and HLS mapping. Direct opaque source tokens are rejected. Live exact Ramparts of Ice Season 2 E1 SUB resolution and 155-segment HLS inspection pass. Primary Flow/Zuri still return HTTP 502. Black Clover E1 SUB complete paced workstation transfer passed 325/325 segments with H.264/AAC and matching duration; unrestricted transfer hit HTTP 429 and is explicitly a failure. This is not native-phone acceptance. Optional captions depend on actual returned tracks; no external tracks were returned for these checked routes. EchoVideo embed-20 direct-file and packed players remain unsupported. Complete native phone transfer, background/return, caption selection and repeated offline playback remain unverified."
         ],
         "downloadsDefinition": {
           "file": "modules-data/synthetiq-anime.smod.json",
-          "version": "1.3.3",
-          "minHostVersion": 5,
-          "minAppVersion": "1.0.72",
-          "sha256": "678312ff676c21b2e9a8556fdba2dca7cd3018ae54e51e1855c06e1cc8182b0b",
+          "version": "1.3.5",
+          "minHostVersion": 8,
+          "minAppVersion": "1.0.80",
+          "sha256": "d3deb1ada688a553f9d34d6e996383e8dffa5e0b9919ee11f22213e7da8d5f43",
           "installable": true,
           "experimental": true
         }
@@ -199,12 +199,12 @@
         }
       },
       "downloadsCompatibility": {
-        "installable": false,
+        "installable": true,
         "status": "experimental-host6-megaplay-route",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. The provider numeric path segment remains opaque and is not independently bound to the episode ID. Coordinator live inspection reached the HLS playlist for both Sub and Dub (321 segments, 1,477.974 seconds; seven requests each, six HTTP 200 and one HTTP 206), with zero caption tracks and no media transfer. Physical-device/offline acceptance remains pending."
+          "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective route audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. On 2026-10-02, a paced private workstation SUB transfer completed 271/271 MPEG-TS segments (199,625,544 bytes; 1,372.035-second playlist; 1,372.121 seconds by ffprobe; H.264/AAC; no rate limits). This proves one workstation transfer only. The provider numeric path segment remains opaque and is not independently bound to the episode ID; SUB/DUB route labels do not prove the spoken language, DUB was not fully transferred, and no caption tracks were returned for the sampled route. Phone background transfer, local-file reopen and offline playback remain pending."
         ],
         "downloadsDefinition": {
           "file": "modules-data/anipm-downloads.smod.json",
@@ -242,13 +242,22 @@
         }
       },
       "downloadsCompatibility": {
-        "installable": false,
-        "status": "gap-custom-player-resolution",
+        "installable": true,
+        "status": "experimental-host9-sveltekit-mp4upload-sub",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Current candidate player and embed resolution uses source-specific routines that the bounded host cannot represent without additional narrowly scoped response decoding."
-        ]
+          "The experimental Host 9 definition preserves the published AnimeAV1 identity and maps catalog search, captured SvelteKit details, 37 flat numbered episodes, exact episode ID/number, one exact MP4Upload SUB embed row, and a literal player.src source through the production host. The embed's nonce-prefixed 24-hex `-text/javascript` MIME is read only by the inert, bounded player-call decoder. Its one declared media origin is https://a1.mp4upload.com:183; wrong ports and undeclared redirect origins are rejected, and playlist-derived-origin policy is unchanged. A paced private workstation transfer completed 152,379,679 bytes in 37 range requests; full-file inspection reported a 1,377.376-second AV1 Main 1920x1080 video plus AAC LC 2-channel 48 kHz audio, with both language tags `und`, no embedded subtitle stream, and a full decode pass. In a 20-second E1 audio sample, language auto-detection indicated Japanese; 16 sampled frames showed hardcoded Spanish captions. Neither the SUB route label nor that one episode proves language or caption behavior across the catalogue. The route exposes no selectable subtitle track; resolution/quality remains unknown and omitted. AV1 Main requires device decode support; no phone playback or native offline acceptance is claimed. Data Saver handling for unknown direct-file quality remains unverified."
+        ],
+        "downloadsDefinition": {
+          "file": "modules-data/animeav1-downloads.smod.json",
+          "version": "0.1.0-experimental.1",
+          "minHostVersion": 9,
+          "minAppVersion": "1.0.84",
+          "sha256": "fa93e78d57b1e64dddf9d544c943f7d008a608ed63416d543eb85d19d203bb7d",
+          "installable": true,
+          "experimental": true
+        }
       }
     },
     {
@@ -277,11 +286,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "gap-dynamic-episode-script-initializer",
+        "status": "gap-playable-route-and-bounded-episode-mapping",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Episode discovery depends on dynamic `var epsN=[...]` script initializers; the bounded inert parser currently only supports declared literal bindings and cannot evaluate this construction."
+          "Latest captured episode arrays are inert literals, but observed Sibnet denies and Ansembed candidate selection returns a favicon rather than playable media. No identity-bound playable route or complete transfer is evidenced."
         ]
       }
     },
@@ -311,11 +320,11 @@
       },
       "downloadsCompatibility": {
         "installable": false,
-        "status": "gap-dynamic-hoster-resolution",
+        "status": "gap-complete-offline-package",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Episode hoster rows are followed by provider-specific dynamic resolution routines outside the bounded host's declared selectors and response decoders."
+          "The sampled Death Note S1 E1 DE Subs/Vidmoly route resolves to clear HLS, but the complete paced 70-segment workstation transfer fails strict FFmpeg copy remux at about 110.2 seconds with duplicate/non-monotonic DTS in segment 6 of 70; the playlist declares no discontinuity. Native mobile TS-append/local-HLS behavior is a distinct unverified path. Two short audio samples detected Japanese, which is not a per-title language guarantee; subtitle language was not verified. No definition/Host10 expansion until a non-lossy package passes."
         ]
       }
     }

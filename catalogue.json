@@ -73,6 +73,28 @@
         "Canonical source paths and requests use streamingunity.fun; .vip remains only for legacy saved movie/episode reference aliases. Module IDs and identity are preserved.",
         "Live Vix master and media-playlist requests returned HTTP 200, but external audio groups and AES-128-encrypted media segments are unsupported by the current download pipeline. No full transfer was attempted; native offline acceptance remains unverified."
       ]
+    },
+    {
+      "file": "modules-data/animeav1-downloads.smod.json",
+      "version": "0.1.0-experimental.1",
+      "minHostVersion": 9,
+      "minAppVersion": "1.0.84",
+      "sha256": "fa93e78d57b1e64dddf9d544c943f7d008a608ed63416d543eb85d19d203bb7d",
+      "presentation": {
+        "category": "Anime",
+        "purpose": "AnimeAV1 downloads (experimental)",
+        "language": "Spanish subtitles · SUB only",
+        "languages": [
+          "sub"
+        ],
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/Synthetiq-Modules/main/assets/module-icons/animeav1.png?v=20260814-1"
+      },
+      "changelog": [
+        "0.1.0-experimental.1: Downloads data definition based on Player AnimeAV1 1.3.0-beta.4. Requires content host 9 / app 1.0.84.",
+        "Bounded search, details, numbered episode identity and MP4Upload SUB resolution; exact HTTPS media origin and port, no downloaded JavaScript execution.",
+        "One private workstation full MP4 transfer and decode passed. The sampled file used AV1 video with Spanish burnt-in captions; selectable subtitles, other audio variants, native phone playback and background acceptance remain unverified. Quality is source-unknown; choose Auto rather than assuming Data Saver can select a lower rendition."
+      ]
     }
   ],
   "compatibilityMatrix": "SOURCE_COMPATIBILITY.json"
