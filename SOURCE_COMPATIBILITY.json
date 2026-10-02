@@ -11,21 +11,21 @@
       "identity": "SP-VID-059-SYNTHETIQ-MOVIES",
       "publishedVersion": "1.2.5",
       "playerDevelopmentVersion": "1.2.3",
-      "downloadsDefinitionVersion": "1.0.0-experimental.1",
+      "downloadsDefinitionVersion": "1.0.1-experimental.1",
       "implementation": "experimental-bounded-streamingunity-vix-candidates",
       "recommended": false,
       "capabilities": {
-        "browse": "keyless-search-data-page-mapped-60-results-per-page; generic-facets-unmapped",
+        "browse": "live-keyless-.fun-search-data-page-mapped-60-results-per-page; generic-facets-unmapped",
         "details": "compound-contentId-and-sourceSlug-data-page-mapped",
         "seasons": "selected-season-request-mapped-with-compound-contentId-and-sourceSlug",
         "episodes": "exact-sourceEpisodeId-and-number-selected-from-returned-season-row",
-        "audio": "original-audio-audio_orig-and-italian-dub-dub_ita-checked-before-iframe; playlist-track-unverified",
-        "serverResolve": "declared-iframe-and-literal-vix-playlist-candidates-mapped; live-master-http-403",
-        "quality": "unverified-master-playlist-http-403",
-        "captions": "unverified-hls-media-playlist-http-403",
-        "offlineAcceptance": "unverified-native"
+        "audio": "original-audio-audio_orig-and-italian-dub-dub_ita-request-flags-checked; live-vix-master-has-external-audio-groups-not-packaged-by-host",
+        "serverResolve": "live-.fun-iframe-and-vix-candidates-mapped; master-and-media-playlist-http-200; AES-128-media-segments-unsupported",
+        "quality": "two-master-variants-inspected; split-audio-routing-and-encrypted-segments-block-download",
+        "captions": "not-confirmed-in-live-media-playlist",
+        "offlineAcceptance": "no-transfer;split-audio-and-AES-128-blocked;native-unverified"
       },
-      "technicalGap": "The keyless StreamingUnity search, details, movie and selected-season routes are mapped with compound content ID plus title slug references. Movie routes check returned ID, slug, movie type and requested audio flag before the iframe. TV preflight selects the requested source episode row and checks title, slug, TV type, season, episode ID, episode number and requested audio flag before the iframe. The bounded definition follows only declared Vix embed/playlist URLs and reads literal streams/masterPlaylist initializers without executing page code. A live Vix master-playlist request returned HTTP 403, so mapped HLS candidates have not passed live inspection and playable audio, quality, captions, transfer and native offline acceptance remain unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork records/CDN mapping and generic catalogue facets are not mapped in this experimental definition."
+      "technicalGap": "Canonical browse/details/movie/TV routes now use the live streamingunity.fun domain; .vip remains solely for legacy saved movie/episode reference aliases, with source IDs and module identity preserved. The bounded definition maps compound title ID plus slug, preflights movie/TV/audio request identity, and follows only declared Vix embed/playlist URLs and literal stream initializers without executing page code. Live .fun movie search/details and three Vix candidate routes were checked; Vix masters and a media playlist returned HTTP 200. The selected video variant references an external audio group (English default with Italian alternative), and its media playlist uses AES-128; Downloads does not yet package separate audio or save encrypted HLS, so no complete media transfer was attempted. Captions were not confirmed, and native offline acceptance remains unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork and generic catalogue facets are not mapped."
     },
     {
       "name": "Alpha Movies",
@@ -43,12 +43,12 @@
         "seasons": "unmapped",
         "episodes": "unmapped",
         "audio": "unmapped",
-        "serverResolve": "bounded-aes-gcm-rows-decoded-without-content-identity-binding",
+        "serverResolve": "live-Vidrock-AES-GCM-rows-decoded;dynamic-CDN-candidates-inspected-without-source-identity-binding",
         "quality": "unmapped",
         "captions": "unmapped",
         "offlineAcceptance": "unverified-native"
       },
-      "technicalGap": "A bounded AES-GCM helper decodes public Vidrock resolver rows. Search/details and TV season/episode-to-resolver identity are not mapped in the Downloads host, so no Alpha source definition or operational route is present."
+      "technicalGap": "The bounded AES-GCM helper decoded live Alpha Vidrock rows for a known movie ID. Candidate inspection found dynamic CDN origins: one candidate's first media segment returned HTTP 403, while a second candidate's first segment parsed as H.264/AAC. Neither candidate is tied to a Downloads search/details/episode identity, the changing CDN origins do not fit the static declared-origin contract, and no full transfer or native acceptance was performed. No Alpha source definition is present."
     },
     {
       "name": "X-Stream",
@@ -66,12 +66,12 @@
         "seasons": "unmapped",
         "episodes": "unmapped",
         "audio": "unmapped",
-        "serverResolve": "unmapped",
+        "serverResolve": "live-Vidzee-v1-and-v2-JSON-probes-return-provider-specific-routes;no-bounded-media-candidate",
         "quality": "unmapped",
         "captions": "unmapped",
         "offlineAcceptance": "unverified-native"
       },
-      "technicalGap": "The current module's multi-provider resolution and source-specific parsing are not represented by an available complete bounded route; its catalogue also depends on the Player TMDB configuration."
+      "technicalGap": "Live Vidzee v1/v2 probes for a known movie ID returned JSON routes that still require provider-specific Goodstream/Hubcloud resolution; a MoviesAPI page probe exposed no direct media URL. Search/details identity and a bounded complete resolver are unmapped, and the Player module's TMDB configuration was not reused. No full media transfer or native acceptance was performed."
     },
     {
       "name": "Synthetiq Anime",
@@ -111,13 +111,13 @@
         "details": "mapped",
         "seasons": "not-applicable-flat-numbered-series",
         "episodes": "numbered-episodes-mapped",
-        "audio": "requested-sub-dub-bound-to-bootstrap-identity",
-        "serverResolve": "live-hls-playlist-inspection-passed-bootstrap-identity-checked",
-        "quality": "single-auto-playlist-inspected-no-quality-selector",
-        "captions": "zero-tracks-in-live-inspection-fixture-track-map-present",
-        "offlineAcceptance": "unverified-native"
+        "audio": "requested-sub-dub-route-bound-to-bootstrap-identity;spoken-language-semantics-unverified",
+        "serverResolve": "live-sub-transfer-and-prior-sub-dub-playlist-inspections-bootstrap-identity-checked",
+        "quality": "single-auto-sub-playlist;271-ts-segments;no-quality-selector",
+        "captions": "zero-tracks-on-sampled-live-route;fixture-track-map-present",
+        "offlineAcceptance": "paced-private-workstation-sub-transfer-passed;native-offline-acceptance-pending"
       },
-      "technicalGap": "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. The provider numeric path segment remains opaque and is not independently bound to the episode ID. Coordinator live inspection reached the HLS playlist for both Sub and Dub (321 segments, 1,477.974 seconds; seven requests each, six HTTP 200 and one HTTP 206), with zero caption tracks and no media transfer. Physical-device/offline acceptance remains pending."
+      "technicalGap": "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective route audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. On 2026-10-02, a paced private workstation SUB transfer completed 271/271 MPEG-TS segments (199,625,544 bytes; 1,372.035-second playlist; 1,372.121 seconds by ffprobe; H.264/AAC; no rate limits). This proves one workstation transfer only. The provider numeric path segment remains opaque and is not independently bound to the episode ID; SUB/DUB route labels do not prove the spoken language, DUB was not fully transferred, and no caption tracks were returned for the sampled route. Phone background transfer, local-file reopen and offline playback remain pending."
     },
     {
       "name": "AnimeAV1",

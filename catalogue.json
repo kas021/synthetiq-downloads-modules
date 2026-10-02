@@ -46,15 +46,17 @@
       },
       "changelog": [
         "0.1.0-experimental.1: Bounded data-only download definition; requires content host 6.",
-        "SUB/DUB resolver and playlist inspections passed. Complete transfers, caption files and physical offline playback remain pending."
+        "SUB/DUB resolver and playlist inspections passed. Complete transfers, caption files and physical offline playback remain pending.",
+        "2026-10-02: A paced private workstation SUB transfer passed (271/271 TS segments; 199,625,544 bytes; 1,372.035-second playlist; H.264/AAC).",
+        "This is one workstation transfer only; spoken-language semantics, full DUB transfer, captions and native phone/offline acceptance remain unverified."
       ]
     },
     {
       "file": "modules-data/synthetiq-movies-downloads.smod.json",
-      "version": "1.0.0-experimental.1",
+      "version": "1.0.1-experimental.1",
       "minHostVersion": 6,
       "minAppVersion": "1.0.75",
-      "sha256": "f490b88c907b663e108dd63ef396786163c8a19c924383b14c845ad23c867328",
+      "sha256": "b35f33febfbaf3bfaf052f31aeec58ad8ba0283145681683150be602dbf8ee3f",
       "presentation": {
         "category": "Movies & TV",
         "purpose": "Synthetiq Movies downloads (experimental)",
@@ -66,8 +68,10 @@
         "recommended": false
       },
       "changelog": [
+        "1.0.1-experimental.1: Current .fun provider routes with preserved .vip saved references. Offline transfer remains blocked by separate audio and encryption.",
         "1.0.0-experimental.1: Bounded data-only download definition; requires content host 6.",
-        "Metadata and identity fixtures passed; live Vix playlist inspection returned HTTP 403. Tracks, quality, captions, full transfers and offline phone playback remain unverified."
+        "Canonical source paths and requests use streamingunity.fun; .vip remains only for legacy saved movie/episode reference aliases. Module IDs and identity are preserved.",
+        "Live Vix master and media-playlist requests returned HTTP 200, but external audio groups and AES-128-encrypted media segments are unsupported by the current download pipeline. No full transfer was attempted; native offline acceptance remains unverified."
       ]
     }
   ],
