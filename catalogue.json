@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.5",
-      "minHostVersion": 8,
-      "minAppVersion": "1.0.80",
-      "sha256": "d3deb1ada688a553f9d34d6e996383e8dffa5e0b9919ee11f22213e7da8d5f43",
+      "version": "1.3.6",
+      "minHostVersion": 9,
+      "minAppVersion": "1.0.86",
+      "sha256": "b35675f3c1c24e9cae3ceaf8d053ff521eee0d60e9d96747785136dc8486e757",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,9 +23,8 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.3.5: Adapted the current published Player Wave/EchoVideo fallback using bounded URL path extraction; requires content host 8 / app 1.0.80.",
-        "Opaque AniKage direct tokens are rejected instead of requested as relative paths. Existing family IDs, aliases, routes and SUB/DUB identity checks are preserved.",
-        "The reported Ramparts of Ice Season 2 episode 1 SUB now resolves through Wave/EchoVideo. Complete phone background transfer and offline playback remain separate acceptance gates."
+        "Adds the exact-ID AniKage MegaPlay legacy rescue and bounded plain/encrypted source decoding. Requires Downloads 1.0.86 or later.",
+        "Live source inspection is separate from full transfer, captions and native offline playback acceptance; source remains unrecommended."
       ]
     },
     {
