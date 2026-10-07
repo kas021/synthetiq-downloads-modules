@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "anipm-v1",
   "name": "AniPM",
-  "version": "0.1.0-experimental.1",
-  "minHostVersion": 6,
+  "version": "0.1.0-experimental.2",
+  "minHostVersion": 10,
   "moduleFamilyId": "anipm-v1",
   "moduleIdentity": "SP-VID-084-ANIPM",
   "contentType": "anime",
@@ -20,8 +20,7 @@
   "origins": [
     "https://ani.pm",
     "https://megaplay.buzz",
-    "https://fetch.nexabloom.top",
-    "https://c9yjh.phantomharbor.world"
+    "https://fetch.nexabloom.top"
   ],
   "references": {
     "title": {
@@ -420,13 +419,13 @@
                     "file",
                     "url",
                     "src"
-                  ],
-                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                  ]
                 },
                 "forced": "forced",
                 "sdh": "sdh",
                 "default": "default"
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -460,13 +459,13 @@
                     "file",
                     "url",
                     "src"
-                  ],
-                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                  ]
                 },
                 "forced": "forced",
                 "sdh": "sdh",
                 "default": "default"
-              }
+              },
+              "responseOrigins": true
             }
           },
           "variants": [
@@ -725,13 +724,13 @@
                     "file",
                     "url",
                     "src"
-                  ],
-                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                  ]
                 },
                 "forced": "forced",
                 "sdh": "sdh",
                 "default": "default"
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -765,13 +764,13 @@
                     "file",
                     "url",
                     "src"
-                  ],
-                  "baseOrigin": "https://c9yjh.phantomharbor.world"
+                  ]
                 },
                 "forced": "forced",
                 "sdh": "sdh",
                 "default": "default"
-              }
+              },
+              "responseOrigins": true
             }
           },
           "variants": [

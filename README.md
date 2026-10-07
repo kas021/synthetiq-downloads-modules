@@ -9,8 +9,8 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
 | Source | Downloads version | Minimum host / app | Recorded evidence |
 | --- | --- | --- | --- |
-| Synthetiq Anime | 1.3.5 | Host 8 / 1.0.80 | Current Player Wave/EchoVideo adaptation; paced workstation Black Clover E1 transfer and decode; native acceptance pending |
-| AniPM | 0.1.0-experimental.1 | Host 6 / 1.0.75 | SUB/DUB resolution fixtures and inspections; one complete paced workstation SUB transfer; captions and native acceptance pending |
+| Synthetiq Anime | 1.3.9 | Host 10 / 1.0.89 | Live Death Note E1 SUB/DUB resolution and 312-segment HLS inspection pass via priority MegaPlay; one mapped caption each; no full transfer or phone acceptance |
+| AniPM | 0.1.0-experimental.2 | Host 10 / 1.0.89 | Bounded dynamic caption origins; live SUB inspection found 312 segments and one mapped caption; current DUB, complete transfers and phone acceptance remain unverified |
 | Synthetiq Movies | 1.0.1-experimental.1 | Host 6 / 1.0.75 | Current `.fun` routes preserve `.vip` references; live playlists return 200, but AES-128 and separate audio still block downloads |
 | AnimeAV1 | 0.1.0-experimental.1 | Host 9 / 1.0.84 | Bounded SUB MP4Upload route, complete workstation transfer/decode; sampled AV1 video has Spanish burnt-in captions; phone codec/playback acceptance pending |
 

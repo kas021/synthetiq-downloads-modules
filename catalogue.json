@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.8",
+      "version": "1.3.9",
       "minHostVersion": 10,
-      "minAppVersion": "1.0.88",
-      "sha256": "825004b242dab01dd70a9f3c118c1aaab3a8f62a5af63c262fd8577ab661e594",
+      "minAppVersion": "1.0.89",
+      "sha256": "1dd27360aa68d088b9f87d54e71cbdc982f3b4ff727f11ea5ee1ac0fd4eda048",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,6 +23,9 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
+        "1.3.9: Prioritizes the live-proven exact-language AniKage MegaPlay route before Flow/Zuri; all twelve alternatives and existing route IDs remain available for manual selection.",
+        "2026-10-07 live Death Note E1 SUB (required captions) and DUB (runtime optional-caption gate) resolver/HLS inspections passed via anikage-megaplay:primary: 312 segments and one mapped caption each, under one second. No full transfer, caption-file validation or playback was performed.",
+        "The inspected MegaPlay candidate supplied no quality value; the existing primary route ID and Auto behavior remain unchanged.",
         "1.3.8: Adds bounded response-selected public HTTPS caption origins (up to four per accepted route) and exact manual server-route resolution; module API origins remain fixed.",
         "Fixture tests confirm src/file/url subtitle mapping and actual WebVTT cue fetch. Live native transfer, spoken audio identity and offline playback acceptance remain unverified.",
         "1.3.7: Extends bounded read-only reuse to provider GETs within one resolution attempt; existing metadata-query reuse is unchanged."
@@ -30,10 +33,10 @@
     },
     {
       "file": "modules-data/anipm-downloads.smod.json",
-      "version": "0.1.0-experimental.1",
-      "minHostVersion": 6,
-      "minAppVersion": "1.0.75",
-      "sha256": "65c7a38177b83d9228215cc921f9deb737f314148daf7d44ad4b7393b1376616",
+      "version": "0.1.0-experimental.2",
+      "minHostVersion": 10,
+      "minAppVersion": "1.0.89",
+      "sha256": "86af65b99ed5ffb6332d808efc658147c1007d4986a585d80d1ba1f7aa761841",
       "presentation": {
         "category": "Anime",
         "purpose": "AniPM downloads (experimental)",
@@ -45,10 +48,12 @@
         "recommended": false
       },
       "changelog": [
+        "0.1.0-experimental.2: Uses Host 10 bounded response-selected public HTTPS subtitle origins for changing MegaPlay caption hosts while preserving current MegaPlay Origin/Referer headers.",
+        "2026-10-07 live Death Note E1 SUB resolver/HLS inspection passed in 487 ms with 312 segments and one mapped caption track. This was a route inspection only; no current DUB live inspection, full transfer, caption-file fetch or physical playback was tested.",
+        "Fixture tests bind both requested SUB/DUB routes and reject identity mismatches; current DUB live behavior remains unverified.",
         "0.1.0-experimental.1: Bounded data-only download definition; requires content host 6.",
-        "SUB/DUB resolver and playlist inspections passed. Complete transfers, caption files and physical offline playback remain pending.",
         "2026-10-02: A paced private workstation SUB transfer passed (271/271 TS segments; 199,625,544 bytes; 1,372.035-second playlist; H.264/AAC).",
-        "This is one workstation transfer only; spoken-language semantics, full DUB transfer, captions and native phone/offline acceptance remain unverified."
+        "This is one workstation transfer only; spoken-language semantics, full DUB transfer, caption-file transfer and native phone/offline acceptance remain unverified."
       ]
     },
     {

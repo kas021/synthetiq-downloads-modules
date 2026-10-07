@@ -152,18 +152,18 @@
       },
       "downloadsCompatibility": {
         "installable": true,
-        "status": "host8-bounded-player-provider-parity",
+        "status": "experimental-host10-prioritized-anikage-megaplay",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Compared fresh published Player Anime 1.0.5-beta.2 (verified archive hash); the previously cited development 1.0.6-beta.1 was not located in registered local worktrees in this pass. Added bounded Wave EchoVideo embed-1 path extraction, descriptor and HLS mapping. Direct opaque source tokens are rejected. Live exact Ramparts of Ice Season 2 E1 SUB resolution and 155-segment HLS inspection pass. Primary Flow/Zuri still return HTTP 502. Black Clover E1 SUB complete paced workstation transfer passed 325/325 segments with H.264/AAC and matching duration; unrestricted transfer hit HTTP 429 and is explicitly a failure. This is not native-phone acceptance. Optional captions depend on actual returned tracks; no external tracks were returned for these checked routes. EchoVideo embed-20 direct-file and packed players remain unsupported. Complete native phone transfer, background/return, caption selection and repeated offline playback remain unverified."
+          "Downloads 1.3.9 (Host 10) moves the proven exact-language AniKage MegaPlay route ahead of Flow/Zuri after the previous live E1 run spent 12.002 seconds in each primary route before accepting MegaPlay. On 2026-10-07, Death Note E1 SUB passed with requireCaptions=true and DUB passed with the runtime requireCaptions=false gate; both selected the unchanged anikage-megaplay:primary ID, reported 312 HLS segments and one mapped caption, and completed resolver plus playlist inspection in 0.729 and 0.597 seconds. No full media transfer, caption-file validation or physical playback was performed. Source quality remained absent; requested-language identity is route-bound, while spoken-language semantics and native offline acceptance remain unverified. All other declared provider alternatives and exact manual server IDs remain available."
         ],
         "downloadsDefinition": {
           "file": "modules-data/synthetiq-anime.smod.json",
-          "version": "1.3.5",
-          "minHostVersion": 8,
-          "minAppVersion": "1.0.80",
-          "sha256": "d3deb1ada688a553f9d34d6e996383e8dffa5e0b9919ee11f22213e7da8d5f43",
+          "version": "1.3.9",
+          "minHostVersion": 10,
+          "minAppVersion": "1.0.89",
+          "sha256": "1dd27360aa68d088b9f87d54e71cbdc982f3b4ff727f11ea5ee1ac0fd4eda048",
           "installable": true,
           "experimental": true
         }
@@ -200,18 +200,18 @@
       },
       "downloadsCompatibility": {
         "installable": true,
-        "status": "experimental-host6-megaplay-route",
+        "status": "experimental-host10-dynamic-megaplay-caption-origins",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Fixtures verify title identity, numbered episode, requested Sub/Dub availability, effective route audio, returned backup identity, and the declared MegaPlay URL origin/path/audio before following it. On 2026-10-02, a paced private workstation SUB transfer completed 271/271 MPEG-TS segments (199,625,544 bytes; 1,372.035-second playlist; 1,372.121 seconds by ffprobe; H.264/AAC; no rate limits). This proves one workstation transfer only. The provider numeric path segment remains opaque and is not independently bound to the episode ID; SUB/DUB route labels do not prove the spoken language, DUB was not fully transferred, and no caption tracks were returned for the sampled route. Phone background transfer, local-file reopen and offline playback remain pending."
+          "The Host 10 0.1.0-experimental.2 definition accepts up to four response-selected public HTTPS caption origins per route. On 2026-10-07, a sanitized Death Note E1 SUB resolver/HLS inspection completed in 487 ms and found 312 segments and one mapped caption. This was route inspection only: no current DUB live inspection, full media or caption-file transfer, physical phone download, or playback was tested. The separate 2026-10-02 paced workstation SUB transfer remains one historical 271/271-segment sample. Spoken-language proof and native background/offline acceptance remain pending; the provider numeric path segment is not independently bound to the episode ID."
         ],
         "downloadsDefinition": {
           "file": "modules-data/anipm-downloads.smod.json",
-          "version": "0.1.0-experimental.1",
-          "minHostVersion": 6,
-          "minAppVersion": "1.0.75",
-          "sha256": "65c7a38177b83d9228215cc921f9deb737f314148daf7d44ad4b7393b1376616",
+          "version": "0.1.0-experimental.2",
+          "minHostVersion": 10,
+          "minAppVersion": "1.0.89",
+          "sha256": "86af65b99ed5ffb6332d808efc658147c1007d4986a585d80d1ba1f7aa761841",
           "installable": true,
           "experimental": true
         }
