@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.7",
-      "minHostVersion": 9,
-      "minAppVersion": "1.0.86",
-      "sha256": "9453bfe8b978a4ab6c8210578ac45a9625f72cf339118048b1d400f787f25eed",
+      "version": "1.3.8",
+      "minHostVersion": 10,
+      "minAppVersion": "1.0.88",
+      "sha256": "825004b242dab01dd70a9f3c118c1aaab3a8f62a5af63c262fd8577ab661e594",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,9 +23,9 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.3.7: Extends bounded read-only reuse to provider GETs within one resolution attempt; existing metadata-query reuse is unchanged; no transfer or caption certification is implied.",
-        "Adds the exact-ID AniKage MegaPlay legacy rescue and bounded plain/encrypted source decoding. Requires Downloads 1.0.86 or later.",
-        "Live source inspection is separate from full transfer, captions and native offline playback acceptance; source remains unrecommended."
+        "1.3.8: Adds bounded response-selected public HTTPS caption origins (up to four per accepted route) and exact manual server-route resolution; module API origins remain fixed.",
+        "Fixture tests confirm src/file/url subtitle mapping and actual WebVTT cue fetch. Live native transfer, spoken audio identity and offline playback acceptance remain unverified.",
+        "1.3.7: Extends bounded read-only reuse to provider GETs within one resolution attempt; existing metadata-query reuse is unchanged."
       ]
     },
     {

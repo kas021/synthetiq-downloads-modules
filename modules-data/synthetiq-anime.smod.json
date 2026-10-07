@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-anime-v1",
   "name": "Synthetiq Anime",
-  "version": "1.3.7",
-  "minHostVersion": 9,
+  "version": "1.3.8",
+  "minHostVersion": 10,
   "moduleFamilyId": "synthetiq_anime_v1",
   "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
   "contentType": "anime",
@@ -19,7 +19,6 @@
     "https://anikage.cc",
     "https://megaplay.buzz",
     "https://fetch.nexabloom.top",
-    "https://c9yjh.phantomharbor.world",
     "https://play.echovideo.ru",
     "https://px.dpopdrop89.store"
   ],
@@ -2463,9 +2462,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -2477,7 +2477,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -2497,9 +2498,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -2511,7 +2513,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             }
           }
         },
@@ -2753,9 +2756,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -2767,7 +2771,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -2787,9 +2792,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -2801,7 +2807,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             }
           }
         },
@@ -3043,9 +3050,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -3057,7 +3065,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -3077,9 +3086,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -3091,7 +3101,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             }
           }
         },
@@ -3333,9 +3344,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -3347,7 +3359,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
               "itemsPath": "envelope.tracks",
@@ -3367,9 +3380,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file"
-                  ],
-                  "baseOrigin": "https://megaplay.buzz"
+                    "src",
+                    "file",
+                    "url"
+                  ]
                 },
                 "default": "default",
                 "includeIf": [
@@ -3381,7 +3395,8 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             }
           }
         }
