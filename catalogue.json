@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.10",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "0b5d0d9578026e6ea141b326f4329497fbb5fa11d1b5102302c3fb935bc387f6",
+      "version": "1.3.11",
+      "minHostVersion": 13,
+      "minAppVersion": "1.0.92",
+      "sha256": "b994085f02aefebc6f0663ecbc026e17f764af649a43c4046efa3978a4d1be9f",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,43 +23,39 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
-        "1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Existing Anime route IDs and exact SUB/DUB selection remain unchanged.",
+        "1.3.11: Host 13 permits up to 24 explicit declared origins. Adds only observed Black Clover E1 SUB o3izr.stellarfrontier.space and DUB n953x.midnightvoyage.site CDN origins; Jikan fallback Referer reuses its declared API origin. Preserves exact episode/audio routes and all existing server alternatives. Experimental/non-recommended; native acceptance remains unverified.",
+        "1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes; unknown hosts need a data update. Existing Anime route IDs and exact SUB/DUB selection remain unchanged.",
         "2026-10-08 workstation Death Note E1 SUB full transfer: 312/312 segments; 248,587,136 bytes; H.264 1920x1080 + AAC; 1377.084 seconds; 329 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
         "Spoken language, native phone background/recovery and offline playback acceptance remain unverified. Upstream Anime 1.0.5-beta.3 season grouping was reviewed; Flutter presentation code is not executed by Downloads.",
-        "1.3.9: Prioritizes the live-proven exact-language AniKage MegaPlay route before Flow/Zuri; all twelve alternatives and existing route IDs remain available for manual selection.",
-        "2026-10-07 live Death Note E1 SUB (required captions) and DUB (runtime optional-caption gate) resolver/HLS inspections passed via anikage-megaplay:primary: 312 segments and one mapped caption each, under one second. No full transfer, caption-file validation or playback was performed.",
-        "The inspected MegaPlay candidate supplied no quality value; the existing primary route ID and Auto behavior remain unchanged.",
-        "1.3.8: Adds bounded response-selected public HTTPS caption origins (up to four per accepted route) and exact manual server-route resolution; module API origins remain fixed.",
-        "Fixture tests confirm src/file/url subtitle mapping and actual WebVTT cue fetch. Live native transfer, spoken audio identity and offline playback acceptance remain unverified.",
+        "1.3.9: Prioritizes the live-verified exact-language MegaPlay route before slower primary routes; all previous alternatives and manual route IDs remain available.",
+        "Live Death Note E1 SUB/DUB resolution used the exact MegaPlay route with the required runtime caption gate for SUB and optional caption gate for DUB. Each inspection mapped one caption and a 312-segment HLS playlist in 722 ms / 612 ms; no complete transfer or playback was tested.",
+        "1.3.8: Adds up to four response-selected caption origins per accepted route using module-declared exact origins or strict DNS suffixes; exact manual server-route resolution; module API requests remain fixed.",
+        "Fixture tests confirm src/file/url subtitle mapping and actual WebVTT cue fetch. Spoken audio identity and native offline playback acceptance remain unverified.",
         "1.3.7: Extends bounded read-only reuse to provider GETs within one resolution attempt; existing metadata-query reuse is unchanged."
       ]
     },
     {
       "file": "modules-data/anipm-downloads.smod.json",
-      "version": "0.1.0-experimental.3",
+      "version": "0.1.0-experimental.4",
       "minHostVersion": 11,
       "minAppVersion": "1.0.91",
-      "sha256": "7918cb18364b9445d47c0dbc865972b619c0284b7f14aaa9ae67828eb548100a",
+      "sha256": "d6b6054170e4de6000c138e23e8be5afb25262b56f9c3c577aeebd80ef292fa0",
       "presentation": {
         "category": "Anime",
-        "purpose": "AniPM downloads (experimental)",
-        "language": "English SUB / DUB",
-        "languages": [
-          "sub",
-          "dub"
-        ],
+        "language": "SUB / DUB",
         "recommended": false
       },
       "changelog": [
-        "0.1.0-experimental.3: Requires Host 11 quality inspection and bounded caption cancellation; preserves exact-language muxed MegaPlay routes and source identity. Current Player 0.1.0-beta.4 also prioritizes muxed MegaPlay.",
+        "0.1.0-experimental.4: Publishes the observed caption and media CDN suffix declarations so installed experimental.3 clients receive the update. Exact source/audio identities and Host 11 compatibility are unchanged; unknown origins remain rejected. Experimental pending physical acceptance.",
+        "0.1.0-experimental.3: Requires Host 11 quality inspection and bounded caption cancellation; response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes. Preserves exact-language muxed MegaPlay routes and source identity. Current Player 0.1.0-beta.4 also prioritizes muxed MegaPlay.",
         "2026-10-08 workstation One Piece E1 requested DUB full transfer: 321/321 segments; 233,048,184 bytes; H.264 1440x1080 + AAC; 1477.976 seconds; 285 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
         "Source 1642 currently identifies One Piece, not Death Note. Spoken language and native phone/offline acceptance remain unverified.",
-        "0.1.0-experimental.2: Uses Host 10 bounded response-selected public HTTPS subtitle origins for changing MegaPlay caption hosts while preserving current MegaPlay Origin/Referer headers.",
-        "2026-10-07 live Death Note E1 SUB resolver/HLS inspection passed in 487 ms with 312 segments and one mapped caption track. This was a route inspection only; no current DUB live inspection, full transfer, caption-file fetch or physical playback was tested.",
-        "Fixture tests bind both requested SUB/DUB routes and reject identity mismatches; current DUB live behavior remains unverified.",
-        "0.1.0-experimental.1: Bounded data-only download definition; requires content host 6.",
+        "0.1.0-experimental.2: Uses Host 10 bounded response-selected captions; fixed module API/media origins and the selected title, episode, and audio identity checks remain in place.",
+        "2026-10-07 live Death Note E1 SUB resolver/HLS inspection passed in 487 ms with 312 segments and one mapped caption track. No DUB full transfer, caption-file fetch or physical playback was tested.",
+        "Experimental AniPM search, details, numbered episodes and bounded MegaPlay resolution.",
+        "Checks returned title, episode and audio identity before following the embed; physical offline acceptance remains pending.",
         "2026-10-02: A paced private workstation SUB transfer passed (271/271 TS segments; 199,625,544 bytes; 1,372.035-second playlist; H.264/AAC).",
-        "This is one workstation transfer only; spoken-language semantics, full DUB transfer, caption-file transfer and native phone/offline acceptance remain unverified."
+        "This is one workstation transfer only; spoken-language semantics, full DUB transfer and native phone/offline acceptance remain unverified."
       ]
     },
     {
@@ -118,12 +114,13 @@
         ],
         "recommended": false
       },
-      "version": "0.1.0-experimental.1",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "07da798d33c40d2cbdc216c860e0264b927a3ae7e19beef423f8060b05a93317",
+      "version": "0.1.0-experimental.2",
+      "minHostVersion": 12,
+      "minAppVersion": "1.0.92",
+      "sha256": "c5ea4d2c2dd4d4c42437aadabb7fda1b7f2bdb8dc584811328b69424b5f0dfa2",
       "changelog": [
-        "0.1.0-experimental.1: Host 11 bounded MovieDB catalogue and VidLove movie/TV routes with exact TMDB title/type/season/episode preflight, original audio, finite media-type mapping, public HTTPS response media origins and bounded caption inventory.",
+        "0.1.0-experimental.2: Host 12 adds explicit TMDB presentation identity for optional title details, recommendations and episode stills. Search and downloads continue without a TMDB token.",
+        "0.1.0-experimental.1: Host 11 bounded MovieDB catalogue and VidLove movie/TV routes with exact TMDB title/type/season/episode preflight, original audio, finite media-type mapping, module-declared exact response media origins and bounded caption inventory. Playlist and caption hosts also require exact or strict DNS suffix entries.",
         "Expected duration comes from exact source metadata and must be verified independently against completed native media. No fallback to another source family.",
         "2026-10-08 The Mentalist S1E1 auto 480p full transfer FAILED content acceptance: HTTP 200 supplied only 31,577 bytes / 20 seconds / 1280x720 H.264 / no audio. Keep experimental and non-recommended. VidZen upstream fallback returned HTTP 401 and is not included."
       ]
@@ -139,12 +136,14 @@
         ],
         "recommended": false
       },
-      "version": "0.1.0-experimental.1",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "f6abd74311d858ab36619185236a0ee9c852d9ad68b1c85f59ec01ae76b25251",
+      "version": "0.1.0-experimental.3",
+      "minHostVersion": 12,
+      "minAppVersion": "1.0.92",
+      "sha256": "86c7ed0251014e7fc05a379a39b125e9b52e5eb68e8dd03a1c6e3af342a832d0",
       "changelog": [
-        "0.1.0-experimental.1: Host 11 Alpha Vidrock-only media resolver with bounded AES-GCM decoding and per-response public HTTPS CDN origins. Preserves SP-VID-079-ALPHA-MOVIES and alpha_movies_v1.",
+        "0.1.0-experimental.3: Adds only observed Vidrock Orion carbonphantom.live CDN origin for exact TMDB TV 5920 season 2 episode 1. Keeps Host 12, explicit TMDB metadata and Alpha-only media identity. Experimental/non-recommended; native acceptance remains unverified.",
+        "0.1.0-experimental.2: Host 12 adds explicit TMDB presentation identity for optional title details, recommendations and episode stills. Search and downloads continue without a TMDB token.",
+        "0.1.0-experimental.1: Host 11 Alpha Vidrock-only media resolver with bounded AES-GCM decoding and response CDN origins restricted to module-declared exact origins. Playlist hosts require exact or strict DNS suffix entries. Preserves SP-VID-079-ALPHA-MOVIES and alpha_movies_v1.",
         "Metadata deliberately uses the shared www.moviedb.wiki TMDB-ID catalogue. Exact media type/title/season/source episode/episode number and runtime are preflighted. No silent media fallback to MovieDB.",
         "2026-10-08 Inception and The Mentalist S1E1 live clear-HLS inspections passed. Full TV workstation transfer evidence is recorded in SOURCE_BATCH_2026_10_08.md; physical phone/offline acceptance and spoken-language identity remain unverified. Captions are not mapped for this Vidrock route."
       ]

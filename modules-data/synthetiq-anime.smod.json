@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-anime-v1",
   "name": "Synthetiq Anime",
-  "version": "1.3.10",
-  "minHostVersion": 11,
+  "version": "1.3.11",
+  "minHostVersion": 13,
   "moduleFamilyId": "synthetiq_anime_v1",
   "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
   "contentType": "anime",
@@ -14,13 +14,17 @@
     "https://proxy.vidhawk.buzz",
     "https://s4.anilist.co",
     "https://api.jikan.moe",
-    "https://jikan.moe",
     "https://cdn.myanimelist.net",
     "https://anikage.cc",
     "https://megaplay.buzz",
     "https://fetch.nexabloom.top",
+    "https://*.broforgotsave.online",
+    "https://*.eclipseharbor.space",
+    "https://*.midnightvale.top",
     "https://play.echovideo.ru",
-    "https://px.dpopdrop89.store"
+    "https://px.dpopdrop89.store",
+    "https://o3izr.stellarfrontier.space",
+    "https://n953x.midnightvoyage.site"
   ],
   "languages": [
     {
@@ -888,7 +892,7 @@
             "method": "GET",
             "headers": {
               "Accept": "application/json",
-              "Referer": "https://jikan.moe/"
+              "Referer": "https://api.jikan.moe/"
             }
           },
           "itemPath": "data",

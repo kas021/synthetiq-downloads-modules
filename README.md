@@ -9,17 +9,21 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
 | Source | Downloads version | Minimum host / app | Recorded evidence |
 | --- | --- | --- | --- |
-| Synthetiq Anime | 1.3.10 | Host 11 / 1.0.91 | Death Note E1 SUB full workstation transfer/decode plus 329 English cues; phone acceptance pending |
-| AniPM | 0.1.0-experimental.3 | Host 11 / 1.0.91 | One Piece E1 requested DUB full workstation transfer/decode plus 285 English cues; spoken language/phone acceptance pending |
+| Synthetiq Anime | 1.3.11 | Host 13 / 1.0.92 | Death Note E1 SUB full workstation transfer/decode plus 329 English cues; phone acceptance pending |
+| AniPM | 0.1.0-experimental.4 | Host 11 / 1.0.91 | One Piece E1 requested DUB full workstation transfer/decode plus 285 English cues; spoken language/phone acceptance pending |
 | Synthetiq Movies | 1.0.1-experimental.1 | Host 6 / 1.0.75 | Current `.fun` routes preserve `.vip` references; live playlists return 200, but AES-128 and separate audio still block downloads |
 | AnimeAV1 | 0.1.0-experimental.1 | Host 9 / 1.0.84 | Bounded SUB MP4Upload route, complete workstation transfer/decode; sampled AV1 video has Spanish burnt-in captions; phone codec/playback acceptance pending |
-| Alpha Movies | 0.1.0-experimental.1 | Host 11 / 1.0.91 | Shared TMDB-ID metadata + Alpha Vidrock media; The Mentalist S1E1 full workstation transfer/decode; captions unmapped |
-| MovieDB | 0.1.0-experimental.1 | Host 11 / 1.0.91 | Exact movie/TV metadata and routes mapped; tested TV media was a 20-second silent placeholder and failed content acceptance |
+| Alpha Movies | 0.1.0-experimental.3 | Host 12 / 1.0.92 | Shared TMDB-ID metadata + Alpha Vidrock media; The Mentalist S1E1 full workstation transfer/decode; captions unmapped |
+| MovieDB | 0.1.0-experimental.2 | Host 12 / 1.0.92 | Exact movie/TV metadata and routes mapped; tested TV media was a 20-second silent placeholder and failed content acceptance |
 
 None of these sources is recommended or phone-certified yet. The workstation transfers
 below are separate from native physical-phone download and offline playback acceptance.
 The catalogue records byte hashes and minimum runtime metadata. The host enforces
 definition `minHostVersion`; a hash is provenance evidence rather than certification.
+The highest current minimum is Host 13 / app 1.0.92. This is the maximum across
+the catalogue, not a shared minimum: each source retains the floor shown above.
+The compatibility matrix top-level `hostRequirement` reports that maximum; its
+per-source `minimumContentHostVersion` values govern individual compatibility.
 
 The previous executable ZIPs and source trees remain in `modules/` and `src/`
 for owner rollback and internal comparison. They are not in the default phone
@@ -30,10 +34,12 @@ provenance. `SOURCE_COMPATIBILITY.json` records current Downloads mapping and
 specific gaps. Synthetiq Movies preserves the typed title slug and exact selected
 season/episode identity, including legacy episode references. Its sampled current
 Vix playlists return HTTP 200; separate audio and encrypted HLS packaging remain
-unsupported. Source artwork/facets are unmapped. Alpha still needs metadata,
-season and episode identity chaining and bounded media origins despite GCM decoding.
-X-Stream, Mugiwara and AniWorld need additional bounded resolver operations; those
-four sources have no install entry. AnimeAV1 now has a limited SUB route, without
+unsupported. Source artwork/facets are unmapped. Alpha now maps shared TMDB-ID
+metadata and exact season/episode identity, with declared media origins and
+bounded GCM decoding. Its later-season S2E1 transfer failed on an empty required
+segment; that route is not certified by the separate S1E1 success. X-Stream,
+Mugiwara and AniWorld need additional bounded resolver operations; those three
+sources have no install entry. AnimeAV1 now has a limited SUB route, without
 selectable captions or other language variants. No provider is silently substituted.
 
 ## Files
@@ -78,4 +84,6 @@ recorded separately from native phone, background and offline playback acceptanc
 
 ## 8 October 2026 source batch
 
-Host 11 / Downloads 1.0.91 definitions, exact movie/TV identity, quality selection and genuine workstation transfer evidence are described in [SOURCE_BATCH_2026_10_08.md](SOURCE_BATCH_2026_10_08.md). Alpha and MovieDB are now installable experimental definitions. All entries remain non-recommended. The current tested MovieDB TV route returned a 20-second silent placeholder and failed content acceptance.
+Current per-source Host 11–13 / Downloads 1.0.91–1.0.92 requirements, exact movie/TV identity, quality selection and genuine workstation transfer evidence are described in [SOURCE_BATCH_2026_10_08.md](SOURCE_BATCH_2026_10_08.md). Alpha and MovieDB are now installable experimental definitions. All entries remain non-recommended. The current tested MovieDB TV route returned a 20-second silent placeholder and failed content acceptance.
+
+Exact Black Clover SUB/DUB transfer results, One Piece episode windows, Alpha’s empty S2E1 segment and MovieDB’s S2E1 placeholder are recorded in [OBSERVED_CDN_REPAIR_2026_10_08.md](OBSERVED_CDN_REPAIR_2026_10_08.md). Those workstation checks do not establish physical-phone acceptance.

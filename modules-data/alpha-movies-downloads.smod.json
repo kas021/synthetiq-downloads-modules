@@ -2,10 +2,11 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "alpha-movies",
   "name": "Alpha Movies",
-  "version": "0.1.0-experimental.1",
-  "minHostVersion": 11,
+  "version": "0.1.0-experimental.3",
+  "minHostVersion": 12,
   "moduleFamilyId": "alpha_movies_v1",
   "moduleIdentity": "SP-VID-079-ALPHA-MOVIES",
+  "metadataProvider": "tmdb",
   "contentType": "video",
   "languages": [
     {
@@ -16,7 +17,11 @@
   "origins": [
     "https://www.moviedb.wiki",
     "https://image.tmdb.org",
-    "https://vidrock.net"
+    "https://vidrock.net",
+    "https://cdn2.boomchick.org",
+    "https://sprintspeedlight.lol",
+    "https://plasticprophecy.live",
+    "https://carbonphantom.live"
   ],
   "references": {
     "title": {

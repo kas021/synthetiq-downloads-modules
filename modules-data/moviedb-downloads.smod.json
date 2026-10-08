@@ -2,10 +2,11 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "moviedb-wiki-v1",
   "name": "MovieDB",
-  "version": "0.1.0-experimental.1",
-  "minHostVersion": 11,
+  "version": "0.1.0-experimental.2",
+  "minHostVersion": 12,
   "moduleFamilyId": "moviedb_wiki_v1",
   "moduleIdentity": "SP-VID-083-MOVIEDB",
+  "metadataProvider": "tmdb",
   "contentType": "video",
   "languages": [
     {
@@ -18,7 +19,9 @@
     "https://image.tmdb.org",
     "https://api.vidlove.cc",
     "https://player.vidlove.cc",
-    "https://d.sublime.st"
+    "https://d.sublime.st",
+    "https://a2.sublime.st",
+    "https://cache.vdrk.site"
   ],
   "references": {
     "title": {

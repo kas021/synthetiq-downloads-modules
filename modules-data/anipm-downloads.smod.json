@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "anipm-v1",
   "name": "AniPM",
-  "version": "0.1.0-experimental.3",
+  "version": "0.1.0-experimental.4",
   "minHostVersion": 11,
   "moduleFamilyId": "anipm-v1",
   "moduleIdentity": "SP-VID-084-ANIPM",
@@ -20,7 +20,10 @@
   "origins": [
     "https://ani.pm",
     "https://megaplay.buzz",
-    "https://fetch.nexabloom.top"
+    "https://fetch.nexabloom.top",
+    "https://*.broforgotsave.online",
+    "https://*.eclipseharbor.space",
+    "https://*.oakhorizon.space"
   ],
   "references": {
     "title": {

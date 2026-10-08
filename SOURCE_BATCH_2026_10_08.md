@@ -2,11 +2,11 @@
 
 ## Scope and provenance
 
-Downloads definitions remain declarative JSON. Host 11 adds bounded response-selected public HTTPS media origins, finite provider media-type mapping, explicit Original audio, bounded caption inventory selection and metadata-derived expected duration. No remote JavaScript is executed.
+Downloads definitions remain declarative JSON. Host 11 adds finite provider media-type mapping, explicit Original audio, bounded caption inventory selection and metadata-derived expected duration. Response media and playlist hosts must match declared exact origins or vetted strict suffixes. Host 12 adds explicit TMDB presentation identity; Host 13 permits up to 24 declared origins without changing origin matching. No remote JavaScript is executed.
 
 Read-only remote references: Player `aaee1e1b4c59b3683e13ecf88d761ec947281ecd`; Player catalogue `db9197d32f776af12641051960602a374cdd440e`. Fresh published ZIP SHA-256 values were checked against that catalogue: Anime 1.0.5-beta.3, AniPM 0.1.0-beta.4, Alpha 0.2.0-beta.2 and MovieDB 0.1.0-beta.12. `SOURCE_SHORTLIST.json` retains their package provenance. These versions differ from local development snapshots.
 
-Downloads versions: Anime 1.3.10, AniPM 0.1.0-experimental.3, MovieDB and Alpha 0.1.0-experimental.1. All require Host 11 / app 1.0.91 and remain non-recommended until native device acceptance.
+Current Downloads versions: Anime 1.3.11 (Host 13/app 1.0.92), AniPM 0.1.0-experimental.4 (Host 11/app 1.0.91), MovieDB 0.1.0-experimental.2 and Alpha 0.1.0-experimental.3 (Host 12/app 1.0.92). All remain non-recommended until native device acceptance. Exact rotating-CDN repairs and additional Black Clover/later-season evidence are recorded in OBSERVED_CDN_REPAIR_2026_10_08.md.
 
 Anime and AniPM retain existing IDs and exact SUB/DUB route selection. Their muxed MegaPlay route matches the fresh AniPM upstream reliability direction. Player's new Anime season-group presentation was reviewed but is not ported to Downloads: Downloads retains its existing AniList title/episode contract.
 
