@@ -5,17 +5,19 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
 ## Current phone catalogue
 
-`catalogue.json` advertises four experimental data-only `.smod.json` definitions:
+`catalogue.json` advertises six experimental data-only `.smod.json` definitions:
 
 | Source | Downloads version | Minimum host / app | Recorded evidence |
 | --- | --- | --- | --- |
-| Synthetiq Anime | 1.3.9 | Host 10 / 1.0.89 | Live Death Note E1 SUB/DUB resolution and 312-segment HLS inspection pass via priority MegaPlay; one mapped caption each; no full transfer or phone acceptance |
-| AniPM | 0.1.0-experimental.2 | Host 10 / 1.0.89 | Bounded dynamic caption origins; live SUB inspection found 312 segments and one mapped caption; current DUB, complete transfers and phone acceptance remain unverified |
+| Synthetiq Anime | 1.3.10 | Host 11 / 1.0.91 | Death Note E1 SUB full workstation transfer/decode plus 329 English cues; phone acceptance pending |
+| AniPM | 0.1.0-experimental.3 | Host 11 / 1.0.91 | One Piece E1 requested DUB full workstation transfer/decode plus 285 English cues; spoken language/phone acceptance pending |
 | Synthetiq Movies | 1.0.1-experimental.1 | Host 6 / 1.0.75 | Current `.fun` routes preserve `.vip` references; live playlists return 200, but AES-128 and separate audio still block downloads |
 | AnimeAV1 | 0.1.0-experimental.1 | Host 9 / 1.0.84 | Bounded SUB MP4Upload route, complete workstation transfer/decode; sampled AV1 video has Spanish burnt-in captions; phone codec/playback acceptance pending |
+| Alpha Movies | 0.1.0-experimental.1 | Host 11 / 1.0.91 | Shared TMDB-ID metadata + Alpha Vidrock media; The Mentalist S1E1 full workstation transfer/decode; captions unmapped |
+| MovieDB | 0.1.0-experimental.1 | Host 11 / 1.0.91 | Exact movie/TV metadata and routes mapped; tested TV media was a 20-second silent placeholder and failed content acceptance |
 
-None of these sources is recommended or phone-certified yet. Complete media transfers,
-caption files and repeated offline playback on both physical phones remain open.
+None of these sources is recommended or phone-certified yet. The workstation transfers
+below are separate from native physical-phone download and offline playback acceptance.
 The catalogue records byte hashes and minimum runtime metadata. The host enforces
 definition `minHostVersion`; a hash is provenance evidence rather than certification.
 
@@ -23,7 +25,7 @@ The previous executable ZIPs and source trees remain in `modules/` and `src/`
 for owner rollback and internal comparison. They are not in the default phone
 catalogue. A public phone build does not evaluate downloaded JavaScript.
 
-`SOURCE_SHORTLIST.json` retains the eight requested Player identities and archive
+`SOURCE_SHORTLIST.json` retains the nine requested Player identities and archive
 provenance. `SOURCE_COMPATIBILITY.json` records current Downloads mapping and
 specific gaps. Synthetiq Movies preserves the typed title slug and exact selected
 season/episode identity, including legacy episode references. Its sampled current
@@ -73,3 +75,7 @@ Its Spanish subtitles were burnt into the sampled video, not selectable tracks.
 Quality is unknown in the source response; Data Saver cannot promise a lower
 rendition. Use Auto if you want the original file. Workstation transfer/decode is
 recorded separately from native phone, background and offline playback acceptance.
+
+## 8 October 2026 source batch
+
+Host 11 / Downloads 1.0.91 definitions, exact movie/TV identity, quality selection and genuine workstation transfer evidence are described in [SOURCE_BATCH_2026_10_08.md](SOURCE_BATCH_2026_10_08.md). Alpha and MovieDB are now installable experimental definitions. All entries remain non-recommended. The current tested MovieDB TV route returned a 20-second silent placeholder and failed content acceptance.

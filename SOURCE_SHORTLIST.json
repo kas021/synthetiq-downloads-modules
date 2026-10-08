@@ -3,7 +3,7 @@
   "kind": "non-installable-player-source-shortlist",
   "sourceSnapshot": {
     "repository": "kas021/Synthetiq-Modules",
-    "revision": "874d797b769d855bbbe60176949f89eda93cb1c1"
+    "revision": "db9197d32f776af12641051960602a374cdd440e"
   },
   "purpose": "Owner-selected upstream source inventory and compatibility review for Synthetiq Downloads. These records are planning metadata, not app catalogue/install entries.",
   "notice": "No executable JavaScript or ZIP contents are included here. Upstream package URLs and hashes identify published Player archives for provenance only; they are not recommendations or Downloads install targets.",
@@ -78,12 +78,13 @@
         }
       },
       "downloadsCompatibility": {
-        "installable": false,
-        "status": "bounded-gcm-helper-only-no-source-definition",
+        "installable": true,
+        "status": "experimental-host11-definition",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "The bounded AES-GCM helper decoded live Alpha Vidrock rows for a known movie ID. Candidate inspection found dynamic CDN origins: one candidate's first media segment returned HTTP 403, while a second candidate's first segment parsed as H.264/AAC. Neither candidate is tied to a Downloads search/details/episode identity, the changing CDN origins do not fit the static declared-origin contract, and no full transfer or native acceptance was performed. No Alpha source definition is present."
+          "Metadata deliberately uses the shared www.moviedb.wiki TMDB-ID catalogue. Exact media type/title/season/source episode/episode number and runtime are preflighted. No silent media fallback to MovieDB.",
+          "2026-10-08 Inception and The Mentalist S1E1 live clear-HLS inspections passed. Full TV workstation transfer evidence is recorded in SOURCE_BATCH_2026_10_08.md; physical phone/offline acceptance and spoken-language identity remain unverified. Captions are not mapped for this Vidrock route."
         ]
       }
     },
@@ -133,11 +134,11 @@
         "moduleIdentityNumber": 74,
         "contentType": "video",
         "contractVersion": 4,
-        "version": "1.0.5-beta.2",
+        "version": "1.0.5-beta.3",
         "releaseTrack": "beta",
-        "packageFile": "Synthetiq-Anime-1.0.5-beta.2.zip",
-        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-synthetiq-anime-v1-v1.0.5-beta.2/Synthetiq-Anime-1.0.5-beta.2.zip",
-        "sha256": "9f2e60c3b0284c26da5ffc9222d01047ca154b64b9d9570104ea39c1a0687bb4",
+        "packageFile": "Synthetiq-Anime-1.0.5-beta.3.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-synthetiq-anime-v1-v1.0.5-beta.3/Synthetiq-Anime-1.0.5-beta.3.zip",
+        "sha256": "9f03899641ba3aab8f45eb069312ed9ead6a5d8b53dc01fb461d7a1064e4ebd7",
         "presentation": {
           "category": "Anime",
           "purpose": "English Anime",
@@ -152,21 +153,13 @@
       },
       "downloadsCompatibility": {
         "installable": true,
-        "status": "experimental-host10-prioritized-anikage-megaplay",
+        "status": "experimental-host11-definition",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "Downloads 1.3.9 (Host 10) moves the proven exact-language AniKage MegaPlay route ahead of Flow/Zuri after the previous live E1 run spent 12.002 seconds in each primary route before accepting MegaPlay. On 2026-10-07, Death Note E1 SUB passed with requireCaptions=true and DUB passed with the runtime requireCaptions=false gate; both selected the unchanged anikage-megaplay:primary ID, reported 312 HLS segments and one mapped caption, and completed resolver plus playlist inspection in 0.729 and 0.597 seconds. No full media transfer, caption-file validation or physical playback was performed. Source quality remained absent; requested-language identity is route-bound, while spoken-language semantics and native offline acceptance remain unverified. All other declared provider alternatives and exact manual server IDs remain available."
-        ],
-        "downloadsDefinition": {
-          "file": "modules-data/synthetiq-anime.smod.json",
-          "version": "1.3.9",
-          "minHostVersion": 10,
-          "minAppVersion": "1.0.89",
-          "sha256": "1dd27360aa68d088b9f87d54e71cbdc982f3b4ff727f11ea5ee1ac0fd4eda048",
-          "installable": true,
-          "experimental": true
-        }
+          "2026-10-08 workstation Death Note E1 SUB full transfer: 312/312 segments; 248,587,136 bytes; H.264 1920x1080 + AAC; 1377.084 seconds; 329 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
+          "Spoken language, native phone background/recovery and offline playback acceptance remain unverified. Upstream Anime 1.0.5-beta.3 season grouping was reviewed; Flutter presentation code is not executed by Downloads."
+        ]
       }
     },
     {
@@ -181,11 +174,11 @@
         "moduleIdentityNumber": 84,
         "contentType": "video",
         "contractVersion": 4,
-        "version": "0.1.0-beta.3",
+        "version": "0.1.0-beta.4",
         "releaseTrack": "beta",
-        "packageFile": "AniPM-0.1.0-beta.3.zip",
-        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-anipm-v1-v0.1.0-beta.3/AniPM-0.1.0-beta.3.zip",
-        "sha256": "610acac3d6ce301623f462c4d5a90d9bce9cc81a2b8931fe1575c746fed25311",
+        "packageFile": "AniPM-0.1.0-beta.4.zip",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-anipm-v1-v0.1.0-beta.4/AniPM-0.1.0-beta.4.zip",
+        "sha256": "501ffce64440f18354246610d60883dc3d4c48a819cbc23a9186c0de2a28d126",
         "presentation": {
           "category": "Anime",
           "purpose": "English Anime (AniPM)",
@@ -200,21 +193,13 @@
       },
       "downloadsCompatibility": {
         "installable": true,
-        "status": "experimental-host10-dynamic-megaplay-caption-origins",
+        "status": "experimental-host11-definition",
         "targetFormat": "data-only .smod.json",
         "recommended": false,
         "blockers": [
-          "The Host 10 0.1.0-experimental.2 definition accepts up to four response-selected public HTTPS caption origins per route. On 2026-10-07, a sanitized Death Note E1 SUB resolver/HLS inspection completed in 487 ms and found 312 segments and one mapped caption. This was route inspection only: no current DUB live inspection, full media or caption-file transfer, physical phone download, or playback was tested. The separate 2026-10-02 paced workstation SUB transfer remains one historical 271/271-segment sample. Spoken-language proof and native background/offline acceptance remain pending; the provider numeric path segment is not independently bound to the episode ID."
-        ],
-        "downloadsDefinition": {
-          "file": "modules-data/anipm-downloads.smod.json",
-          "version": "0.1.0-experimental.2",
-          "minHostVersion": 10,
-          "minAppVersion": "1.0.89",
-          "sha256": "86af65b99ed5ffb6332d808efc658147c1007d4986a585d80d1ba1f7aa761841",
-          "installable": true,
-          "experimental": true
-        }
+          "2026-10-08 workstation One Piece E1 requested DUB full transfer: 321/321 segments; 233,048,184 bytes; H.264 1440x1080 + AAC; 1477.976 seconds; 285 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
+          "Source 1642 currently identifies One Piece, not Death Note. Spoken language and native phone/offline acceptance remain unverified."
+        ]
       }
     },
     {
@@ -325,6 +310,31 @@
         "recommended": false,
         "blockers": [
           "The sampled Death Note S1 E1 DE Subs/Vidmoly route resolves to clear HLS, but the complete paced 70-segment workstation transfer fails strict FFmpeg copy remux at about 110.2 seconds with duplicate/non-monotonic DTS in segment 6 of 70; the playlist declares no discontinuity. Native mobile TS-append/local-HLS behavior is a distinct unverified path. Two short audio samples detected Japanese, which is not a per-title language guarantee; subtitle language was not verified. No definition/Host10 expansion until a non-lossy package passes."
+        ]
+      }
+    },
+    {
+      "selectedName": "MovieDB",
+      "selectionGroup": "movies_tv",
+      "selectedByOwner": true,
+      "upstreamPublished": {
+        "repository": "kas021/Synthetiq-Modules",
+        "moduleId": "moviedb-wiki-v1",
+        "moduleFamilyId": "moviedb_wiki_v1",
+        "moduleIdentity": "SP-VID-083-MOVIEDB",
+        "version": "0.1.0-beta.12",
+        "packageUrl": "https://github.com/kas021/Synthetiq-Modules/releases/download/module-moviedb-wiki-v1-v0.1.0-beta.12/MovieDB-0.1.0-beta.12.zip",
+        "packageFile": "MovieDB-0.1.0-beta.12.zip",
+        "sha256": "8d2d1f840805ae283795cfd446199ac8f1df82f98c8dadcfe766c210b1a240d8"
+      },
+      "downloadsCompatibility": {
+        "installable": true,
+        "status": "experimental-host11-definition",
+        "targetFormat": "data-only .smod.json",
+        "recommended": false,
+        "blockers": [
+          "Expected duration comes from exact source metadata and must be verified independently against completed native media. No fallback to another source family.",
+          "2026-10-08 The Mentalist S1E1 auto 480p full transfer FAILED content acceptance: HTTP 200 supplied only 31,577 bytes / 20 seconds / 1280x720 H.264 / no audio. Keep experimental and non-recommended. VidZen upstream fallback returned HTTP 401 and is not included."
         ]
       }
     }
