@@ -1,6 +1,6 @@
 # Downloads source shortlist audit
 
-Date: 2026-10-11  
+Date: 2026-10-11
 Scope: read-only comparison of seven Downloads declarative source definitions with the latest available Synthetiq Player module packages, plus bounded live catalog/resolver/playlist inspection. No media segments or full media files were transferred. No physical-device playback was tested.
 
 ## Decision
