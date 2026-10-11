@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Technical mapping and compatibility matrix for nine selected Player source identities.",
+  "purpose": "Technical mapping and compatibility matrix for ten selected Player source identities.",
   "hostRequirement": 13,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
@@ -32,8 +32,8 @@
       "id": "alpha-movies",
       "familyId": "alpha_movies_v1",
       "identity": "SP-VID-079-ALPHA-MOVIES",
-      "publishedVersion": "0.2.0-beta.2",
-      "playerDevelopmentVersion": "0.2.0-beta.2",
+      "publishedVersion": "0.2.0-beta.3",
+      "playerDevelopmentVersion": "0.2.0-beta.3",
       "downloadsDefinitionVersion": "0.1.0-experimental.3",
       "implementation": "host12-bounded-source-definition",
       "recommended": false,
@@ -197,24 +197,48 @@
       "id": "moviedb-wiki-v1",
       "familyId": "moviedb_wiki_v1",
       "identity": "SP-VID-083-MOVIEDB",
-      "playerDevelopmentVersion": "0.1.0-beta.12",
+      "playerDevelopmentVersion": "0.1.0-beta.14",
       "capabilities": {
         "browse": "shared-MovieDB-TMDB-ID-search-first-page;generic-browse-facets-unmapped",
         "details": "exact-title-and-media-type-preflight",
         "seasons": "declared-season-list",
         "episodes": "exact-sourceEpisodeId-season-and-episode-number-preflight",
         "audio": "original-label;spoken-language-unverified",
-        "serverResolve": "VidLove-bounded-JSON-media-type-mapping",
-        "quality": "real-HLS-height-before-bandwidth;unknown-height-not-certified-for-cap",
+        "serverResolve": "VidLove-bounded-JSON-MovieBox-direct-files-and-explicit-IPCloud-HLS",
+        "quality": "discovered-direct-file-labels-and-real-HLS-height;unknown-resolution-Original",
         "captions": "up-to256-scan64-published-English-priority",
-        "offlineAcceptance": "FAILED-placeholder-20s-no-audio;native-guard-required"
+        "offlineAcceptance": "current-inspection-passed;historic-placeholder-failed;native-full-transfer-unverified"
       },
-      "publishedVersion": "0.1.0-beta.12",
-      "downloadsDefinitionVersion": "0.1.0-experimental.2",
+      "publishedVersion": "0.1.0-beta.14",
+      "downloadsDefinitionVersion": "0.1.0-experimental.3",
       "minimumContentHostVersion": 12,
       "recommended": false,
-      "technicalGap": "0.1.0-experimental.2: Host 12 bounded MovieDB catalogue and VidLove movie/TV routes with exact TMDB title/type/season/episode preflight, original audio, finite media-type mapping, module-declared exact response media origins, strict suffix playlist/caption policy and bounded caption inventory. Expected duration comes from exact source metadata and must be verified independently against completed native media. No fallback to another source family. 2026-10-08 The Mentalist S1E1 auto 480p full transfer FAILED content acceptance: HTTP 200 supplied only 31,577 bytes / 20 seconds / 1280x720 H.264 / no audio. Keep experimental and non-recommended. VidZen upstream fallback returned HTTP 401 and is not included. Optional TMDB title details, recommendation shelves and episode stills require a local Downloads-specific read token; missing configuration does not block source browsing or downloads.",
+      "technicalGap": "0.1.0-experimental.3: Translates remote Player beta.14 source.url IPCloud responses into separate exact-provider movie/TV routes; preserves identity, automatic MovieBox source.qualities mapping, exact title/type/season/episode preflight and bounded VTT caption ordering. Only observed a2.ravenflix.st and c.ravenflix.st exact origins were added. 2026-10-11 production resolver inspection passed The Mentalist S1E1 IPCloud (271 segments, 2709.165 seconds, 1280x720; 89 VTT metadata rows scanned, 64 surfaced) and Inception IPCloud (889 segments, 8888.046 seconds, 1280x536; no captions). Automatic direct-file inspection exposed TV 1080/720/480/360 and movie 1080. No complete transfer, caption cue validation, audio identity, decode or native offline acceptance was performed for these new routes. The older 2026-10-08 auto route supplied a 20-second silent placeholder; that failure remains a release gate rather than being erased by the current inspection. Keep experimental and non-recommended. Optional Downloads-specific TMDB configuration remains separate from source availability.",
       "implementation": "host12-bounded-source-definition"
+    },
+    {
+      "name": "Synthetiq Flux",
+      "id": "synthetiq-flux-v1",
+      "familyId": "synthetiq_flux_v1",
+      "identity": "SP-VID-077-SYNTHETIQ-FLUX",
+      "publishedVersion": "1.0.3-beta.5",
+      "playerDevelopmentVersion": "1.0.3-beta.5",
+      "downloadsDefinitionVersion": "1.0.0-experimental.1",
+      "implementation": "host13-bounded-source-definition",
+      "minimumContentHostVersion": 13,
+      "recommended": false,
+      "capabilities": {
+        "browse": "AniList-catalogue-identity",
+        "details": "bounded-AniList-details",
+        "seasons": "not-mapped",
+        "episodes": "bounded-count-windows",
+        "audio": "sub-dub-request-bound",
+        "serverResolve": "explicit-Flow-Zuri-plus-labelled-AniKage-rescue",
+        "quality": "sampled-master-one-1080;no-invented-ladder",
+        "captions": "mapped-English-metadata;cue-validation-unverified",
+        "offlineAcceptance": "inspection-only;no-full-transfer-or-native-offline-acceptance"
+      },
+      "technicalGap": "2026-10-11 Re:ZERO E1 SUB/DUB production resolver inspections passed only through the labelled AniKage/MegaPlay rescue after earlier route failures; DUB included genuine HTTP 502 responses. Samples declared one 1080p HLS rendition and one English caption option. Anime, AniPM and Flux converged on the same MegaPlay/CDN dependency; these are not independent media providers. Remote package tag is beta.5 while its embedded manifest says beta.4 and archive ID synthetiq-anime-direct; Downloads keeps its separate synthetiq-flux-v1 identity. No media/caption transfer, spoken-language decode or physical playback was performed. Experimental and non-recommended."
     }
   ],
   "hostRequirementMeaning": "Maximum minimumContentHostVersion among the currently mapped installable definitions. Each source retains its own minimumContentHostVersion; lower-floor sources do not require Host 13."

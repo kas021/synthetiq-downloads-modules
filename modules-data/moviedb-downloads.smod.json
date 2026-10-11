@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "moviedb-wiki-v1",
   "name": "MovieDB",
-  "version": "0.1.0-experimental.2",
+  "version": "0.1.0-experimental.3",
   "minHostVersion": 12,
   "moduleFamilyId": "moviedb_wiki_v1",
   "moduleIdentity": "SP-VID-083-MOVIEDB",
@@ -21,7 +21,9 @@
     "https://player.vidlove.cc",
     "https://d.sublime.st",
     "https://a2.sublime.st",
-    "https://cache.vdrk.site"
+    "https://cache.vdrk.site",
+    "https://a2.ravenflix.st",
+    "https://c.ravenflix.st"
   ],
   "references": {
     "title": {
@@ -1226,6 +1228,359 @@
                 "url": {
                   "kind": "field",
                   "paths": "file"
+                }
+              },
+              "maxScannedTracks": 256,
+              "preferredLabelPrefixes": [
+                "English"
+              ]
+            }
+          },
+          "expectedDuration": {
+            "step": 1,
+            "path": "selected.runtime",
+            "unit": "minutes"
+          }
+        },
+        {
+          "id": "movie-ipcloud",
+          "label": "VidLove IPCloud",
+          "contentKinds": [
+            "movie"
+          ],
+          "variants": [
+            "original"
+          ],
+          "responseMediaOrigins": true,
+          "steps": [
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/movie/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "scriptText",
+                  "id": "titleData",
+                  "type": "application/json"
+                }
+              },
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "type",
+                  "value": "movie"
+                },
+                {
+                  "path": "type",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://api.vidlove.cc",
+                "path": "/movie",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "parameter": "contentId"
+                  },
+                  "mode": "json",
+                  "sources": "ipcloud"
+                },
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://player.vidlove.cc/",
+                  "Origin": "https://player.vidlove.cc"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "meta.id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "source.source",
+                  "value": "ipcloud"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "object",
+              "path": "source",
+              "candidate": {
+                "id": {
+                  "value": "ipcloud"
+                },
+                "label": [
+                  "label",
+                  "source"
+                ],
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "value": "hls"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://player.vidlove.cc/"
+          },
+          "subtitlesByLanguage": {
+            "original": {
+              "itemsPath": "subtitles",
+              "responseOrigins": true,
+              "item": {
+                "id": "label",
+                "label": "label",
+                "language": "label",
+                "format": "type",
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ]
+                }
+              },
+              "maxScannedTracks": 256,
+              "preferredLabelPrefixes": [
+                "English"
+              ]
+            }
+          },
+          "expectedDuration": {
+            "step": 0,
+            "path": "runtime",
+            "unit": "minutes"
+          }
+        },
+        {
+          "id": "tv-ipcloud",
+          "label": "VidLove IPCloud",
+          "contentKinds": [
+            "episode"
+          ],
+          "variants": [
+            "original"
+          ],
+          "responseMediaOrigins": true,
+          "steps": [
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/{{sourceId}}/{{contentId}}",
+                  "values": {
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "scriptText",
+                  "id": "titleData",
+                  "type": "application/json"
+                }
+              },
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "type",
+                  "value": "tv"
+                },
+                {
+                  "path": "type",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/season/{{contentId}}/{{seasonNumber}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "seasonNumber": {
+                      "parameter": "seasonNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "jsonRowSelect": {
+                "itemsPath": "episodes",
+                "matchField": "id",
+                "parameter": "sourceEpisodeId",
+                "resultField": "selected"
+              },
+              "responseMatches": [
+                {
+                  "path": "season_number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selected.episode_number",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "selected.season_number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selected.has_aired",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://api.vidlove.cc",
+                "path": "/tv",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "parameter": "contentId"
+                  },
+                  "mode": "json",
+                  "season": {
+                    "parameter": "seasonNumber"
+                  },
+                  "episode": {
+                    "parameter": "episodeNumber"
+                  },
+                  "sources": "ipcloud"
+                },
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://player.vidlove.cc/",
+                  "Origin": "https://player.vidlove.cc"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "meta.id",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "meta.episode_number",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "meta.season_number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "source.source",
+                  "value": "ipcloud"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "object",
+              "path": "source",
+              "candidate": {
+                "id": {
+                  "value": "ipcloud"
+                },
+                "label": [
+                  "label",
+                  "source"
+                ],
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "value": "hls"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://player.vidlove.cc/"
+          },
+          "subtitlesByLanguage": {
+            "original": {
+              "itemsPath": "subtitles",
+              "responseOrigins": true,
+              "item": {
+                "id": "label",
+                "label": "label",
+                "language": "label",
+                "format": "type",
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "src"
+                  ]
                 }
               },
               "maxScannedTracks": 256,

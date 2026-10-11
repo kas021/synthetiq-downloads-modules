@@ -5,7 +5,7 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
 ## Current phone catalogue
 
-`catalogue.json` advertises six experimental data-only `.smod.json` definitions:
+`catalogue.json` advertises seven experimental data-only `.smod.json` definitions:
 
 | Source | Downloads version | Minimum host / app | Recorded evidence |
 | --- | --- | --- | --- |
@@ -14,7 +14,8 @@ Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 | Synthetiq Movies | 1.0.1-experimental.1 | Host 6 / 1.0.75 | Current `.fun` routes preserve `.vip` references; live playlists return 200, but AES-128 and separate audio still block downloads |
 | AnimeAV1 | 0.1.0-experimental.1 | Host 9 / 1.0.84 | Bounded SUB MP4Upload route, complete workstation transfer/decode; sampled AV1 video has Spanish burnt-in captions; phone codec/playback acceptance pending |
 | Alpha Movies | 0.1.0-experimental.3 | Host 12 / 1.0.92 | Shared TMDB-ID metadata + Alpha Vidrock media; The Mentalist S1E1 full workstation transfer/decode; captions unmapped |
-| MovieDB | 0.1.0-experimental.2 | Host 12 / 1.0.92 | Exact movie/TV metadata and routes mapped; tested TV media was a 20-second silent placeholder and failed content acceptance |
+| MovieDB | 0.1.0-experimental.3 | Host 12 / 1.0.92 | beta.14 IPCloud HLS and direct-file quality inspection passed; historical placeholder failed; new full transfer/phone acceptance pending |
+| Synthetiq Flux | 1.0.0-experimental.1 | Host 13 / 1.0.92 | Re:ZERO E1 SUB/DUB rescue inspection passed; shared MegaPlay dependency; full transfer/phone acceptance pending |
 
 None of these sources is recommended or phone-certified yet. The workstation transfers
 below are separate from native physical-phone download and offline playback acceptance.
@@ -65,7 +66,7 @@ The mobile host now resolves relative HLS variants correctly. The isolated
 Hermes/native-HTTP check reached the Death Note episode 1 SUB/DUB playlists,
 but its simulator background-transfer service was unavailable. This is not
 physical transfer or offline playback certification. Flux was compared as a
-reference; a separate Downloads Flux definition is not published here yet.
+reference; a separate Downloads Flux definition was not published in that historical batch. It is now available as experimental.1; see the 11 October review.
 
 ## Anime 1.3.5 — Host 8
 
@@ -87,3 +88,9 @@ recorded separately from native phone, background and offline playback acceptanc
 Current per-source Host 11–13 / Downloads 1.0.91–1.0.92 requirements, exact movie/TV identity, quality selection and genuine workstation transfer evidence are described in [SOURCE_BATCH_2026_10_08.md](SOURCE_BATCH_2026_10_08.md). Alpha and MovieDB are now installable experimental definitions. All entries remain non-recommended. The current tested MovieDB TV route returned a 20-second silent placeholder and failed content acceptance.
 
 Exact Black Clover SUB/DUB transfer results, One Piece episode windows, Alpha’s empty S2E1 segment and MovieDB’s S2E1 placeholder are recorded in [OBSERVED_CDN_REPAIR_2026_10_08.md](OBSERVED_CDN_REPAIR_2026_10_08.md). Those workstation checks do not establish physical-phone acceptance.
+
+## 11 October 2026 source review
+
+The five current review candidates are **Synthetiq Anime, AniPM, Synthetiq Flux, Alpha Movies and MovieDB**. This is a three-anime/two-movie mix, not five certified independent media providers. Anime, AniPM and Flux used the same MegaPlay/CDN chain in the sampled cases. AnimeAV1 and Synthetiq Movies remain available for historical compatibility, with their current blockers preserved.
+
+[Current remote-package and route comparison](SOURCE_REVIEW_2026_10_11.md) records commits, package hashes, actual quality options and failed routes. [MovieDB refinement](MOVIEDB_REFINEMENT_2026_10_11.md) records explicit IPCloud mapping and 39 focused tests. No new complete media/caption transfer or physical playback is asserted. Update installed modules through Settings separately from app updates.
