@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.11",
+      "version": "1.3.12",
       "minHostVersion": 13,
       "minAppVersion": "1.0.92",
-      "sha256": "b994085f02aefebc6f0663ecbc026e17f764af649a43c4046efa3978a4d1be9f",
+      "sha256": "16b9925817f46f4b75846b37c1e65f2f0ff7fa0c73582d5a7109ee4f37b18b9a",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,15 +23,15 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
+        "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
+        "Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21.",
+        "Full workstation route transfer/decode passed; EchoVideo DUB audio acceptance failed; native offline playback remains unverified.",
         "1.3.11: Host 13 permits up to 24 explicit declared origins. Adds only observed Black Clover E1 SUB o3izr.stellarfrontier.space and DUB n953x.midnightvoyage.site CDN origins; Jikan fallback Referer reuses its declared API origin. Preserves exact episode/audio routes and all existing server alternatives. Experimental/non-recommended; native acceptance remains unverified.",
         "1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes; unknown hosts need a data update. Existing Anime route IDs and exact SUB/DUB selection remain unchanged.",
         "2026-10-08 workstation Death Note E1 SUB full transfer: 312/312 segments; 248,587,136 bytes; H.264 1920x1080 + AAC; 1377.084 seconds; 329 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
         "Spoken language, native phone background/recovery and offline playback acceptance remain unverified. Upstream Anime 1.0.5-beta.3 season grouping was reviewed; Flutter presentation code is not executed by Downloads.",
         "1.3.9: Prioritizes the live-verified exact-language MegaPlay route before slower primary routes; all previous alternatives and manual route IDs remain available.",
-        "Live Death Note E1 SUB/DUB resolution used the exact MegaPlay route with the required runtime caption gate for SUB and optional caption gate for DUB. Each inspection mapped one caption and a 312-segment HLS playlist in 722 ms / 612 ms; no complete transfer or playback was tested.",
-        "1.3.8: Adds up to four response-selected caption origins per accepted route using module-declared exact origins or strict DNS suffixes; exact manual server-route resolution; module API requests remain fixed.",
-        "Fixture tests confirm src/file/url subtitle mapping and actual WebVTT cue fetch. Spoken audio identity and native offline playback acceptance remain unverified.",
-        "1.3.7: Extends bounded read-only reuse to provider GETs within one resolution attempt; existing metadata-query reuse is unchanged."
+        "Live Death Note E1 SUB/DUB resolution used the exact MegaPlay route with the required runtime caption gate for SUB and optional caption gate for DUB. Each inspection mapped one caption and a 312-segment HLS playlist in 722 ms / 612 ms; no complete transfer or playback was tested."
       ]
     },
     {
@@ -90,7 +90,7 @@
       "presentation": {
         "category": "Anime",
         "purpose": "AnimeAV1 downloads (experimental)",
-        "language": "Spanish subtitles \u00b7 SUB only",
+        "language": "Spanish subtitles · SUB only",
         "languages": [
           "sub"
         ],
@@ -114,11 +114,13 @@
         ],
         "recommended": false
       },
-      "version": "0.1.0-experimental.3",
+      "version": "0.1.0-experimental.4",
       "minHostVersion": 12,
       "minAppVersion": "1.0.92",
-      "sha256": "d5fa9c15d91cedd2036d57cee01db4c3b04ac8ea19fb9e4a7160085ac7e92154",
+      "sha256": "90b48741c6bcf244708cfef76614cab371f0a5801a62f6bc68d231531aa8c26a",
       "changelog": [
+        "Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data.",
+        "Fallback preserves TMDB title, season, episode and runtime; manual server selection remains pinned.",
         "0.1.0-experimental.3: Maps beta.14 IPCloud source.url HLS separately from MovieBox direct-file qualities, keeps exact movie/TV identity and only observed CDN origins. TV/movie resolver inspections passed; full transfer, caption cues and native offline playback remain unverified. Experimental/non-recommended.",
         "0.1.0-experimental.2: Host 12 adds explicit TMDB presentation identity for optional title details, recommendations and episode stills. Search and downloads continue without a TMDB token.",
         "0.1.0-experimental.1: Host 11 bounded MovieDB catalogue and VidLove movie/TV routes with exact TMDB title/type/season/episode preflight, original audio, finite media-type mapping, module-declared exact response media origins and bounded caption inventory. Playlist and caption hosts also require exact or strict DNS suffix entries.",
@@ -137,11 +139,13 @@
         ],
         "recommended": false
       },
-      "version": "0.1.0-experimental.3",
+      "version": "0.1.0-experimental.4",
       "minHostVersion": 12,
       "minAppVersion": "1.0.92",
-      "sha256": "86c7ed0251014e7fc05a379a39b125e9b52e5eb68e8dd03a1c6e3af342a832d0",
+      "sha256": "806fcd4ed09cc3f031f5de80f97862d68073cff38e05bbb2a7135ed7e7f10ff7",
       "changelog": [
+        "Declare only the two observed Luna/Orion CDN origins; keep advertised quality and exact TMDB identity checks.",
+        "Experimental: complete transfer and native playback evidence are recorded separately.",
         "0.1.0-experimental.3: Adds only observed Vidrock Orion carbonphantom.live CDN origin for exact TMDB TV 5920 season 2 episode 1. Keeps Host 12, explicit TMDB metadata and Alpha-only media identity. Experimental/non-recommended; native acceptance remains unverified.",
         "0.1.0-experimental.2: Host 12 adds explicit TMDB presentation identity for optional title details, recommendations and episode stills. Search and downloads continue without a TMDB token.",
         "0.1.0-experimental.1: Host 11 Alpha Vidrock-only media resolver with bounded AES-GCM decoding and response CDN origins restricted to module-declared exact origins. Playlist hosts require exact or strict DNS suffix entries. Preserves SP-VID-079-ALPHA-MOVIES and alpha_movies_v1.",
@@ -151,10 +155,10 @@
     },
     {
       "file": "modules-data/synthetiq-flux.smod.json",
-      "version": "1.0.0-experimental.1",
+      "version": "1.0.0-experimental.2",
       "minHostVersion": 13,
       "minAppVersion": "1.0.92",
-      "sha256": "594db474c576f8b775155246d0144f4f2fbad52b37933644f7660bdbd8ed0823",
+      "sha256": "f51bbe186038c81bacc9c5e875746f1b53d1fa36bdfca19425af1e1ceffdb7a2",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Flux downloads (experimental)",
@@ -166,6 +170,9 @@
         "recommended": false
       },
       "changelog": [
+        "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
+        "Add the same two observed EchoVideo CDN origins; retain exact episode and audio response checks.",
+        "Experimental: native phone playback remains unverified; EchoVideo DUB audio acceptance failed.",
         "1.0.0-experimental.1: Bounded Flow/Zuri routes and explicitly labelled AniKage rescue. Preserves the Downloads Flux identity; no downloaded executable modules.",
         "2026-10-11 Re:ZERO E1 SUB/DUB inspection passed via rescue after upstream failures. One 1080p rendition and English caption metadata; no full transfer or native playback evidence. Shares the sampled MegaPlay media dependency with Anime/AniPM."
       ]

@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-anime-v1",
   "name": "Synthetiq Anime",
-  "version": "1.3.11",
+  "version": "1.3.12",
   "minHostVersion": 13,
   "moduleFamilyId": "synthetiq_anime_v1",
   "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
@@ -24,7 +24,9 @@
     "https://play.echovideo.ru",
     "https://px.dpopdrop89.store",
     "https://o3izr.stellarfrontier.space",
-    "https://n953x.midnightvoyage.site"
+    "https://n953x.midnightvoyage.site",
+    "https://hlsxst2.echovideo.to",
+    "https://st2.roburnt10.store"
   ],
   "languages": [
     {
@@ -2072,7 +2074,10 @@
                 ]
               }
             }
-          }
+          },
+          "variants": [
+            "sub"
+          ]
         },
         {
           "id": "anikage-zen-direct",

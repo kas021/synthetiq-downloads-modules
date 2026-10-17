@@ -34,7 +34,7 @@
       "identity": "SP-VID-079-ALPHA-MOVIES",
       "publishedVersion": "0.2.0-beta.3",
       "playerDevelopmentVersion": "0.2.0-beta.3",
-      "downloadsDefinitionVersion": "0.1.0-experimental.3",
+      "downloadsDefinitionVersion": "0.1.0-experimental.4",
       "implementation": "host12-bounded-source-definition",
       "recommended": false,
       "capabilities": {
@@ -48,7 +48,7 @@
         "captions": "unmapped",
         "offlineAcceptance": "workstation-TV-transfer-decode-passed-542segments-2026-10-08;native-unverified"
       },
-      "technicalGap": "0.1.0-experimental.3: Adds only observed Vidrock Orion carbonphantom.live CDN origin for exact TMDB TV 5920 season 2 episode 1. Keeps Host 12, explicit TMDB metadata and Alpha-only media identity. Experimental/non-recommended; native acceptance remains unverified. 0.1.0-experimental.2: Host 12 Alpha Vidrock-only media resolver with bounded AES-GCM decoding; response CDN hosts must match module-declared exact origins. Preserves SP-VID-079-ALPHA-MOVIES and alpha_movies_v1. Metadata deliberately uses the shared www.moviedb.wiki TMDB-ID catalogue. Exact media type/title/season/source episode/episode number and runtime are preflighted. No silent media fallback to MovieDB. 2026-10-08 Inception and The Mentalist S1E1 live clear-HLS inspections passed. Full TV workstation transfer evidence is recorded in SOURCE_BATCH_2026_10_08.md; physical phone/offline acceptance and spoken-language identity remain unverified. Captions are not mapped for this Vidrock route. Full workstation The Mentalist S1E1 transfer passed: 542/542 segments, 196,644,240 bytes, 2709.142 seconds H.264/AAC, full decode exit 0 without errors; captions unmapped. Optional TMDB title details, recommendation shelves and episode stills require a local Downloads-specific read token; missing configuration does not block source browsing or downloads.",
+      "technicalGap": "2026-10-17: Declare only the two observed Luna/Orion CDN origins; keep advertised quality and exact TMDB identity checks. Experimental: complete transfer and native playback evidence are recorded separately.",
       "minimumContentHostVersion": 12
     },
     {
@@ -81,7 +81,7 @@
       "identity": "SP-VID-074-SYNTHETIQ-ANIME",
       "publishedVersion": "1.0.5-beta.3",
       "playerDevelopmentVersion": "1.0.6-beta.1",
-      "downloadsDefinitionVersion": "1.3.11",
+      "downloadsDefinitionVersion": "1.3.12",
       "implementation": "host13-bounded-source-definition",
       "recommended": false,
       "capabilities": {
@@ -95,7 +95,7 @@
         "captions": "direct response tracks map declared exact or strict-suffix origins; fixture cue fetch passes; live native caption acceptance remains unverified",
         "offlineAcceptance": "workstation-sub-transfer-decode-captions-passed-2026-10-08;native-unverified"
       },
-      "technicalGap": "1.3.11: Host 13 permits up to 24 explicit declared origins. Adds only observed Black Clover E1 SUB o3izr.stellarfrontier.space and DUB n953x.midnightvoyage.site CDN origins; Jikan fallback Referer reuses its declared API origin. Preserves exact episode/audio routes and all existing server alternatives. Experimental/non-recommended; native acceptance remains unverified. 1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Existing Anime route IDs and exact SUB/DUB selection remain unchanged. 2026-10-08 workstation Death Note E1 SUB full transfer: 312/312 segments; 248,587,136 bytes; H.264 1920x1080 + AAC; 1377.084 seconds; 329 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed. Spoken language, native phone background/recovery and offline playback acceptance remain unverified. Upstream Anime 1.0.5-beta.3 season grouping was reviewed; Flutter presentation code is not executed by Downloads.",
+      "technicalGap": "2026-10-17: Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21. Full workstation route transfer/decode passed; DUB spoken language and native offline playback remain unverified. Confirmed EchoVideo false-DUB mapping is disabled; other declared DUB routes remain. Joe 2 E21 English DUB is unavailable in the verified routes.",
       "minimumContentHostVersion": 13
     },
     {
@@ -210,10 +210,10 @@
         "offlineAcceptance": "current-inspection-passed;historic-placeholder-failed;native-full-transfer-unverified"
       },
       "publishedVersion": "0.1.0-beta.14",
-      "downloadsDefinitionVersion": "0.1.0-experimental.3",
+      "downloadsDefinitionVersion": "0.1.0-experimental.4",
       "minimumContentHostVersion": 12,
       "recommended": false,
-      "technicalGap": "0.1.0-experimental.3: Translates remote Player beta.14 source.url IPCloud responses into separate exact-provider movie/TV routes; preserves identity, automatic MovieBox source.qualities mapping, exact title/type/season/episode preflight and bounded VTT caption ordering. Only observed a2.ravenflix.st and c.ravenflix.st exact origins were added. 2026-10-11 production resolver inspection passed The Mentalist S1E1 IPCloud (271 segments, 2709.165 seconds, 1280x720; 89 VTT metadata rows scanned, 64 surfaced) and Inception IPCloud (889 segments, 8888.046 seconds, 1280x536; no captions). Automatic direct-file inspection exposed TV 1080/720/480/360 and movie 1080. No complete transfer, caption cue validation, audio identity, decode or native offline acceptance was performed for these new routes. The older 2026-10-08 auto route supplied a 20-second silent placeholder; that failure remains a release gate rather than being erased by the current inspection. Keep experimental and non-recommended. Optional Downloads-specific TMDB configuration remains separate from source availability.",
+      "technicalGap": "2026-10-17: Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data. Fallback preserves TMDB title, season, episode and runtime; manual server selection remains pinned.",
       "implementation": "host12-bounded-source-definition"
     },
     {
@@ -223,7 +223,7 @@
       "identity": "SP-VID-077-SYNTHETIQ-FLUX",
       "publishedVersion": "1.0.3-beta.5",
       "playerDevelopmentVersion": "1.0.3-beta.5",
-      "downloadsDefinitionVersion": "1.0.0-experimental.1",
+      "downloadsDefinitionVersion": "1.0.0-experimental.2",
       "implementation": "host13-bounded-source-definition",
       "minimumContentHostVersion": 13,
       "recommended": false,
@@ -238,7 +238,7 @@
         "captions": "mapped-English-metadata;cue-validation-unverified",
         "offlineAcceptance": "inspection-only;no-full-transfer-or-native-offline-acceptance"
       },
-      "technicalGap": "2026-10-11 Re:ZERO E1 SUB/DUB production resolver inspections passed only through the labelled AniKage/MegaPlay rescue after earlier route failures; DUB included genuine HTTP 502 responses. Samples declared one 1080p HLS rendition and one English caption option. Anime, AniPM and Flux converged on the same MegaPlay/CDN dependency; these are not independent media providers. Remote package tag is beta.5 while its embedded manifest says beta.4 and archive ID synthetiq-anime-direct; Downloads keeps its separate synthetiq-flux-v1 identity. No media/caption transfer, spoken-language decode or physical playback was performed. Experimental and non-recommended."
+      "technicalGap": "2026-10-17: Add the same two observed EchoVideo CDN origins; retain exact episode and audio response checks. Experimental: native phone playback and DUB spoken language remain unverified. Confirmed EchoVideo false-DUB mapping is disabled; other declared DUB routes remain. Joe 2 E21 English DUB is unavailable in the verified routes."
     }
   ],
   "hostRequirementMeaning": "Maximum minimumContentHostVersion among the currently mapped installable definitions. Each source retains its own minimumContentHostVersion; lower-floor sources do not require Host 13."

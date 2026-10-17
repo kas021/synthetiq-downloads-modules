@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "moviedb-wiki-v1",
   "name": "MovieDB",
-  "version": "0.1.0-experimental.3",
+  "version": "0.1.0-experimental.4",
   "minHostVersion": 12,
   "moduleFamilyId": "moviedb_wiki_v1",
   "moduleIdentity": "SP-VID-083-MOVIEDB",
@@ -23,7 +23,10 @@
     "https://a2.sublime.st",
     "https://cache.vdrk.site",
     "https://a2.ravenflix.st",
-    "https://c.ravenflix.st"
+    "https://c.ravenflix.st",
+    "https://vidrock.net",
+    "https://b.amsterdam-ece.workers.dev",
+    "https://crmseraph.site"
   ],
   "references": {
     "title": {
@@ -1588,6 +1591,271 @@
                 "English"
               ]
             }
+          },
+          "expectedDuration": {
+            "step": 1,
+            "path": "selected.runtime",
+            "unit": "minutes"
+          }
+        },
+        {
+          "id": "fallback-vidrock-movie",
+          "label": "Vidrock \u00b7 Fallback",
+          "contentKinds": [
+            "movie"
+          ],
+          "variants": [
+            "original"
+          ],
+          "responseMediaOrigins": true,
+          "steps": [
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/movie/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "scriptText",
+                  "id": "titleData",
+                  "type": "application/json"
+                }
+              },
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "type",
+                  "value": "movie"
+                },
+                {
+                  "path": "type",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://vidrock.net",
+                "pathTemplate": {
+                  "template": "/api/movie/{{contentId}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://vidrock.net/",
+                  "Origin": "https://vidrock.net"
+                }
+              },
+              "response": {
+                "format": "aesGcmUrlRows",
+                "itemsPath": "",
+                "ciphertextField": "url",
+                "keyHex": "7f3e9c2a8b5d1f4e6a9c3b7d2e5f8a1c4b6d9e2f5a8c1b4d7e9f2a5c8b1d4e7f"
+              }
+            }
+          ],
+          "candidatesPath": "items",
+          "candidate": {
+            "id": "id",
+            "label": "id",
+            "url": {
+              "kind": "field",
+              "paths": "url"
+            },
+            "kind": "hls",
+            "audioLanguage": "language"
+          },
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Accept": "application/json",
+            "Referer": "https://vidrock.net/",
+            "Origin": "https://vidrock.net"
+          },
+          "expectedDuration": {
+            "step": 0,
+            "path": "runtime",
+            "unit": "minutes"
+          }
+        },
+        {
+          "id": "fallback-vidrock-episode",
+          "label": "Vidrock \u00b7 Fallback",
+          "contentKinds": [
+            "episode"
+          ],
+          "variants": [
+            "original"
+          ],
+          "responseMediaOrigins": true,
+          "steps": [
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/{{sourceId}}/{{contentId}}",
+                  "values": {
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "contentId": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "scriptText",
+                  "id": "titleData",
+                  "type": "application/json"
+                }
+              },
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "contentId"
+                },
+                {
+                  "path": "type",
+                  "value": "tv"
+                },
+                {
+                  "path": "type",
+                  "parameter": "sourceId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://www.moviedb.wiki",
+                "pathTemplate": {
+                  "template": "/home/season/{{contentId}}/{{seasonNumber}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "seasonNumber": {
+                      "parameter": "seasonNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://www.moviedb.wiki/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "jsonRowSelect": {
+                "itemsPath": "episodes",
+                "matchField": "id",
+                "parameter": "sourceEpisodeId",
+                "resultField": "selected"
+              },
+              "responseMatches": [
+                {
+                  "path": "season_number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selected.episode_number",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "selected.season_number",
+                  "parameter": "seasonNumber"
+                },
+                {
+                  "path": "selected.has_aired",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://vidrock.net",
+                "pathTemplate": {
+                  "template": "/api/tv/{{contentId}}/{{seasonNumber}}/{{episodeNumber}}",
+                  "values": {
+                    "contentId": {
+                      "parameter": "contentId"
+                    },
+                    "seasonNumber": {
+                      "parameter": "seasonNumber"
+                    },
+                    "episodeNumber": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Accept": "application/json",
+                  "Referer": "https://vidrock.net/",
+                  "Origin": "https://vidrock.net"
+                }
+              },
+              "response": {
+                "format": "aesGcmUrlRows",
+                "itemsPath": "",
+                "ciphertextField": "url",
+                "keyHex": "7f3e9c2a8b5d1f4e6a9c3b7d2e5f8a1c4b6d9e2f5a8c1b4d7e9f2a5c8b1d4e7f"
+              }
+            }
+          ],
+          "candidatesPath": "items",
+          "candidate": {
+            "id": "id",
+            "label": "id",
+            "url": {
+              "kind": "field",
+              "paths": "url"
+            },
+            "kind": "hls",
+            "audioLanguage": "language"
+          },
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Accept": "application/json",
+            "Referer": "https://vidrock.net/",
+            "Origin": "https://vidrock.net"
           },
           "expectedDuration": {
             "step": 1,

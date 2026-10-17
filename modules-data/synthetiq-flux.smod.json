@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-flux-v1",
   "name": "Synthetiq Flux",
-  "version": "1.0.0-experimental.1",
+  "version": "1.0.0-experimental.2",
   "minHostVersion": 13,
   "moduleFamilyId": "synthetiq_flux_v1",
   "moduleIdentity": "SP-VID-077-SYNTHETIQ-FLUX",
@@ -24,7 +24,9 @@
     "https://play.echovideo.ru",
     "https://px.dpopdrop89.store",
     "https://o3izr.stellarfrontier.space",
-    "https://n953x.midnightvoyage.site"
+    "https://n953x.midnightvoyage.site",
+    "https://hlsxst2.echovideo.to",
+    "https://st2.roburnt10.store"
   ],
   "languages": [
     {
@@ -1763,7 +1765,10 @@
                 ]
               }
             }
-          }
+          },
+          "variants": [
+            "sub"
+          ]
         },
         {
           "id": "anikage",
