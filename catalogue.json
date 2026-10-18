@@ -43,7 +43,8 @@
       "presentation": {
         "category": "Anime",
         "language": "SUB / DUB",
-        "recommended": false
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/anipm.png"
       },
       "changelog": [
         "0.1.0-experimental.4: Publishes the observed caption and media CDN suffix declarations so installed experimental.3 clients receive the update. Exact source/audio identities and Host 11 compatibility are unchanged; unknown origins remain rejected. Experimental pending physical acceptance.",
@@ -72,7 +73,8 @@
           "sub",
           "dub"
         ],
-        "recommended": false
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
       },
       "changelog": [
         "1.0.1-experimental.1: Current .fun provider routes with preserved .vip saved references. Offline transfer remains blocked by separate audio and encryption.",
@@ -112,7 +114,8 @@
         "languages": [
           "original"
         ],
-        "recommended": false
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/moviedb.png"
       },
       "version": "0.1.0-experimental.4",
       "minHostVersion": 12,
@@ -137,7 +140,8 @@
         "languages": [
           "original"
         ],
-        "recommended": false
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/alpha-movies.png"
       },
       "version": "0.1.0-experimental.4",
       "minHostVersion": 12,
@@ -167,7 +171,8 @@
           "sub",
           "dub"
         ],
-        "recommended": false
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-flux.png"
       },
       "changelog": [
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
