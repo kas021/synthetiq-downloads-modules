@@ -159,10 +159,10 @@
     },
     {
       "file": "modules-data/synthetiq-flux.smod.json",
-      "version": "1.0.0-experimental.2",
+      "version": "1.0.0-experimental.3",
       "minHostVersion": 13,
       "minAppVersion": "1.0.92",
-      "sha256": "f51bbe186038c81bacc9c5e875746f1b53d1fa36bdfca19425af1e1ceffdb7a2",
+      "sha256": "328af05ae694cf95a6eeb80053dd53828288d7a36880e607225e94622b32733e",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Flux downloads (experimental)",
@@ -175,6 +175,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-flux.png"
       },
       "changelog": [
+        "Try the Anikage routes before the Vidhawk servers: Vidhawk requests were timing out after about 12 s and delaying the first download; Vidhawk remains as a fallback.",
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
         "Add the same two observed EchoVideo CDN origins; retain exact episode and audio response checks.",
         "Experimental: native phone playback remains unverified; EchoVideo DUB audio acceptance failed.",

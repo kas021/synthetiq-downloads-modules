@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-flux-v1",
   "name": "Synthetiq Flux",
-  "version": "1.0.0-experimental.2",
+  "version": "1.0.0-experimental.3",
   "minHostVersion": 13,
   "moduleFamilyId": "synthetiq_flux_v1",
   "moduleIdentity": "SP-VID-077-SYNTHETIQ-FLUX",
@@ -930,276 +930,6 @@
     },
     "download": {
       "alternatives": [
-        {
-          "id": "flow",
-          "label": "Flux · Flow",
-          "steps": [
-            {
-              "request": {
-                "origin": "https://vidhawk.buzz",
-                "path": "/api/stream/resolve",
-                "method": "GET",
-                "query": {
-                  "episode": {
-                    "parameter": "episodeNumber"
-                  },
-                  "audio": {
-                    "parameter": "language"
-                  },
-                  "fast": "1",
-                  "server": "flow",
-                  "anilistId": {
-                    "parameter": "contentId"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://vidhawk.buzz",
-                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-                }
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://vidhawk.buzz",
-                "path": "/api/play",
-                "method": "GET",
-                "query": {
-                  "t": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "ticket"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://vidhawk.buzz",
-                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-                }
-              },
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidatesPath": "tracks",
-          "candidate": {
-            "id": "id",
-            "label": {
-              "value": "HLS"
-            },
-            "url": {
-              "kind": "field",
-              "paths": "src"
-            },
-            "kind": {
-              "value": "hls"
-            },
-            "audioLanguage": "id",
-            "filterLanguage": "id"
-          },
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://vidhawk.buzz",
-            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-          },
-          "subtitlesByLanguage": {
-            "sub": {
-              "itemsPath": "captions.sub",
-              "item": {
-                "id": "src",
-                "label": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "language": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "format": {
-                  "value": "unknown"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "src",
-                    "file",
-                    "url"
-                  ]
-                },
-                "default": "default"
-              }
-            },
-            "dub": {
-              "itemsPath": "captions.dub",
-              "item": {
-                "id": "src",
-                "label": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "language": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "format": {
-                  "value": "unknown"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "src",
-                    "file",
-                    "url"
-                  ]
-                },
-                "default": "default"
-              }
-            }
-          }
-        },
-        {
-          "id": "zuri",
-          "label": "Flux · Zuri",
-          "steps": [
-            {
-              "request": {
-                "origin": "https://vidhawk.buzz",
-                "path": "/api/stream/resolve",
-                "method": "GET",
-                "query": {
-                  "episode": {
-                    "parameter": "episodeNumber"
-                  },
-                  "audio": {
-                    "parameter": "language"
-                  },
-                  "fast": "1",
-                  "server": "zuri",
-                  "anilistId": {
-                    "parameter": "contentId"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://vidhawk.buzz",
-                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-                }
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://vidhawk.buzz",
-                "path": "/api/play",
-                "method": "GET",
-                "query": {
-                  "t": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "ticket"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://vidhawk.buzz",
-                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-                }
-              },
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidatesPath": "tracks",
-          "candidate": {
-            "id": "id",
-            "label": {
-              "value": "HLS"
-            },
-            "url": {
-              "kind": "field",
-              "paths": "src"
-            },
-            "kind": {
-              "value": "hls"
-            },
-            "audioLanguage": "id",
-            "filterLanguage": "id"
-          },
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://vidhawk.buzz",
-            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
-          },
-          "subtitlesByLanguage": {
-            "sub": {
-              "itemsPath": "captions.sub",
-              "item": {
-                "id": "src",
-                "label": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "language": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "format": {
-                  "value": "unknown"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "src",
-                    "file",
-                    "url"
-                  ]
-                },
-                "default": "default"
-              }
-            },
-            "dub": {
-              "itemsPath": "captions.dub",
-              "item": {
-                "id": "src",
-                "label": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "language": [
-                  "label",
-                  "language",
-                  "lang"
-                ],
-                "format": {
-                  "value": "unknown"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "src",
-                    "file",
-                    "url"
-                  ]
-                },
-                "default": "default"
-              }
-            }
-          }
-        },
         {
           "id": "anikage-megaplay",
           "label": "Rescue · AniKage · MegaPlay",
@@ -2514,6 +2244,276 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
             "Origin": "https://anikage.cc",
             "Referer": "https://anikage.cc/"
+          }
+        },
+        {
+          "id": "flow",
+          "label": "Flux · Flow",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/stream/resolve",
+                "method": "GET",
+                "query": {
+                  "episode": {
+                    "parameter": "episodeNumber"
+                  },
+                  "audio": {
+                    "parameter": "language"
+                  },
+                  "fast": "1",
+                  "server": "flow",
+                  "anilistId": {
+                    "parameter": "contentId"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              },
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/play",
+                "method": "GET",
+                "query": {
+                  "t": {
+                    "fromResponse": {
+                      "step": 0,
+                      "path": "ticket"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              },
+              "cacheWithinAttempt": true
+            }
+          ],
+          "candidatesPath": "tracks",
+          "candidate": {
+            "id": "id",
+            "label": {
+              "value": "HLS"
+            },
+            "url": {
+              "kind": "field",
+              "paths": "src"
+            },
+            "kind": {
+              "value": "hls"
+            },
+            "audioLanguage": "id",
+            "filterLanguage": "id"
+          },
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://vidhawk.buzz",
+            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "captions.sub",
+              "item": {
+                "id": "src",
+                "label": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "language": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "src",
+                    "file",
+                    "url"
+                  ]
+                },
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "captions.dub",
+              "item": {
+                "id": "src",
+                "label": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "language": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "src",
+                    "file",
+                    "url"
+                  ]
+                },
+                "default": "default"
+              }
+            }
+          }
+        },
+        {
+          "id": "zuri",
+          "label": "Flux · Zuri",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/stream/resolve",
+                "method": "GET",
+                "query": {
+                  "episode": {
+                    "parameter": "episodeNumber"
+                  },
+                  "audio": {
+                    "parameter": "language"
+                  },
+                  "fast": "1",
+                  "server": "zuri",
+                  "anilistId": {
+                    "parameter": "contentId"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              },
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://vidhawk.buzz",
+                "path": "/api/play",
+                "method": "GET",
+                "query": {
+                  "t": {
+                    "fromResponse": {
+                      "step": 0,
+                      "path": "ticket"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://vidhawk.buzz",
+                  "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+                }
+              },
+              "cacheWithinAttempt": true
+            }
+          ],
+          "candidatesPath": "tracks",
+          "candidate": {
+            "id": "id",
+            "label": {
+              "value": "HLS"
+            },
+            "url": {
+              "kind": "field",
+              "paths": "src"
+            },
+            "kind": {
+              "value": "hls"
+            },
+            "audioLanguage": "id",
+            "filterLanguage": "id"
+          },
+          "headers": {
+            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://vidhawk.buzz",
+            "Referer": "https://vidhawk.buzz/embed/ani/{{contentId}}/{{episodeNumber}}/{{language}}"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "captions.sub",
+              "item": {
+                "id": "src",
+                "label": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "language": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "src",
+                    "file",
+                    "url"
+                  ]
+                },
+                "default": "default"
+              }
+            },
+            "dub": {
+              "itemsPath": "captions.dub",
+              "item": {
+                "id": "src",
+                "label": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "language": [
+                  "label",
+                  "language",
+                  "lang"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "src",
+                    "file",
+                    "url"
+                  ]
+                },
+                "default": "default"
+              }
+            }
           }
         }
       ]
