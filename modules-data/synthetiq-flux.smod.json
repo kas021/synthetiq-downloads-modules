@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-flux-v1",
   "name": "Synthetiq Flux",
-  "version": "1.0.0-experimental.3",
+  "version": "1.0.0-experimental.4",
   "minHostVersion": 13,
   "moduleFamilyId": "synthetiq_flux_v1",
   "moduleIdentity": "SP-VID-077-SYNTHETIQ-FLUX",
@@ -941,7 +941,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -972,7 +972,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -1235,7 +1235,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -1266,7 +1266,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -1511,7 +1511,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -1542,7 +1542,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -1661,7 +1661,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -1692,7 +1692,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -1809,7 +1809,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -1840,7 +1840,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -1957,7 +1957,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -1988,7 +1988,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
@@ -2109,7 +2109,7 @@
                 "path": "/",
                 "method": "POST",
                 "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji}}}",
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
                   "variables": {
                     "id": {
                       "parameter": "contentId"
@@ -2140,7 +2140,7 @@
                   "q": {
                     "fromResponse": {
                       "step": 0,
-                      "path": "data.Media.title.romaji"
+                      "path": "data.Media.title.native"
                     }
                   }
                 },
