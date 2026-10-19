@@ -1,0 +1,528 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "animekai-v1",
+  "name": "AnimeKai",
+  "version": "0.1.0-experimental.1",
+  "minHostVersion": 11,
+  "moduleFamilyId": "animekai_v1",
+  "moduleIdentity": "SP-VID-093-ANIMEKAI",
+  "contentType": "anime",
+  "origins": [
+    "https://animekai.be",
+    "https://cdn.myanimelist.net",
+    "https://megaplay.buzz",
+    "https://fetch.nexabloom.top",
+    "https://*.broforgotsave.online",
+    "https://*.phantomharbor.space",
+    "https://*.eclipseharbor.space",
+    "https://*.midnightvoyage.site",
+    "https://*.midnightvale.top",
+    "https://*.silentvoyage.space",
+    "https://*.shadowharbor.space"
+  ],
+  "languages": [
+    {
+      "id": "sub",
+      "label": "Sub"
+    },
+    {
+      "id": "dub",
+      "label": "Dub"
+    }
+  ],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://animekai.be",
+        "template": "https://animekai.be/watch/{{sourceId}}",
+        "values": {
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": []
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://animekai.be",
+        "template": "https://animekai.be/watch/{{sourceId}}/ep-{{episodeNumber}}?ep={{sourceEpisodeId}}",
+        "values": {
+          "sourceId": "boundedString",
+          "episodeNumber": "positiveInteger",
+          "sourceEpisodeId": "boundedString"
+        }
+      },
+      "aliases": []
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://animekai.be",
+          "path": "/api/search/suggest",
+          "method": "GET",
+          "query": {
+            "q": {
+              "parameter": "query"
+            }
+          },
+          "headers": {
+            "Accept": "application/json",
+            "Referer": "https://animekai.be/"
+          }
+        },
+        "itemsPath": "",
+        "item": {
+          "id": "slug",
+          "href": {
+            "kind": "template",
+            "origin": "https://animekai.be",
+            "template": "/watch/{{slug}}",
+            "values": {
+              "slug": "slug"
+            }
+          },
+          "title": [
+            "title",
+            "title_jp"
+          ],
+          "image": {
+            "kind": "field",
+            "paths": "poster_url"
+          },
+          "year": "year",
+          "format": "type",
+          "subAvailable": "has_sub",
+          "dubAvailable": "has_dub",
+          "kind": {
+            "value": "anime"
+          }
+        }
+      }
+    },
+    "details": {
+      "request": {
+        "origin": "https://animekai.be",
+        "pathTemplate": {
+          "template": "/watch/{{slug}}/ep-1",
+          "values": {
+            "slug": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "Referer": "https://animekai.be/"
+        }
+      },
+      "response": {
+        "format": "htmlRows",
+        "collectionSelector": "body",
+        "fields": {
+          "title": {
+            "kind": "text",
+            "selector": "h1.title"
+          },
+          "description": {
+            "kind": "text",
+            "selector": "div.desc"
+          },
+          "poster": {
+            "kind": "attribute",
+            "selector": "div.poster img",
+            "attribute": "src"
+          }
+        }
+      },
+      "itemPath": "items.0",
+      "fields": {
+        "title": "title",
+        "description": "description",
+        "image": {
+          "kind": "field",
+          "paths": "poster",
+          "baseOrigin": "https://animekai.be"
+        }
+      }
+    },
+    "episodes": {
+      "source": "request",
+      "request": {
+        "origin": "https://animekai.be",
+        "pathTemplate": {
+          "template": "/watch/{{slug}}/ep-1",
+          "values": {
+            "slug": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "text/html",
+          "Referer": "https://animekai.be/"
+        }
+      },
+      "response": {
+        "format": "htmlRows",
+        "collectionSelector": "div.eplist ul.range li",
+        "fields": {
+          "number": {
+            "kind": "attribute",
+            "selector": "a",
+            "attribute": "num",
+            "transforms": [
+              "firstPositiveInteger"
+            ]
+          },
+          "title": {
+            "kind": "text",
+            "selector": "span"
+          },
+          "sub": {
+            "kind": "attribute",
+            "selector": "a",
+            "attribute": "data-sub"
+          },
+          "dub": {
+            "kind": "attribute",
+            "selector": "a",
+            "attribute": "data-dub"
+          }
+        }
+      },
+      "itemsPath": "items",
+      "item": {
+        "id": "number",
+        "number": "number",
+        "title": "title",
+        "subAvailable": {
+          "path": "sub",
+          "equals": "1"
+        },
+        "dubAvailable": {
+          "path": "dub",
+          "equals": "1"
+        }
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "megaplay-sub",
+          "label": "MegaPlay",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://animekai.be",
+                "pathTemplate": {
+                  "template": "/watch/{{slug}}/ep/{{ep}}/sources",
+                  "values": {
+                    "slug": {
+                      "parameter": "sourceId"
+                    },
+                    "ep": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Referer": "https://animekai.be/"
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "sources.sub",
+                    "selectFromArray": {
+                      "valuePath": "source_url",
+                      "origin": "https://megaplay.buzz",
+                      "pathPrefixes": [
+                        "/stream/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://animekai.be/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "div.fix-area[data-id]",
+                "fields": {
+                  "playerId": {
+                    "kind": "attribute",
+                    "attribute": "data-id",
+                    "transforms": [
+                      "firstPositiveInteger"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSources",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "fromResponse": {
+                      "step": 1,
+                      "path": "items.0.playerId"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/"
+                }
+              },
+              "response": {
+                "format": "aesCbcJson",
+                "ciphertextPath": "enc",
+                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
+                "ivHex": "57303b3237546f6155706c5f50252763"
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "items",
+              "variant": "sub",
+              "candidate": {
+                "id": {
+                  "value": "primary"
+                },
+                "label": {
+                  "value": "Auto"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "sources.0.file"
+                  ]
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": {
+                  "value": "Auto"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "file"
+                ],
+                "label": "label",
+                "language": "label",
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": "captions"
+                  }
+                ]
+              },
+              "responseOrigins": true
+            }
+          },
+          "responseMediaOrigins": true
+        },
+        {
+          "id": "megaplay-dub",
+          "label": "MegaPlay",
+          "steps": [
+            {
+              "request": {
+                "origin": "https://animekai.be",
+                "pathTemplate": {
+                  "template": "/watch/{{slug}}/ep/{{ep}}/sources",
+                  "values": {
+                    "slug": {
+                      "parameter": "sourceId"
+                    },
+                    "ep": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Referer": "https://animekai.be/"
+                }
+              }
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "sources.dub",
+                    "selectFromArray": {
+                      "valuePath": "source_url",
+                      "origin": "https://megaplay.buzz",
+                      "pathPrefixes": [
+                        "/stream/"
+                      ]
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://animekai.be/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "div.fix-area[data-id]",
+                "fields": {
+                  "playerId": {
+                    "kind": "attribute",
+                    "attribute": "data-id",
+                    "transforms": [
+                      "firstPositiveInteger"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSources",
+                "method": "GET",
+                "query": {
+                  "id": {
+                    "fromResponse": {
+                      "step": 1,
+                      "path": "items.0.playerId"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "X-Requested-With": "XMLHttpRequest",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/"
+                }
+              },
+              "response": {
+                "format": "aesCbcJson",
+                "ciphertextPath": "enc",
+                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
+                "ivHex": "57303b3237546f6155706c5f50252763"
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "items",
+              "variant": "dub",
+              "candidate": {
+                "id": {
+                  "value": "primary"
+                },
+                "label": {
+                  "value": "Auto"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url",
+                    "sources.0.file"
+                  ]
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": {
+                  "value": "Auto"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
+          },
+          "subtitlesByLanguage": {
+            "dub": {
+              "itemsPath": "envelope.tracks",
+              "item": {
+                "id": [
+                  "label",
+                  "file"
+                ],
+                "label": "label",
+                "language": "label",
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": "captions"
+                  }
+                ]
+              },
+              "responseOrigins": true
+            }
+          },
+          "responseMediaOrigins": true
+        }
+      ]
+    }
+  }
+}

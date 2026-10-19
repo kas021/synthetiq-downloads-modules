@@ -1,0 +1,335 @@
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "justanime-v1",
+  "name": "JustAnime",
+  "version": "0.1.0-experimental.1",
+  "minHostVersion": 11,
+  "moduleFamilyId": "justanime_v1",
+  "moduleIdentity": "SP-VID-091-JUSTANIME",
+  "contentType": "anime",
+  "languages": [
+    {
+      "id": "sub",
+      "label": "SUB"
+    },
+    {
+      "id": "dub",
+      "label": "DUB"
+    }
+  ],
+  "origins": [
+    "https://megaplay.buzz",
+    "https://justanime.to",
+    "https://core.justanime.to",
+    "https://fetch.nexabloom.top",
+    "https://*.broforgotsave.online",
+    "https://s4.anilist.co",
+    "https://image.tmdb.org"
+  ],
+  "references": {
+    "title": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://justanime.to",
+        "template": "https://justanime.to/anime/{{sourceId}}",
+        "values": {
+          "sourceId": "boundedString"
+        }
+      },
+      "aliases": []
+    },
+    "episode": {
+      "canonical": {
+        "kind": "https",
+        "origin": "https://justanime.to",
+        "template": "https://justanime.to/watch/{{sourceId}}/episode/{{episodeNumber}}?sourceEp={{sourceEpisodeId}}",
+        "values": {
+          "sourceId": "boundedString",
+          "episodeNumber": "positiveInteger",
+          "sourceEpisodeId": "boundedString"
+        }
+      },
+      "aliases": []
+    }
+  },
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://core.justanime.to",
+          "path": "/api/search/suggestions",
+          "method": "GET",
+          "query": {
+            "query": {
+              "parameter": "query"
+            }
+          },
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Referer": "https://justanime.to/",
+            "Origin": "https://justanime.to"
+          }
+        },
+        "response": {
+          "format": "json"
+        },
+        "itemsPath": "data",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://justanime.to",
+            "template": "/anime/{{id}}",
+            "values": {
+              "id": "id"
+            }
+          },
+          "title": [
+            "title.english",
+            "title.romaji"
+          ],
+          "image": {
+            "kind": "field",
+            "paths": "cover"
+          },
+          "year": "year",
+          "format": "type",
+          "kind": {
+            "value": "anime"
+          }
+        }
+      },
+      "fallbacks": [
+        {
+          "request": {
+            "origin": "https://core.justanime.to",
+            "path": "/api/search",
+            "method": "GET",
+            "query": {
+              "query": {
+                "parameter": "query"
+              }
+            },
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Referer": "https://justanime.to/",
+              "Origin": "https://justanime.to"
+            }
+          },
+          "itemsPath": "results",
+          "item": {
+            "id": "id",
+            "href": {
+              "kind": "template",
+              "origin": "https://justanime.to",
+              "template": "/anime/{{id}}",
+              "values": {
+                "id": "id"
+              }
+            },
+            "title": [
+              "title.english",
+              "title.romaji"
+            ],
+            "image": {
+              "kind": "field",
+              "paths": "cover"
+            },
+            "year": "year",
+            "format": "type",
+            "kind": {
+              "value": "anime"
+            }
+          }
+        }
+      ]
+    },
+    "details": {
+      "request": {
+        "origin": "https://core.justanime.to",
+        "pathTemplate": {
+          "template": "/api/anime/{{id}}",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Referer": "https://justanime.to/",
+          "Origin": "https://justanime.to"
+        }
+      },
+      "itemPath": "data",
+      "fields": {
+        "title": [
+          "title.english",
+          "title.romaji"
+        ],
+        "description": "description",
+        "image": {
+          "kind": "field",
+          "paths": [
+            "coverImage.extraLarge",
+            "coverImage.large"
+          ]
+        },
+        "backdrop": {
+          "kind": "field",
+          "paths": "bannerImage"
+        },
+        "year": "seasonYear",
+        "genres": "genres",
+        "status": "status",
+        "format": "format",
+        "episodeCount": "episodes"
+      }
+    },
+    "episodes": {
+      "source": "request",
+      "request": {
+        "origin": "https://core.justanime.to",
+        "pathTemplate": {
+          "template": "/api/anime/{{id}}/episodes",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "query": {
+          "page": 1
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Referer": "https://justanime.to/",
+          "Origin": "https://justanime.to"
+        }
+      },
+      "response": {
+        "format": "json"
+      },
+      "itemsPath": "episodes",
+      "item": {
+        "id": "number",
+        "number": "number",
+        "title": "title",
+        "image": {
+          "kind": "field",
+          "paths": "image"
+        }
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "justanime-megaplay",
+          "label": "JustAnime HLS (experimental)",
+          "variants": [
+            "sub",
+            "dub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://core.justanime.to",
+                "pathTemplate": {
+                  "template": "/api/watch/{{id}}/episode/{{episode}}/megaplay",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    },
+                    "episode": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://justanime.to/",
+                  "Origin": "https://justanime.to"
+                }
+              },
+              "response": {
+                "format": "json"
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "sub.sources",
+              "variant": "sub",
+              "candidate": {
+                "id": {
+                  "value": "justanime-hls-sub"
+                },
+                "label": {
+                  "value": "JustAnime HLS SUB"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": "quality"
+              }
+            },
+            {
+              "shape": "array",
+              "path": "dub.sources",
+              "variant": "dub",
+              "candidate": {
+                "id": {
+                  "value": "justanime-hls-dub"
+                },
+                "label": {
+                  "value": "JustAnime HLS DUB"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": "quality"
+              }
+            }
+          ],
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "sub.subtitles",
+              "responseOrigins": true,
+              "item": {
+                "id": "label",
+                "label": "label",
+                "language": {
+                  "value": "en"
+                },
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "default": "default"
+              }
+            }
+          },
+          "headers": {
+            "Accept": "*/*",
+            "Referer": "https://megaplay.buzz/"
+          }
+        }
+      ]
+    }
+  }
+}

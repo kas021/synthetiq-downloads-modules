@@ -182,6 +182,38 @@
         "1.0.0-experimental.1: Bounded Flow/Zuri routes and explicitly labelled AniKage rescue. Preserves the Downloads Flux identity; no downloaded executable modules.",
         "2026-10-11 Re:ZERO E1 SUB/DUB inspection passed via rescue after upstream failures. One 1080p rendition and English caption metadata; no full transfer or native playback evidence. Shares the sampled MegaPlay media dependency with Anime/AniPM."
       ]
+    },
+    {
+      "file": "modules-data/justanime-downloads.smod.json",
+      "version": "0.1.0-experimental.1",
+      "minHostVersion": 11,
+      "minAppVersion": "1.0.91",
+      "sha256": "3f4b5182dcd1f2feaf66cfcae2e52e5f9affd71d000eddb169acf7c51748c5f5",
+      "presentation": {
+        "category": "Anime",
+        "language": "SUB / DUB",
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/justanime.png"
+      },
+      "changelog": [
+        "0.1.0-experimental.1: First Downloads port of JustAnime. Search, details, episodes and SUB/DUB resolve verified live on Naruto, One Piece, Frieren, Jujutsu Kaisen and Solo Leveling (HLS playlists reachable). Streams use the MegaPlay CDN, so this is an independent catalogue rather than an independent video host. Episode lists show the first 100 episodes only. Experimental pending physical acceptance."
+      ]
+    },
+    {
+      "file": "modules-data/animekai-downloads.smod.json",
+      "version": "0.1.0-experimental.1",
+      "minHostVersion": 11,
+      "minAppVersion": "1.0.91",
+      "sha256": "9321b937b7e9225bd189cbdab1d19e8336a5c2c05f788cc6d957e2b6db066a15",
+      "presentation": {
+        "category": "Anime",
+        "language": "SUB / DUB",
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/animekai.png"
+      },
+      "changelog": [
+        "0.1.0-experimental.1: First Downloads port of AnimeKai. Search, details, episodes and SUB/DUB resolve verified live on Frieren, Jujutsu Kaisen and Solo Leveling. One Piece is not listable (over 1,000 episodes). Streams use the MegaPlay embed. Experimental pending physical acceptance."
+      ]
     }
   ],
   "compatibilityMatrix": "SOURCE_COMPATIBILITY.json"
