@@ -221,17 +221,18 @@
     },
     {
       "file": "modules-data/kickassanime-downloads.smod.json",
-      "version": "0.1.0-experimental.2",
-      "minHostVersion": 14,
+      "version": "0.1.0-experimental.3",
+      "minHostVersion": 15,
       "minAppVersion": "1.0.131",
-      "sha256": "b275d72e861c27f0a69a7b34fc789c9cccb6763025ddf2638f851fce2d88e6a2",
+      "sha256": "610da67a8ee46ddd73c82c9e4753490be12f90163556fa0b09892b875e24147f",
       "presentation": {
         "category": "Anime",
-        "language": "SUB",
+        "language": "SUB / DUB",
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/kickassanime.png"
       },
       "changelog": [
+        "0.1.0-experimental.3: English DUB from the stream's English audio track when it has one (strict language match, never Japanese). Needs content host 15.",
         "0.1.0-experimental.2: First Downloads port of KickAssAnime. Its own video servers (krussdomi), independent of MegaPlay. SUB (Japanese audio) via separate-audio muxing; needs app 1.0.131+ (content host 14). Verified Frieren, Solo Leveling and One Piece through inspection. Episode lists stop at 100."
       ]
     }

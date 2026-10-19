@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "kickassanime-v1",
   "name": "KickAssAnime",
-  "version": "0.1.0-experimental.2",
-  "minHostVersion": 14,
+  "version": "0.1.0-experimental.3",
+  "minHostVersion": 15,
   "moduleFamilyId": "kickassanime_v1",
   "moduleIdentity": "SP-VID-090-KICKASSANIME",
   "contentType": "anime",
@@ -11,6 +11,10 @@
     {
       "id": "sub",
       "label": "SUB"
+    },
+    {
+      "id": "dub",
+      "label": "DUB"
     }
   ],
   "origins": [
@@ -366,6 +370,222 @@
                 },
                 "kind": {
                   "value": "hls"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Referer": "https://krussdomi.com/",
+            "Origin": "https://krussdomi.com",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "id": "kickassanime-catstream-dub",
+          "label": "KickAssAnime CatStream DUB (experimental) · English audio",
+          "variants": [
+            "dub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://kaa.lt",
+                "pathTemplate": {
+                  "template": "/api/show/{{sourceId}}/episode/ep-{{episodeNumber}}-{{sourceEpisodeId}}",
+                  "values": {
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "episodeNumber": {
+                      "parameter": "episodeNumber"
+                    },
+                    "sourceEpisodeId": {
+                      "parameter": "sourceEpisodeId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "jsonRowSelect": {
+                "itemsPath": "servers",
+                "matchField": "name",
+                "value": "CatStream",
+                "resultField": "selectedEmbed"
+              },
+              "responseMatches": [
+                {
+                  "path": "show_slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "slug",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "episode_number",
+                  "parameter": "episodeNumber"
+                }
+              ]
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "selectedEmbed.src"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml",
+                  "Referer": "https://kaa.lt/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "tag": "astro-island",
+                  "attribute": "props",
+                  "encoding": "astroIslandProps"
+                }
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "object",
+              "path": "props",
+              "candidate": {
+                "id": {
+                  "value": "catstream"
+                },
+                "label": {
+                  "value": "CatStream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "manifest"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "audioLanguage": {
+                  "value": "en"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Referer": "https://krussdomi.com/",
+            "Origin": "https://krussdomi.com",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "id": "kickassanime-vidstreaming-dub",
+          "label": "KickAssAnime VidStreaming DUB (experimental) · English audio",
+          "variants": [
+            "dub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://kaa.lt",
+                "pathTemplate": {
+                  "template": "/api/show/{{sourceId}}/episode/ep-{{episodeNumber}}-{{sourceEpisodeId}}",
+                  "values": {
+                    "sourceId": {
+                      "parameter": "sourceId"
+                    },
+                    "episodeNumber": {
+                      "parameter": "episodeNumber"
+                    },
+                    "sourceEpisodeId": {
+                      "parameter": "sourceEpisodeId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "jsonRowSelect": {
+                "itemsPath": "servers",
+                "matchField": "name",
+                "value": "VidStreaming",
+                "resultField": "selectedEmbed"
+              },
+              "responseMatches": [
+                {
+                  "path": "show_slug",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "slug",
+                  "parameter": "sourceEpisodeId"
+                },
+                {
+                  "path": "episode_number",
+                  "parameter": "episodeNumber"
+                }
+              ]
+            },
+            {
+              "request": {
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 0,
+                    "path": "selectedEmbed.src"
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,application/xhtml+xml",
+                  "Referer": "https://kaa.lt/"
+                }
+              },
+              "response": {
+                "format": "htmlPageData",
+                "selector": {
+                  "kind": "attribute",
+                  "tag": "astro-island",
+                  "attribute": "props",
+                  "encoding": "astroIslandProps"
+                }
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "object",
+              "path": "props",
+              "candidate": {
+                "id": {
+                  "value": "vidstreaming"
+                },
+                "label": {
+                  "value": "VidStreaming"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "manifest"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "audioLanguage": {
+                  "value": "en"
                 }
               }
             }
