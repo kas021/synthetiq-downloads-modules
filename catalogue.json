@@ -217,6 +217,22 @@
       "changelog": [
         "0.1.0-experimental.1: First Downloads port of AnimeKai. Search, details, episodes and SUB/DUB resolve verified live on Frieren, Jujutsu Kaisen and Solo Leveling. One Piece is not listable (over 1,000 episodes). Streams use the MegaPlay embed. Experimental pending physical acceptance."
       ]
+    },
+    {
+      "file": "modules-data/kickassanime-downloads.smod.json",
+      "version": "0.1.0-experimental.2",
+      "minHostVersion": 14,
+      "minAppVersion": "1.0.131",
+      "sha256": "b275d72e861c27f0a69a7b34fc789c9cccb6763025ddf2638f851fce2d88e6a2",
+      "presentation": {
+        "category": "Anime",
+        "language": "SUB",
+        "recommended": false,
+        "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/kickassanime.png"
+      },
+      "changelog": [
+        "0.1.0-experimental.2: First Downloads port of KickAssAnime. Its own video servers (krussdomi), independent of MegaPlay. SUB (Japanese audio) via separate-audio muxing; needs app 1.0.131+ (content host 14). Verified Frieren, Solo Leveling and One Piece through inspection. Episode lists stop at 100."
+      ]
     }
   ],
   "compatibilityMatrix": "SOURCE_COMPATIBILITY.json"
