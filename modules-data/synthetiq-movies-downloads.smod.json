@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-movies-v1",
   "name": "Synthetiq Movies",
-  "version": "1.0.1-experimental.3",
+  "version": "1.0.1-experimental.4",
   "minHostVersion": 6,
   "moduleFamilyId": "synthetiq_movies_v1",
   "moduleIdentity": "SP-VID-059-SYNTHETIQ-MOVIES",
@@ -186,6 +186,17 @@
             "values": {
               "file": "images.0.filename"
             }
+          },
+          "backdrop": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": [
+                "images.2.filename",
+                "images.1.filename"
+              ]
+            }
           }
         },
         "pagination": {
@@ -272,6 +283,17 @@
             "values": {
               "file": "images.0.filename"
             }
+          },
+          "backdrop": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": [
+                "images.2.filename",
+                "images.1.filename"
+              ]
+            }
           }
         }
       },
@@ -330,6 +352,17 @@
             "values": {
               "file": "images.0.filename"
             }
+          },
+          "backdrop": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": [
+                "images.2.filename",
+                "images.1.filename"
+              ]
+            }
           }
         }
       },
@@ -387,6 +420,17 @@
             "template": "/images/{{file}}",
             "values": {
               "file": "images.0.filename"
+            }
+          },
+          "backdrop": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": [
+                "images.2.filename",
+                "images.1.filename"
+              ]
             }
           }
         }
@@ -469,7 +513,10 @@
           "origin": "https://cdn.streamingunity.fun",
           "template": "/images/{{file}}",
           "values": {
-            "file": "images.2.filename"
+            "file": [
+              "images.2.filename",
+              "images.1.filename"
+            ]
           }
         }
       }

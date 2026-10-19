@@ -62,10 +62,10 @@
     },
     {
       "file": "modules-data/synthetiq-movies-downloads.smod.json",
-      "version": "1.0.1-experimental.3",
+      "version": "1.0.1-experimental.4",
       "minHostVersion": 6,
       "minAppVersion": "1.0.75",
-      "sha256": "82fc466701d72e4c8ae5b02b2a599219030d79209fc83b4eae01363779ee1018",
+      "sha256": "280eb62bbad7a2bb6993caf1e09be5440fe1813ef95213a02141ecb8643ccd5c",
       "presentation": {
         "category": "Movies & TV",
         "purpose": "Synthetiq Movies downloads (experimental)",
@@ -78,6 +78,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
       },
       "changelog": [
+        "1.0.1-experimental.4: High-resolution backdrops (1600x900) for heroes and title pages; posters stay on cards.",
         "1.0.1-experimental.3: Posters and backdrops from the source CDN; Trending, Top 10 and Recently added home rows; VixCloud moved to vixcloud.cc; release year and type for identity checks. Downloads still need AES-128 HLS support in the app.",
         "1.0.1-experimental.1: Current .fun provider routes with preserved .vip saved references. Offline transfer remains blocked by separate audio and encryption.",
         "1.0.0-experimental.1: Bounded data-only download definition; requires content host 6.",
