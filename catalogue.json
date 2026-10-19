@@ -61,10 +61,10 @@
     },
     {
       "file": "modules-data/synthetiq-movies-downloads.smod.json",
-      "version": "1.0.1-experimental.1",
+      "version": "1.0.1-experimental.3",
       "minHostVersion": 6,
       "minAppVersion": "1.0.75",
-      "sha256": "b35f33febfbaf3bfaf052f31aeec58ad8ba0283145681683150be602dbf8ee3f",
+      "sha256": "82fc466701d72e4c8ae5b02b2a599219030d79209fc83b4eae01363779ee1018",
       "presentation": {
         "category": "Movies & TV",
         "purpose": "Synthetiq Movies downloads (experimental)",
@@ -77,6 +77,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-movies.png"
       },
       "changelog": [
+        "1.0.1-experimental.3: Posters and backdrops from the source CDN; Trending, Top 10 and Recently added home rows; VixCloud moved to vixcloud.cc; release year and type for identity checks. Downloads still need AES-128 HLS support in the app.",
         "1.0.1-experimental.1: Current .fun provider routes with preserved .vip saved references. Offline transfer remains blocked by separate audio and encryption.",
         "1.0.0-experimental.1: Bounded data-only download definition; requires content host 6.",
         "Canonical source paths and requests use streamingunity.fun; .vip remains only for legacy saved movie/episode reference aliases. Module IDs and identity are preserved.",

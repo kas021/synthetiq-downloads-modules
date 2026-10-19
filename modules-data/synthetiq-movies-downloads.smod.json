@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-movies-v1",
   "name": "Synthetiq Movies",
-  "version": "1.0.1-experimental.1",
+  "version": "1.0.1-experimental.3",
   "minHostVersion": 6,
   "moduleFamilyId": "synthetiq_movies_v1",
   "moduleIdentity": "SP-VID-059-SYNTHETIQ-MOVIES",
@@ -20,7 +20,8 @@
   "origins": [
     "https://streamingunity.fun",
     "https://streamingunity.vip",
-    "https://vixcloud.co"
+    "https://vixcloud.cc",
+    "https://cdn.streamingunity.fun"
   ],
   "references": {
     "title": {
@@ -177,11 +178,217 @@
           "dubAvailable": {
             "path": "dub_ita",
             "equals": 1
+          },
+          "image": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": "images.0.filename"
+            }
           }
         },
         "pagination": {
           "totalCountPath": "props.totalCount",
           "pageSize": 60
+        }
+      }
+    },
+    "home": {
+      "sections": [
+        {
+          "id": "trending",
+          "title": "Trending now",
+          "feedId": "trending",
+          "style": "hero"
+        },
+        {
+          "id": "top10",
+          "title": "Top 10 today",
+          "feedId": "top10",
+          "style": "top10"
+        },
+        {
+          "id": "latest",
+          "title": "Recently added",
+          "feedId": "latest",
+          "style": "poster"
+        }
+      ]
+    },
+    "feeds": {
+      "trending": {
+        "request": {
+          "origin": "https://streamingunity.fun",
+          "path": "/en",
+          "method": "GET",
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://streamingunity.fun/"
+          }
+        },
+        "response": {
+          "format": "htmlPageData",
+          "selector": {
+            "kind": "attribute",
+            "attribute": "data-page"
+          }
+        },
+        "itemsPath": "props.sliders.0.titles",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://streamingunity.fun",
+            "template": "/en/titles/{{id}}-{{slug}}",
+            "values": {
+              "id": "id",
+              "slug": "slug"
+            }
+          },
+          "title": [
+            "name",
+            "title",
+            "original_name"
+          ],
+          "kind": "type",
+          "isMovie": {
+            "path": "type",
+            "equals": "movie"
+          },
+          "subAvailable": {
+            "path": "audio_orig",
+            "equals": 1
+          },
+          "dubAvailable": {
+            "path": "dub_ita",
+            "equals": 1
+          },
+          "image": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": "images.0.filename"
+            }
+          }
+        }
+      },
+      "latest": {
+        "request": {
+          "origin": "https://streamingunity.fun",
+          "path": "/en",
+          "method": "GET",
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://streamingunity.fun/"
+          }
+        },
+        "response": {
+          "format": "htmlPageData",
+          "selector": {
+            "kind": "attribute",
+            "attribute": "data-page"
+          }
+        },
+        "itemsPath": "props.sliders.1.titles",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://streamingunity.fun",
+            "template": "/en/titles/{{id}}-{{slug}}",
+            "values": {
+              "id": "id",
+              "slug": "slug"
+            }
+          },
+          "title": [
+            "name",
+            "title",
+            "original_name"
+          ],
+          "kind": "type",
+          "isMovie": {
+            "path": "type",
+            "equals": "movie"
+          },
+          "subAvailable": {
+            "path": "audio_orig",
+            "equals": 1
+          },
+          "dubAvailable": {
+            "path": "dub_ita",
+            "equals": 1
+          },
+          "image": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": "images.0.filename"
+            }
+          }
+        }
+      },
+      "top10": {
+        "request": {
+          "origin": "https://streamingunity.fun",
+          "path": "/en",
+          "method": "GET",
+          "headers": {
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "Referer": "https://streamingunity.fun/"
+          }
+        },
+        "response": {
+          "format": "htmlPageData",
+          "selector": {
+            "kind": "attribute",
+            "attribute": "data-page"
+          }
+        },
+        "itemsPath": "props.sliders.2.titles",
+        "item": {
+          "id": "id",
+          "href": {
+            "kind": "template",
+            "origin": "https://streamingunity.fun",
+            "template": "/en/titles/{{id}}-{{slug}}",
+            "values": {
+              "id": "id",
+              "slug": "slug"
+            }
+          },
+          "title": [
+            "name",
+            "title",
+            "original_name"
+          ],
+          "kind": "type",
+          "isMovie": {
+            "path": "type",
+            "equals": "movie"
+          },
+          "subAvailable": {
+            "path": "audio_orig",
+            "equals": 1
+          },
+          "dubAvailable": {
+            "path": "dub_ita",
+            "equals": 1
+          },
+          "image": {
+            "kind": "template",
+            "origin": "https://cdn.streamingunity.fun",
+            "template": "/images/{{file}}",
+            "values": {
+              "file": "images.0.filename"
+            }
+          }
         }
       }
     },
@@ -217,6 +424,8 @@
       "fields": {
         "title": "name",
         "description": "plot",
+        "year": "release_date",
+        "format": "type",
         "genres": {
           "path": "genres",
           "itemPath": [
@@ -246,7 +455,23 @@
           "equals": 1
         },
         "runtime": "runtime",
-        "contentId": "id"
+        "contentId": "id",
+        "image": {
+          "kind": "template",
+          "origin": "https://cdn.streamingunity.fun",
+          "template": "/images/{{file}}",
+          "values": {
+            "file": "images.0.filename"
+          }
+        },
+        "backdrop": {
+          "kind": "template",
+          "origin": "https://cdn.streamingunity.fun",
+          "template": "/images/{{file}}",
+          "values": {
+            "file": "images.2.filename"
+          }
+        }
       }
     },
     "episodes": {
@@ -399,7 +624,7 @@
                     "path": "items",
                     "selectFromArray": {
                       "valuePath": "src",
-                      "origin": "https://vixcloud.co",
+                      "origin": "https://vixcloud.cc",
                       "pathPrefixes": [
                         "/embed/",
                         "/e/"
@@ -427,8 +652,8 @@
           "headers": {
             "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Referer": "https://vixcloud.co/",
-            "Origin": "https://vixcloud.co"
+            "Referer": "https://vixcloud.cc/",
+            "Origin": "https://vixcloud.cc"
           },
           "candidateSources": [
             {
@@ -447,7 +672,7 @@
                 "url": {
                   "kind": "field",
                   "paths": "url",
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -496,7 +721,7 @@
                     "file",
                     "url"
                   ],
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -628,7 +853,7 @@
                     "path": "items",
                     "selectFromArray": {
                       "valuePath": "src",
-                      "origin": "https://vixcloud.co",
+                      "origin": "https://vixcloud.cc",
                       "pathPrefixes": [
                         "/embed/",
                         "/e/"
@@ -656,8 +881,8 @@
           "headers": {
             "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Referer": "https://vixcloud.co/",
-            "Origin": "https://vixcloud.co"
+            "Referer": "https://vixcloud.cc/",
+            "Origin": "https://vixcloud.cc"
           },
           "candidateSources": [
             {
@@ -676,7 +901,7 @@
                 "url": {
                   "kind": "field",
                   "paths": "url",
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -725,7 +950,7 @@
                     "file",
                     "url"
                   ],
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -885,7 +1110,7 @@
                     "path": "items",
                     "selectFromArray": {
                       "valuePath": "src",
-                      "origin": "https://vixcloud.co",
+                      "origin": "https://vixcloud.cc",
                       "pathPrefixes": [
                         "/embed/",
                         "/e/"
@@ -913,8 +1138,8 @@
           "headers": {
             "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Referer": "https://vixcloud.co/",
-            "Origin": "https://vixcloud.co"
+            "Referer": "https://vixcloud.cc/",
+            "Origin": "https://vixcloud.cc"
           },
           "candidateSources": [
             {
@@ -933,7 +1158,7 @@
                 "url": {
                   "kind": "field",
                   "paths": "url",
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -982,7 +1207,7 @@
                     "file",
                     "url"
                   ],
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -1142,7 +1367,7 @@
                     "path": "items",
                     "selectFromArray": {
                       "valuePath": "src",
-                      "origin": "https://vixcloud.co",
+                      "origin": "https://vixcloud.cc",
                       "pathPrefixes": [
                         "/embed/",
                         "/e/"
@@ -1170,8 +1395,8 @@
           "headers": {
             "Accept": "application/vnd.apple.mpegurl,application/x-mpegURL,application/octet-stream,text/plain,*/*;q=0.8",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Referer": "https://vixcloud.co/",
-            "Origin": "https://vixcloud.co"
+            "Referer": "https://vixcloud.cc/",
+            "Origin": "https://vixcloud.cc"
           },
           "candidateSources": [
             {
@@ -1190,7 +1415,7 @@
                 "url": {
                   "kind": "field",
                   "paths": "url",
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
@@ -1239,7 +1464,7 @@
                     "file",
                     "url"
                   ],
-                  "baseOrigin": "https://vixcloud.co"
+                  "baseOrigin": "https://vixcloud.cc"
                 },
                 "kind": {
                   "value": "hls"
