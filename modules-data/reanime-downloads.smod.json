@@ -1,1 +1,192 @@
-reanime-downloads.smod.json
+{
+  "schema": "synthetiq-downloads/content-module/3",
+  "id": "reanime-v1",
+  "name": "ReAnime",
+  "version": "0.1.0-experimental.1",
+  "minHostVersion": 11,
+  "moduleFamilyId": "reanime_v1",
+  "moduleIdentity": "SP-VID-REANIME",
+  "contentType": "anime",
+  "languages": [
+    {
+      "id": "sub",
+      "label": "SUB"
+    },
+    {
+      "id": "dub",
+      "label": "DUB"
+    }
+  ],
+  "origins": [
+    "https://reanime-resolver-p79ruk.v2.appdeploy.ai",
+    "https://graphql.anilist.co"
+  ],
+  "capabilities": {
+    "search": {
+      "primary": {
+        "request": {
+          "origin": "https://reanime-resolver-p79ruk.v2.appdeploy.ai",
+          "path": "/api/search",
+          "method": "GET",
+          "query": {
+            "q": {
+              "parameter": "query"
+            }
+          },
+          "headers": {
+            "Accept": "application/json"
+          }
+        },
+        "response": {
+          "format": "json"
+        },
+        "itemsPath": "results",
+        "item": {
+          "id": "id",
+          "title": [
+            "title.english",
+            "title.romaji"
+          ],
+          "image": {
+            "kind": "field",
+            "paths": [
+              "coverImage.large",
+              "coverImage.medium"
+            ]
+          },
+          "year": "seasonYear",
+          "kind": {
+            "value": "anime"
+          }
+        }
+      },
+      "fallbacks": []
+    },
+    "details": {
+      "request": {
+        "origin": "https://reanime-resolver-p79ruk.v2.appdeploy.ai",
+        "pathTemplate": {
+          "template": "/api/details/{{id}}",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "itemPath": "media",
+      "fields": {
+        "title": [
+          "title.english",
+          "title.romaji"
+        ],
+        "description": "description",
+        "image": {
+          "kind": "field",
+          "paths": [
+            "coverImage.extraLarge",
+            "coverImage.large"
+          ]
+        },
+        "year": "seasonYear",
+        "genres": "genres",
+        "status": "status"
+      }
+    },
+    "episodes": {
+      "source": "request",
+      "request": {
+        "origin": "https://reanime-resolver-p79ruk.v2.appdeploy.ai",
+        "pathTemplate": {
+          "template": "/api/download-episodes/{{id}}",
+          "values": {
+            "id": {
+              "parameter": "sourceId"
+            }
+          }
+        },
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "format": "json"
+      },
+      "itemsPath": "episodes",
+      "item": {
+        "id": "number",
+        "number": "number",
+        "title": "title"
+      }
+    },
+    "download": {
+      "alternatives": [
+        {
+          "id": "reanime-resolver",
+          "label": "ReAnime Resolver (experimental)",
+          "variants": [
+            "sub",
+            "dub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://reanime-resolver-p79ruk.v2.appdeploy.ai",
+                "pathTemplate": {
+                  "template": "/api/stream/{{id}}/{{audio}}/{{episode}}",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    },
+                    "audio": {
+                      "parameter": "language"
+                    },
+                    "episode": {
+                      "parameter": "episodeNumber"
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json"
+                }
+              },
+              "response": {
+                "format": "json"
+              }
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "streams",
+              "variant": "sub",
+              "candidate": {
+                "id": {
+                  "value": "reanime-stream"
+                },
+                "label": {
+                  "value": "ReAnime stream"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "kind": {
+                  "kind": "field",
+                  "paths": "type"
+                },
+                "quality": "quality"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
