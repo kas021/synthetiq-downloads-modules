@@ -351,7 +351,7 @@
           "Expected duration comes from exact source metadata and must be verified independently against completed native media. No fallback to another source family.",
           "2026-10-08 The Mentalist S1E1 auto 480p full transfer FAILED content acceptance: HTTP 200 supplied only 31,577 bytes / 20 seconds / 1280x720 H.264 / no audio. Keep experimental and non-recommended. VidZen upstream fallback returned HTTP 401 and is not included."
         ],
-        "downloadsDefinitionVersion": "0.1.0-experimental.2",
+        "downloadsDefinitionVersion": "0.1.0-experimental.4",
         "minimumContentHostVersion": 12,
         "minimumAppVersion": "1.0.92"
       }
