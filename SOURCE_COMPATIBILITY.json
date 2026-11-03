@@ -81,7 +81,7 @@
       "identity": "SP-VID-074-SYNTHETIQ-ANIME",
       "publishedVersion": "1.0.5-beta.3",
       "playerDevelopmentVersion": "1.0.6-beta.1",
-      "downloadsDefinitionVersion": "1.3.12",
+      "downloadsDefinitionVersion": "1.3.13",
       "implementation": "host13-bounded-source-definition",
       "recommended": false,
       "capabilities": {
