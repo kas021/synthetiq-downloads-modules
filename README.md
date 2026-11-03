@@ -1,7 +1,7 @@
 # Synthetiq Downloads Modules
 
 This is the dedicated source catalogue for Synthetiq Downloads. On phones,
-Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
+Settings → Modules → GitHub browses `jonyyy86/synthetiq-downloads-modules
 
 Current phone catalogue
 
