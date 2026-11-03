@@ -89,7 +89,7 @@
           "Metadata deliberately uses the shared www.moviedb.wiki TMDB-ID catalogue. Exact media type/title/season/source episode/episode number and runtime are preflighted. No silent media fallback to MovieDB.",
           "2026-10-08 Inception and The Mentalist S1E1 live clear-HLS inspections passed. Full TV workstation transfer evidence is recorded in SOURCE_BATCH_2026_10_08.md; physical phone/offline acceptance and spoken-language identity remain unverified. Captions are not mapped for this Vidrock route."
         ],
-        "downloadsDefinitionVersion": "0.1.0-experimental.3",
+        "downloadsDefinitionVersion": "0.1.0-experimental.4",
         "minimumContentHostVersion": 12,
         "minimumAppVersion": "1.0.92"
       }
