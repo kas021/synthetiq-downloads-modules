@@ -166,7 +166,7 @@
           "2026-10-08 workstation Death Note E1 SUB full transfer: 312/312 segments; 248,587,136 bytes; H.264 1920x1080 + AAC; 1377.084 seconds; 329 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
           "Spoken language, native phone background/recovery and offline playback acceptance remain unverified. Upstream Anime 1.0.5-beta.3 season grouping was reviewed; Flutter presentation code is not executed by Downloads."
         ],
-        "downloadsDefinitionVersion": "1.3.11",
+        "downloadsDefinitionVersion": "1.3.13",
         "minimumContentHostVersion": 13,
         "minimumAppVersion": "1.0.92"
       }
