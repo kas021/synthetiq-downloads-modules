@@ -50,7 +50,7 @@
           "installable": true,
           "experimental": true
         },
-        "downloadsDefinitionVersion": "1.0.1-experimental.1",
+        "downloadsDefinitionVersion": "1.0.1-experimental.4",
         "minimumContentHostVersion": 6,
         "minimumAppVersion": "1.0.75"
       }
