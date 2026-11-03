@@ -223,7 +223,7 @@
       "identity": "SP-VID-077-SYNTHETIQ-FLUX",
       "publishedVersion": "1.0.3-beta.5",
       "playerDevelopmentVersion": "1.0.3-beta.5",
-      "downloadsDefinitionVersion": "1.0.0-experimental.2",
+      "downloadsDefinitionVersion": "1.0.0-experimental.4",
       "implementation": "host13-bounded-source-definition",
       "minimumContentHostVersion": 13,
       "recommended": false,
