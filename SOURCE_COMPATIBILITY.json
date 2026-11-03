@@ -11,7 +11,7 @@
       "identity": "SP-VID-059-SYNTHETIQ-MOVIES",
       "publishedVersion": "1.2.5",
       "playerDevelopmentVersion": "1.2.3",
-      "downloadsDefinitionVersion": "1.0.1-experimental.1",
+      "downloadsDefinitionVersion": "1.0.1-experimental.4",
       "implementation": "experimental-bounded-streamingunity-vix-candidates",
       "recommended": false,
       "capabilities": {
