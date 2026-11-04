@@ -43,7 +43,7 @@
         ],
         "downloadsDefinition": {
           "file": "modules-data/synthetiq-movies-downloads.smod.json",
-          "version": "1.0.4-experimental.4",
+          "version": "1.0.1-experimental.4",
           "minHostVersion": 6,
           "minAppVersion": "1.0.75",
           "sha256": "b35f33febfbaf3bfaf052f31aeec58ad8ba0283145681683150be602dbf8ee3f",
