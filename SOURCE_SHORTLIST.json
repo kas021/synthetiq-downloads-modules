@@ -46,7 +46,7 @@
           "version": "1.0.1-experimental.4",
           "minHostVersion": 6,
           "minAppVersion": "1.0.75",
-          "sha256": "b35f33febfbaf3bfaf052f31aeec58ad8ba0283145681683150be602dbf8ee3f",
+          "sha256": 280eb62bbad7a2bb6993caf1e09be5440fe1813ef95213a02141ecb8643ccd5c
           "installable": true,
           "experimental": true
         },
