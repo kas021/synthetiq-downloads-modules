@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Technical mapping and compatibility matrix for ten selected Player source identities.",
-  "hostRequirement": 13,
+  "hostRequirement": 16,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
     {
@@ -81,7 +81,7 @@
       "identity": "SP-VID-074-SYNTHETIQ-ANIME",
       "publishedVersion": "1.0.5-beta.3",
       "playerDevelopmentVersion": "1.0.6-beta.1",
-      "downloadsDefinitionVersion": "1.3.12",
+      "downloadsDefinitionVersion": "1.3.14",
       "implementation": "host13-bounded-source-definition",
       "recommended": false,
       "capabilities": {
@@ -95,8 +95,8 @@
         "captions": "direct response tracks map declared exact or strict-suffix origins; fixture cue fetch passes; live native caption acceptance remains unverified",
         "offlineAcceptance": "workstation-sub-transfer-decode-captions-passed-2026-10-08;native-unverified"
       },
-      "technicalGap": "2026-10-17: Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21. Full workstation route transfer/decode passed; DUB spoken language and native offline playback remain unverified. Confirmed EchoVideo false-DUB mapping is disabled; other declared DUB routes remain. Joe 2 E21 English DUB is unavailable in the verified routes.",
-      "minimumContentHostVersion": 13
+      "technicalGap": "Exact numbered Koto SUB route; complete FMA file and captions verified locally. DUB may require compatible source fallback.",
+      "minimumContentHostVersion": 16
     },
     {
       "name": "AniPM",
@@ -223,9 +223,9 @@
       "identity": "SP-VID-077-SYNTHETIQ-FLUX",
       "publishedVersion": "1.0.3-beta.5",
       "playerDevelopmentVersion": "1.0.3-beta.5",
-      "downloadsDefinitionVersion": "1.0.0-experimental.2",
+      "downloadsDefinitionVersion": "1.0.0-experimental.5",
       "implementation": "host13-bounded-source-definition",
-      "minimumContentHostVersion": 13,
+      "minimumContentHostVersion": 16,
       "recommended": false,
       "capabilities": {
         "browse": "AniList-catalogue-identity",
@@ -238,8 +238,59 @@
         "captions": "mapped-English-metadata;cue-validation-unverified",
         "offlineAcceptance": "inspection-only;no-full-transfer-or-native-offline-acceptance"
       },
-      "technicalGap": "2026-10-17: Add the same two observed EchoVideo CDN origins; retain exact episode and audio response checks. Experimental: native phone playback and DUB spoken language remain unverified. Confirmed EchoVideo false-DUB mapping is disabled; other declared DUB routes remain. Joe 2 E21 English DUB is unavailable in the verified routes."
+      "technicalGap": "Exact numbered Koto SUB inspection and real complete Flux-to-JustAnime DUB fallback pass. Upstream Flow/Zuri availability is still variable."
+    },
+    {
+      "name": "JustAnime",
+      "id": "justanime-v1",
+      "familyId": "justanime_v1",
+      "identity": "SP-VID-091-JUSTANIME",
+      "downloadsDefinitionVersion": "0.1.0-experimental.2",
+      "minimumContentHostVersion": 16,
+      "implementation": "Declarative data only",
+      "recommended": false,
+      "capabilities": [
+        "search",
+        "details",
+        "episodes",
+        "download"
+      ],
+      "technicalGap": "Page-12 One Piece E1101 listing; completed FMA DUB via Flux fallback and English-labelled captions."
+    },
+    {
+      "name": "AnimeKai",
+      "id": "animekai-v1",
+      "familyId": "animekai_v1",
+      "identity": "SP-VID-093-ANIMEKAI",
+      "downloadsDefinitionVersion": "0.1.0-experimental.2",
+      "minimumContentHostVersion": 16,
+      "implementation": "Declarative data only",
+      "recommended": false,
+      "capabilities": [
+        "search",
+        "details",
+        "episodes",
+        "download"
+      ],
+      "technicalGap": "Bounded long-series HTML; complete FMA DUB and One Piece E1101 SUB, including parsed captions."
+    },
+    {
+      "name": "KickAssAnime",
+      "id": "kickassanime-v1",
+      "familyId": "kickassanime_v1",
+      "identity": "SP-VID-090-KICKASSANIME",
+      "downloadsDefinitionVersion": "0.1.0-experimental.4",
+      "minimumContentHostVersion": 16,
+      "implementation": "Declarative data only",
+      "recommended": false,
+      "capabilities": [
+        "search",
+        "details",
+        "episodes",
+        "download"
+      ],
+      "technicalGap": "Provider-reported episode ranges reach E1101. Separate English audio can be selected; SUB caption and full native acceptance remain open."
     }
   ],
-  "hostRequirementMeaning": "Maximum minimumContentHostVersion among the currently mapped installable definitions. Each source retains its own minimumContentHostVersion; lower-floor sources do not require Host 13."
+  "hostRequirementMeaning": "Maximum minimumContentHostVersion for installable definitions on this candidate branch. Older unchanged definitions retain their own requirements."
 }

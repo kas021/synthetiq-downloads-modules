@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "animekai-v1",
   "name": "AnimeKai",
-  "version": "0.1.0-experimental.1",
-  "minHostVersion": 11,
+  "version": "0.1.0-experimental.2",
+  "minHostVersion": 16,
   "moduleFamilyId": "animekai_v1",
   "moduleIdentity": "SP-VID-093-ANIMEKAI",
   "contentType": "anime",
@@ -18,7 +18,9 @@
     "https://*.midnightvoyage.site",
     "https://*.midnightvale.top",
     "https://*.silentvoyage.space",
-    "https://*.shadowharbor.space"
+    "https://*.shadowharbor.space",
+    "https://*.eclipseharbor.world",
+    "https://*.mysubsplay.com"
   ],
   "languages": [
     {
@@ -193,7 +195,8 @@
             "selector": "a",
             "attribute": "data-dub"
           }
-        }
+        },
+        "maxRows": 5000
       },
       "itemsPath": "items",
       "item": {

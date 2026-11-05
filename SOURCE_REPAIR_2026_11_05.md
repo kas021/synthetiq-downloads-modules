@@ -1,0 +1,11 @@
+# Host 16 source repair candidate — 5 November 2026
+
+Requires Downloads 1.0.147 / build 148. Anime 1.3.14, Flux experimental.5, JustAnime and AnimeKai experimental.2, KickAssAnime experimental.4. All existing module IDs, family IDs and saved title/episode reference patterns are preserved. Definitions remain data-only. Nothing is enabled or recommended automatically.
+
+Anime/Flux resolve a unique catalogue ID and exact episode row, then make the current Koto SUB request with the verified identifiers and declared audio variant. Relative media and captions are confined to the observed CDN; title metadata provides a duration check. The new route is SUB-only until a genuine DUB can be proven. JustAnime and AnimeKai map returned caption labels, exclude thumbnails, and permit the observed caption CDN suffixes under the existing public HTTPS policy. The English presentation group includes JustAnime, AnimeKai and KickAssAnime without assuming all titles have every audio/caption variant.
+
+Live complete Mac QA: Anime FMA E1 SUB (83,202,936 bytes), Flux → JustAnime FMA E1 DUB (83,189,716 bytes), AnimeKai FMA E1 DUB (same bytes/hash as JustAnime), AnimeKai One Piece E1101 SUB (427,231,755 bytes) and MovieDB → Synthetiq Movies Big Buck Bunny (27,979,170 bytes). All five files passed hash and full audio/video decode. Anime files include parsed English-labelled captions. FMA sampled speech was Japanese for SUB and English for the identical DUB outputs. Separate audio, native background and physical playback remain distinct checks. Flux's direct repaired SUB route also passed inspection.
+
+One Piece E1101–1103 list correctly in JustAnime, AnimeKai and KickAssAnime. The latter uses the actual provider page ranges, rather than assuming identical page sizes. No duplicate episode rows observed in these windows. One K-On DUB fallback inspection passed after two failed attempts. No verified Tomorrow's Joe 2 E21 DUB was obtained. No subtitle evidence was available on the sampled KickAssAnime SUB route; required captions remain enforced. AniPM/MovieDB/Alpha access failures and AnimeAV1 upstream transport failures were not bypassed.
+
+This branch contains a reviewed candidate catalogue for the compatible app. It does not replace the default catalogue or release a store build. No live service, customer data, credentials or signed media URLs are included.

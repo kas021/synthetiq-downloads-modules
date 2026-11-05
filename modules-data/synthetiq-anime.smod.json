@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-anime-v1",
   "name": "Synthetiq Anime",
-  "version": "1.3.13",
-  "minHostVersion": 13,
+  "version": "1.3.14",
+  "minHostVersion": 16,
   "moduleFamilyId": "synthetiq_anime_v1",
   "moduleIdentity": "SP-VID-074-SYNTHETIQ-ANIME",
   "contentType": "anime",
@@ -26,7 +26,10 @@
     "https://o3izr.stellarfrontier.space",
     "https://n953x.midnightvoyage.site",
     "https://hlsxst2.echovideo.to",
-    "https://st2.roburnt10.store"
+    "https://st2.roburnt10.store",
+    "https://og.bakayaro.live",
+    "https://*.eclipseharbor.world",
+    "https://*.mysubsplay.com"
   ],
   "languages": [
     {
@@ -941,8 +944,10 @@
       "alternatives": [
         {
           "id": "anikage-megaplay",
-          "label": "AniKage · MegaPlay",
-          "runWhenNoCandidates": true,
+          "label": "AniKage · Koto",
+          "variants": [
+            "sub"
+          ],
           "steps": [
             {
               "request": {
@@ -1000,7 +1005,52 @@
                 "parameter": "contentId",
                 "resultField": "selectedAnikage"
               },
-              "cacheWithinAttempt": true
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "selectedAnikage.anilistId",
+                  "parameter": "contentId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://anikage.cc",
+                "pathTemplate": {
+                  "template": "/api/media/anime/{{slug}}/episodes",
+                  "values": {
+                    "slug": {
+                      "fromResponse": {
+                        "step": 1,
+                        "path": "selectedAnikage.slug"
+                      }
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "jsonRowSelect": {
+                "itemsPath": "",
+                "matchField": "number",
+                "parameter": "episodeNumber",
+                "maxRows": 5000,
+                "resultField": "selectedEpisode"
+              },
+              "responseMatches": [
+                {
+                  "path": "selectedEpisode.number",
+                  "parameter": "episodeNumber"
+                }
+              ]
             },
             {
               "request": {
@@ -1015,7 +1065,10 @@
                       }
                     },
                     "episode": {
-                      "parameter": "episodeNumber"
+                      "fromResponse": {
+                        "step": 2,
+                        "path": "selectedEpisode.number"
+                      }
                     }
                   }
                 },
@@ -1035,141 +1088,56 @@
               "response": {
                 "format": "json"
               },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "urlFromResponse": {
-                  "fromResponse": {
-                    "step": 2,
-                    "path": "embeds",
-                    "selectFromArray": {
-                      "valuePath": "url",
-                      "origin": "https://megaplay.buzz",
-                      "pathPrefixes": [
-                        "/stream/",
-                        "/videojs/stream/"
-                      ],
-                      "matchIndex": 0
-                    }
-                  }
-                },
-                "method": "GET",
-                "headers": {
-                  "Accept": "text/html,*/*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://megaplay.buzz",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "htmlRows",
-                "collectionSelector": "[data-id]",
-                "fields": {
-                  "id": {
-                    "kind": "attribute",
-                    "attribute": "data-id",
-                    "transforms": [
-                      "firstPositiveInteger"
-                    ]
-                  }
-                }
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://megaplay.buzz",
-                "path": "/stream/getSourcesNew",
-                "method": "GET",
-                "query": {
-                  "id": {
-                    "fromResponse": {
-                      "step": 3,
-                      "path": "items.0.id"
-                    }
-                  },
-                  "type": {
-                    "parameter": "language"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json, text/plain, */*",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://megaplay.buzz",
-                  "Referer": "https://megaplay.buzz/",
-                  "X-Requested-With": "XMLHttpRequest"
-                }
-              },
-              "response": {
-                "format": "aesCbcJson",
-                "ciphertextPath": "enc",
-                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
-                "ivHex": "57303b3237546f6155706c5f50252763",
-                "plaintextItemsPath": "sources"
-              },
               "cacheWithinAttempt": true
             }
           ],
-          "candidatesPath": "items",
-          "candidate": {
-            "id": {
-              "value": "primary"
-            },
-            "label": {
-              "value": "HLS"
-            },
-            "url": {
-              "kind": "field",
-              "paths": [
-                "file",
-                "url",
-                "file.file",
-                "file.url",
-                "sources.0.file",
-                "sources.0.url"
-              ],
-              "baseOrigin": "https://megaplay.buzz"
-            },
-            "kind": {
-              "value": "hls"
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "sources",
+              "variant": "sub",
+              "candidate": {
+                "id": {
+                  "value": "primary"
+                },
+                "label": [
+                  "label",
+                  "quality"
+                ],
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://og.bakayaro.live"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": "quality"
+              }
             }
-          },
+          ],
           "headers": {
             "Accept": "*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://megaplay.buzz",
-            "Referer": "https://megaplay.buzz/"
+            "Origin": "https://anikage.cc",
+            "Referer": "https://anikage.cc/"
           },
           "subtitlesByLanguage": {
             "sub": {
-              "itemsPath": "envelope.tracks",
+              "itemsPath": "subtitles",
               "item": {
-                "id": "label",
+                "id": [
+                  "label",
+                  "file"
+                ],
                 "label": [
                   "label",
-                  "kind"
+                  "lang",
+                  "language"
                 ],
                 "language": [
-                  "label",
-                  "kind"
+                  "language",
+                  "lang",
+                  "label"
                 ],
                 "format": {
                   "value": "unknown"
@@ -1177,10 +1145,10 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "src",
                     "file",
                     "url"
-                  ]
+                  ],
+                  "baseOrigin": "https://og.bakayaro.live"
                 },
                 "default": "default",
                 "includeIf": [
@@ -1192,45 +1160,13 @@
                     ]
                   }
                 ]
-              },
-              "responseOrigins": true
-            },
-            "dub": {
-              "itemsPath": "envelope.tracks",
-              "item": {
-                "id": "label",
-                "label": [
-                  "label",
-                  "kind"
-                ],
-                "language": [
-                  "label",
-                  "kind"
-                ],
-                "format": {
-                  "value": "unknown"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "src",
-                    "file",
-                    "url"
-                  ]
-                },
-                "default": "default",
-                "includeIf": [
-                  {
-                    "path": "kind",
-                    "equals": [
-                      "captions",
-                      "subtitles"
-                    ]
-                  }
-                ]
-              },
-              "responseOrigins": true
+              }
             }
+          },
+          "expectedDuration": {
+            "step": 1,
+            "path": "selectedAnikage.duration",
+            "unit": "minutes"
           }
         },
         {

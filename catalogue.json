@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.13",
-      "minHostVersion": 13,
-      "minAppVersion": "1.0.92",
-      "sha256": "a6891043ab858224deb0f64a558591147ead44a53f99bd22679927d063966ae7",
+      "version": "1.3.14",
+      "minHostVersion": 16,
+      "minAppVersion": "1.0.147",
+      "sha256": "c951e38c9afb576c153ed0fdf8053839d79f77fb47ababb75199bb7094b63517",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,6 +23,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
+        "1.3.14: verified canonical title and numbered episode before the current Koto SUB request; bounded relative video/caption URLs and duration check. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.3.13: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
         "Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21.",
@@ -162,10 +163,10 @@
     },
     {
       "file": "modules-data/synthetiq-flux.smod.json",
-      "version": "1.0.0-experimental.4",
-      "minHostVersion": 13,
-      "minAppVersion": "1.0.92",
-      "sha256": "6ae5c0ae4c6bebc1d279c9fa4cacb03d793c5b4ca79074d86f21bd7332afe546",
+      "version": "1.0.0-experimental.5",
+      "minHostVersion": 16,
+      "minAppVersion": "1.0.147",
+      "sha256": "ea4dc77e0b5a1c10e37d32bf0e3a784aba7d2344cd531d324d5c29a72fc810fd",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Flux downloads (experimental)",
@@ -178,6 +179,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-flux.png"
       },
       "changelog": [
+        "Experimental.5: current exact-episode Koto SUB route and compatible English-group DUB fallback; no unverified DUB substitution. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.0.0-experimental.4: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
         "Try the Anikage routes before the Vidhawk servers: Vidhawk requests were timing out after about 12 s and delaying the first download; Vidhawk remains as a fallback.",
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
@@ -189,49 +191,52 @@
     },
     {
       "file": "modules-data/justanime-downloads.smod.json",
-      "version": "0.1.0-experimental.1",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "3f4b5182dcd1f2feaf66cfcae2e52e5f9affd71d000eddb169acf7c51748c5f5",
+      "version": "0.1.0-experimental.2",
+      "minHostVersion": 16,
+      "minAppVersion": "1.0.147",
+      "sha256": "d7c67bae6d6390c15f749046c21e77b8cfb7566a2f30ffda05c359565eb4b975",
       "presentation": {
         "category": "Anime",
-        "language": "SUB / DUB",
+        "language": "English",
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/justanime.png"
       },
       "changelog": [
+        "Experimental.2: real page-number lookup, observed caption CDN policy, English presentation group and sidecars for SUB/DUB. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.1: First Downloads port of JustAnime. Search, details, episodes and SUB/DUB resolve verified live on Naruto, One Piece, Frieren, Jujutsu Kaisen and Solo Leveling (HLS playlists reachable). Streams use the MegaPlay CDN, so this is an independent catalogue rather than an independent video host. Episode lists show the first 100 episodes only. Experimental pending physical acceptance."
       ]
     },
     {
       "file": "modules-data/animekai-downloads.smod.json",
-      "version": "0.1.0-experimental.1",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "9321b937b7e9225bd189cbdab1d19e8336a5c2c05f788cc6d957e2b6db066a15",
+      "version": "0.1.0-experimental.2",
+      "minHostVersion": 16,
+      "minAppVersion": "1.0.147",
+      "sha256": "e2736e260610f244c7074958b30b946dd92a61eb0ff0efa82f3b86cd7a5e7386",
       "presentation": {
         "category": "Anime",
-        "language": "SUB / DUB",
+        "language": "English",
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/animekai.png"
       },
       "changelog": [
+        "Experimental.2: bounded long-series HTML rows, verified caption CDN and English presentation group; full E1101 SUB checked. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.1: First Downloads port of AnimeKai. Search, details, episodes and SUB/DUB resolve verified live on Frieren, Jujutsu Kaisen and Solo Leveling. One Piece is not listable (over 1,000 episodes). Streams use the MegaPlay embed. Experimental pending physical acceptance."
       ]
     },
     {
       "file": "modules-data/kickassanime-downloads.smod.json",
-      "version": "0.1.0-experimental.3",
-      "minHostVersion": 15,
-      "minAppVersion": "1.0.131",
-      "sha256": "610da67a8ee46ddd73c82c9e4753490be12f90163556fa0b09892b875e24147f",
+      "version": "0.1.0-experimental.4",
+      "minHostVersion": 16,
+      "minAppVersion": "1.0.147",
+      "sha256": "283fc480f538df7fd088240a3ce4607c6c4b74d7d65483190902cf9b85000af7",
       "presentation": {
         "category": "Anime",
-        "language": "SUB / DUB",
+        "language": "English",
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/kickassanime.png"
       },
       "changelog": [
+        "Experimental.4: jump via the provider’s numbered page ranges and join the English presentation group; keep strict audio selection. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.3: English DUB from the stream's English audio track when it has one (strict language match, never Japanese). Needs content host 15.",
         "0.1.0-experimental.2: First Downloads port of KickAssAnime. Its own video servers (krussdomi), independent of MegaPlay. SUB (Japanese audio) via separate-audio muxing; needs app 1.0.131+ (content host 14). Verified Frieren, Solo Leveling and One Piece through inspection. Episode lists stop at 100."
       ]

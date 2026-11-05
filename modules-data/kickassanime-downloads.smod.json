@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "kickassanime-v1",
   "name": "KickAssAnime",
-  "version": "0.1.0-experimental.3",
-  "minHostVersion": 15,
+  "version": "0.1.0-experimental.4",
+  "minHostVersion": 16,
   "moduleFamilyId": "kickassanime_v1",
   "moduleIdentity": "SP-VID-090-KICKASSANIME",
   "contentType": "anime",
@@ -151,7 +151,9 @@
         },
         "method": "GET",
         "query": {
-          "page": 1,
+          "page": {
+            "parameter": "page"
+          },
           "lang": "ja-JP"
         },
         "headers": {
@@ -166,6 +168,15 @@
         "subAvailable": {
           "value": true
         }
+      },
+      "pagination": {
+        "pagePath": "current_page",
+        "pageListPath": "pages"
+      },
+      "numberedPageRanges": {
+        "page": "number",
+        "first": "from",
+        "last": "to"
       }
     },
     "download": {
@@ -382,7 +393,7 @@
         },
         {
           "id": "kickassanime-catstream-dub",
-          "label": "KickAssAnime CatStream DUB (experimental) · English audio",
+          "label": "KickAssAnime CatStream DUB (experimental) \u00b7 English audio",
           "variants": [
             "dub"
           ],
@@ -490,7 +501,7 @@
         },
         {
           "id": "kickassanime-vidstreaming-dub",
-          "label": "KickAssAnime VidStreaming DUB (experimental) · English audio",
+          "label": "KickAssAnime VidStreaming DUB (experimental) \u00b7 English audio",
           "variants": [
             "dub"
           ],

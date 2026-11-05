@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "justanime-v1",
   "name": "JustAnime",
-  "version": "0.1.0-experimental.1",
-  "minHostVersion": 11,
+  "version": "0.1.0-experimental.2",
+  "minHostVersion": 16,
   "moduleFamilyId": "justanime_v1",
   "moduleIdentity": "SP-VID-091-JUSTANIME",
   "contentType": "anime",
@@ -24,7 +24,9 @@
     "https://fetch.nexabloom.top",
     "https://*.broforgotsave.online",
     "https://s4.anilist.co",
-    "https://image.tmdb.org"
+    "https://image.tmdb.org",
+    "https://*.eclipseharbor.world",
+    "https://*.mysubsplay.com"
   ],
   "references": {
     "title": {
@@ -201,7 +203,9 @@
         },
         "method": "GET",
         "query": {
-          "page": 1
+          "page": {
+            "parameter": "page"
+          }
         },
         "headers": {
           "Accept": "application/json, text/plain, */*",
@@ -221,7 +225,14 @@
           "kind": "field",
           "paths": "image"
         }
-      }
+      },
+      "pagination": {
+        "pagePath": "currentPage",
+        "totalCountPath": "totalEpisodes",
+        "pageSize": 100,
+        "hasMorePath": "hasNextPage"
+      },
+      "numberedPageSize": 100
     },
     "download": {
       "alternatives": [
@@ -308,19 +319,58 @@
               "itemsPath": "sub.subtitles",
               "responseOrigins": true,
               "item": {
-                "id": "label",
+                "id": [
+                  "label",
+                  "file"
+                ],
                 "label": "label",
-                "language": {
-                  "value": "en"
-                },
+                "language": "label",
                 "format": {
-                  "value": "vtt"
+                  "value": "unknown"
                 },
                 "url": {
                   "kind": "field",
                   "paths": "file"
                 },
-                "default": "default"
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": [
+                      "captions",
+                      "subtitles"
+                    ]
+                  }
+                ]
+              }
+            },
+            "dub": {
+              "itemsPath": "dub.subtitles",
+              "responseOrigins": true,
+              "item": {
+                "id": [
+                  "label",
+                  "file"
+                ],
+                "label": "label",
+                "language": "label",
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": [
+                      "captions",
+                      "subtitles"
+                    ]
+                  }
+                ]
               }
             }
           },

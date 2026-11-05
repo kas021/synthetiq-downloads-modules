@@ -3,6 +3,13 @@
 This is the dedicated source catalogue for Synthetiq Downloads. On phones,
 Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
+## Host 16 candidate
+
+This branch updates five definitions for Downloads 1.0.147/build 148.
+See [the live repair evidence](SOURCE_REPAIR_2026_11_05.md). The definitions
+remain experimental and require explicit user import; the default catalogue
+is not activated by this branch.
+
 ## Current phone catalogue
 
 `catalogue.json` advertises seven experimental data-only `.smod.json` definitions:
