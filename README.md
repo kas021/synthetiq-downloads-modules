@@ -3,52 +3,48 @@
 This is the dedicated source catalogue for Synthetiq Downloads. On phones,
 Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
 
-## Host 16 candidate
+## Published repair — 7 November 2026
 
-This branch updates five definitions for Downloads 1.0.147/build 148.
-See [the live repair evidence](SOURCE_REPAIR_2026_11_05.md). The definitions
-remain experimental and require explicit user import; the default catalogue
-is not activated by this branch.
+The default catalogue now contains the reviewed Host 16 repairs. Update Downloads
+before updating these modules: the five repaired definitions require **1.0.147
+(build148) or later**. The latest tested app hardening is **1.0.148 (build149)**.
+Existing media and saved module identities are preserved. Sources remain explicit
+user imports; this catalogue does not add any source to a fresh app automatically.
+
+See [publication and validation](SOURCE_PUBLICATION_2026_11_07.md) and the
+[original repair evidence](SOURCE_REPAIR_2026_11_05.md).
 
 ## Current phone catalogue
 
-`catalogue.json` advertises seven experimental data-only `.smod.json` definitions:
+Ten experimental data-only definitions are available:
 
-| Source | Downloads version | Minimum host / app | Recorded evidence |
-| --- | --- | --- | --- |
-| Synthetiq Anime | 1.3.11 | Host 13 / 1.0.92 | Death Note E1 SUB full workstation transfer/decode plus 329 English cues; phone acceptance pending |
-| AniPM | 0.1.0-experimental.4 | Host 11 / 1.0.91 | One Piece E1 requested DUB full workstation transfer/decode plus 285 English cues; spoken language/phone acceptance pending |
-| Synthetiq Movies | 1.0.1-experimental.1 | Host 6 / 1.0.75 | Current `.fun` routes preserve `.vip` references; live playlists return 200, but AES-128 and separate audio still block downloads |
-| AnimeAV1 | 0.1.0-experimental.1 | Host 9 / 1.0.84 | Bounded SUB MP4Upload route, complete workstation transfer/decode; sampled AV1 video has Spanish burnt-in captions; phone codec/playback acceptance pending |
-| Alpha Movies | 0.1.0-experimental.3 | Host 12 / 1.0.92 | Shared TMDB-ID metadata + Alpha Vidrock media; The Mentalist S1E1 full workstation transfer/decode; captions unmapped |
-| MovieDB | 0.1.0-experimental.3 | Host 12 / 1.0.92 | beta.14 IPCloud HLS and direct-file quality inspection passed; historical placeholder failed; new full transfer/phone acceptance pending |
-| Synthetiq Flux | 1.0.0-experimental.1 | Host 13 / 1.0.92 | Re:ZERO E1 SUB/DUB rescue inspection passed; shared MegaPlay dependency; full transfer/phone acceptance pending |
+| Source | Downloads module version | Minimum host / app |
+| --- | --- | --- |
+| Synthetiq Anime | 1.3.14 | 16 / 1.0.147 |
+| AniPM | 0.1.0-experimental.4 | 11 / 1.0.91 |
+| Synthetiq Movies | 1.0.1-experimental.4 | 6 / 1.0.75 |
+| AnimeAV1 | 0.1.0-experimental.1 | 9 / 1.0.84 |
+| MovieDB | 0.1.0-experimental.4 | 12 / 1.0.92 |
+| Alpha Movies | 0.1.0-experimental.4 | 12 / 1.0.92 |
+| Synthetiq Flux | 1.0.0-experimental.5 | 16 / 1.0.147 |
+| JustAnime | 0.1.0-experimental.2 | 16 / 1.0.147 |
+| AnimeKai | 0.1.0-experimental.2 | 16 / 1.0.147 |
+| KickAssAnime | 0.1.0-experimental.4 | 16 / 1.0.147 |
 
-None of these sources is recommended or phone-certified yet. The workstation transfers
-below are separate from native physical-phone download and offline playback acceptance.
-The catalogue records byte hashes and minimum runtime metadata. The host enforces
-definition `minHostVersion`; a hash is provenance evidence rather than certification.
-The highest current minimum is Host 13 / app 1.0.92. This is the maximum across
-the catalogue, not a shared minimum: each source retains the floor shown above.
-The compatibility matrix top-level `hostRequirement` reports that maximum; its
-per-source `minimumContentHostVersion` values govern individual compatibility.
+All entries remain experimental and non-recommended. Successful complete Mac
+transfers, native builds, physical transfers and offline playback are recorded
+separately. A valid catalogue hash establishes exact bytes, not provider uptime
+or certification. English fallback declarations do not assert that every title
+has a DUB or complete dialogue captions. Known failed routes remain documented.
 
-The previous executable ZIPs and source trees remain in `modules/` and `src/`
-for owner rollback and internal comparison. They are not in the default phone
-catalogue. A public phone build does not evaluate downloaded JavaScript.
+The maximum host requirement is 16; individual entries retain the compatibility
+floor in the table. Older applications must not install unsupported definitions.
+Do not delete existing downloads or reinstall the app to update a module.
 
-`SOURCE_SHORTLIST.json` retains the nine requested Player identities and archive
-provenance. `SOURCE_COMPATIBILITY.json` records current Downloads mapping and
-specific gaps. Synthetiq Movies preserves the typed title slug and exact selected
-season/episode identity, including legacy episode references. Its sampled current
-Vix playlists return HTTP 200; separate audio and encrypted HLS packaging remain
-unsupported. Source artwork/facets are unmapped. Alpha now maps shared TMDB-ID
-metadata and exact season/episode identity, with declared media origins and
-bounded GCM decoding. Its later-season S2E1 transfer failed on an empty required
-segment; that route is not certified by the separate S1E1 success. X-Stream,
-Mugiwara and AniWorld need additional bounded resolver operations; those three
-sources have no install entry. AnimeAV1 now has a limited SUB route, without
-selectable captions or other language variants. No provider is silently substituted.
+The historical executable archives in `modules/` and `src/` are not offered in
+the phone catalogue. Public Downloads builds interpret bounded data definitions
+and do not execute those archives. The dated sections below retain historical
+evidence and are not current availability guarantees.
 
 ## Files
 

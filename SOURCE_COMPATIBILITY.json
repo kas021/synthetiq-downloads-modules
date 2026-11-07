@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "Technical mapping and compatibility matrix for ten selected Player source identities.",
+  "purpose": "Technical mapping of selected Player identities to ten installable Downloads data definitions; unsupported identities remain explicit.",
   "hostRequirement": 16,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
@@ -11,7 +11,7 @@
       "identity": "SP-VID-059-SYNTHETIQ-MOVIES",
       "publishedVersion": "1.2.5",
       "playerDevelopmentVersion": "1.2.3",
-      "downloadsDefinitionVersion": "1.0.1-experimental.1",
+      "downloadsDefinitionVersion": "1.0.1-experimental.4",
       "implementation": "experimental-bounded-streamingunity-vix-candidates",
       "recommended": false,
       "capabilities": {
@@ -25,7 +25,8 @@
         "captions": "not-confirmed-in-live-media-playlist",
         "offlineAcceptance": "no-transfer;split-audio-and-AES-128-blocked;native-unverified"
       },
-      "technicalGap": "Canonical browse/details/movie/TV routes now use the live streamingunity.fun domain; .vip remains solely for legacy saved movie/episode reference aliases, with source IDs and module identity preserved. The bounded definition maps compound title ID plus slug, preflights movie/TV/audio request identity, and follows only declared Vix embed/playlist URLs and literal stream initializers without executing page code. Live .fun movie search/details and three Vix candidate routes were checked; Vix masters and a media playlist returned HTTP 200. The selected video variant references an external audio group (English default with Italian alternative), and its media playlist uses AES-128; Downloads does not yet package separate audio or save encrypted HLS, so no complete media transfer was attempted. Captions were not confirmed, and native offline acceptance remains unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork and generic catalogue facets are not mapped."
+      "technicalGap": "Canonical browse/details/movie/TV routes now use the live streamingunity.fun domain; .vip remains solely for legacy saved movie/episode reference aliases, with source IDs and module identity preserved. The bounded definition maps compound title ID plus slug, preflights movie/TV/audio request identity, and follows only declared Vix embed/playlist URLs and literal stream initializers without executing page code. Live .fun movie search/details and three Vix candidate routes were checked; Vix masters and a media playlist returned HTTP 200. The selected video variant references an external audio group (English default with Italian alternative), and its media playlist uses AES-128; Downloads does not yet package separate audio or save encrypted HLS, so no complete media transfer was attempted. Captions were not confirmed, and native offline acceptance remains unverified. The downstream Vix playlist ID is opaque and does not echo the StreamingUnity episode ID. Source artwork and generic catalogue facets are not mapped.",
+      "minimumContentHostVersion": 6
     },
     {
       "name": "Alpha Movies",
