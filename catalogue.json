@@ -26,7 +26,7 @@
         "1.3.14: verified canonical title and numbered episode before the current Koto SUB request; bounded relative video/caption URLs and duration check. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.3.13: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
-        "Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21.",
+        "Add the two exact observed EchoVideo CDN origins for Tomorrow\u2019s Joe 2 episode 21.",
         "Full workstation route transfer/decode passed; EchoVideo DUB audio acceptance failed; native offline playback remains unverified.",
         "1.3.11: Host 13 permits up to 24 explicit declared origins. Adds only observed Black Clover E1 SUB o3izr.stellarfrontier.space and DUB n953x.midnightvoyage.site CDN origins; Jikan fallback Referer reuses its declared API origin. Preserves exact episode/audio routes and all existing server alternatives. Experimental/non-recommended; native acceptance remains unverified.",
         "1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes; unknown hosts need a data update. Existing Anime route IDs and exact SUB/DUB selection remain unchanged.",
@@ -96,7 +96,7 @@
       "presentation": {
         "category": "Anime",
         "purpose": "AnimeAV1 downloads (experimental)",
-        "language": "Spanish subtitles · SUB only",
+        "language": "Spanish subtitles \u00b7 SUB only",
         "languages": [
           "sub"
         ],
@@ -208,10 +208,10 @@
     },
     {
       "file": "modules-data/animekai-downloads.smod.json",
-      "version": "0.1.0-experimental.2",
+      "version": "0.1.0-experimental.3",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "e2736e260610f244c7074958b30b946dd92a61eb0ff0efa82f3b86cd7a5e7386",
+      "sha256": "e415269d805f032fe47e9cfba95a6ce65bd3c3ad69706d6fb0fc104095f38d2b",
       "presentation": {
         "category": "Anime",
         "language": "English",
@@ -219,6 +219,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/animekai.png"
       },
       "changelog": [
+        "0.1.0-experimental.3: Prefer the current MegaPlay descriptor endpoint, bind the requested audio explicitly and retain the legacy endpoint. Accept bounded plaintext source rows while preserving captions, exact episode and module identities. Candidate; full acceptance recorded separately.",
         "Experimental.2: bounded long-series HTML rows, verified caption CDN and English presentation group; full E1101 SUB checked. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.1: First Downloads port of AnimeKai. Search, details, episodes and SUB/DUB resolve verified live on Frieren, Jujutsu Kaisen and Solo Leveling. One Piece is not listable (over 1,000 episodes). Streams use the MegaPlay embed. Experimental pending physical acceptance."
       ]
@@ -236,7 +237,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/kickassanime.png"
       },
       "changelog": [
-        "Experimental.4: jump via the provider’s numbered page ranges and join the English presentation group; keep strict audio selection. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
+        "Experimental.4: jump via the provider\u2019s numbered page ranges and join the English presentation group; keep strict audio selection. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.3: English DUB from the stream's English audio track when it has one (strict language match, never Japanese). Needs content host 15.",
         "0.1.0-experimental.2: First Downloads port of KickAssAnime. Its own video servers (krussdomi), independent of MegaPlay. SUB (Japanese audio) via separate-audio muxing; needs app 1.0.131+ (content host 14). Verified Frieren, Solo Leveling and One Piece through inspection. Episode lists stop at 100."
       ]
