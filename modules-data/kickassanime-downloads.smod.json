@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "kickassanime-v1",
   "name": "KickAssAnime",
-  "version": "0.1.0-experimental.4",
+  "version": "0.1.0-experimental.5",
   "minHostVersion": 16,
   "moduleFamilyId": "kickassanime_v1",
   "moduleIdentity": "SP-VID-090-KICKASSANIME",
@@ -21,7 +21,9 @@
     "https://kaa.lt",
     "https://krussdomi.com",
     "https://bl.krussdomi.com",
-    "https://hls.krussdomi.com"
+    "https://hls.krussdomi.com",
+    "https://subst.krussdomi.com",
+    "https://subbl.krussdomi.com"
   ],
   "references": {
     "title": {
@@ -231,6 +233,10 @@
                 {
                   "path": "episode_number",
                   "parameter": "episodeNumber"
+                },
+                {
+                  "path": "language",
+                  "value": "ja-JP"
                 }
               ]
             },
@@ -284,6 +290,30 @@
             "Referer": "https://krussdomi.com/",
             "Origin": "https://krussdomi.com",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "props.subtitles",
+              "item": {
+                "id": [
+                  "filename",
+                  "language",
+                  "name"
+                ],
+                "label": [
+                  "name",
+                  "language"
+                ],
+                "language": "language",
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "src"
+                }
+              }
+            }
           }
         },
         {
@@ -336,6 +366,10 @@
                 {
                   "path": "episode_number",
                   "parameter": "episodeNumber"
+                },
+                {
+                  "path": "language",
+                  "value": "ja-JP"
                 }
               ]
             },
@@ -389,6 +423,30 @@
             "Referer": "https://krussdomi.com/",
             "Origin": "https://krussdomi.com",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "props.subtitles",
+              "item": {
+                "id": [
+                  "filename",
+                  "language",
+                  "name"
+                ],
+                "label": [
+                  "name",
+                  "language"
+                ],
+                "language": "language",
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "src"
+                }
+              }
+            }
           }
         },
         {

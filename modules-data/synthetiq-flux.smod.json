@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "synthetiq-flux-v1",
   "name": "Synthetiq Flux",
-  "version": "1.0.0-experimental.5",
+  "version": "1.0.0-experimental.6",
   "minHostVersion": 16,
   "moduleFamilyId": "synthetiq_flux_v1",
   "moduleIdentity": "SP-VID-077-SYNTHETIQ-FLUX",
@@ -1161,8 +1161,264 @@
           }
         },
         {
-          "id": "anikage-wave-echovideo",
-          "label": "Rescue · AniKage · Wave",
+          "id": "anikage-koto-dub",
+          "label": "Rescue · AniKage · Koto DUB",
+          "variants": [
+            "dub"
+          ],
+          "steps": [
+            {
+              "request": {
+                "origin": "https://graphql.anilist.co",
+                "path": "/",
+                "method": "POST",
+                "body": {
+                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
+                  "variables": {
+                    "id": {
+                      "parameter": "contentId"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "data.Media.id",
+                  "parameter": "contentId"
+                }
+              ],
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://anikage.cc",
+                "path": "/api/media/anime/browse",
+                "method": "GET",
+                "query": {
+                  "q": {
+                    "fromResponse": {
+                      "step": 0,
+                      "path": "data.Media.title.native"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "jsonRowSelect": {
+                "itemsPath": "data",
+                "matchField": "anilistId",
+                "parameter": "contentId",
+                "resultField": "selectedAnikage"
+              },
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "selectedAnikage.anilistId",
+                  "parameter": "contentId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://anikage.cc",
+                "pathTemplate": {
+                  "template": "/api/media/anime/{{slug}}/episodes",
+                  "values": {
+                    "slug": {
+                      "fromResponse": {
+                        "step": 1,
+                        "path": "selectedAnikage.slug"
+                      }
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "jsonRowSelect": {
+                "itemsPath": "",
+                "matchField": "number",
+                "parameter": "episodeNumber",
+                "maxRows": 5000,
+                "resultField": "selectedEpisode"
+              },
+              "responseMatches": [
+                {
+                  "path": "selectedEpisode.number",
+                  "parameter": "episodeNumber"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://anikage.cc",
+                "pathTemplate": {
+                  "template": "/api/media/anime/{{slug}}/episodes/{{episode}}/sources",
+                  "values": {
+                    "slug": {
+                      "fromResponse": {
+                        "step": 1,
+                        "path": "selectedAnikage.slug"
+                      }
+                    },
+                    "episode": {
+                      "fromResponse": {
+                        "step": 2,
+                        "path": "selectedEpisode.number"
+                      }
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "provider": "koto",
+                  "lang": {
+                    "parameter": "language"
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "extractUrl": {
+                "path": "embedOptions",
+                "select": {
+                  "valuePath": "url",
+                  "origin": "https://megaplay.buzz",
+                  "pathPrefixes": [
+                    "/stream/"
+                  ]
+                },
+                "resultField": "selectedEmbed",
+                "fields": {
+                  "server": {
+                    "pathSegment": 1
+                  },
+                  "realId": {
+                    "pathSegment": 2
+                  },
+                  "audio": {
+                    "pathSegment": 3
+                  }
+                }
+              },
+              "responseMatches": [
+                {
+                  "path": "selectedEmbed.audio",
+                  "parameter": "language"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "array",
+              "path": "sources",
+              "variant": "dub",
+              "candidate": {
+                "id": {
+                  "value": "direct"
+                },
+                "label": [
+                  "label",
+                  "quality"
+                ],
+                "url": {
+                  "kind": "field",
+                  "paths": "url",
+                  "baseOrigin": "https://og.bakayaro.live"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "quality": "quality"
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "Origin": "https://anikage.cc",
+            "Referer": "https://anikage.cc/"
+          },
+          "subtitlesByLanguage": {
+            "dub": {
+              "itemsPath": "subtitles",
+              "item": {
+                "id": [
+                  "label",
+                  "file"
+                ],
+                "label": [
+                  "label",
+                  "lang",
+                  "language"
+                ],
+                "language": [
+                  "language",
+                  "lang",
+                  "label"
+                ],
+                "format": {
+                  "value": "unknown"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": [
+                    "file",
+                    "url"
+                  ],
+                  "baseOrigin": "https://og.bakayaro.live"
+                },
+                "default": "default",
+                "includeIf": [
+                  {
+                    "path": "kind",
+                    "equals": [
+                      "captions",
+                      "subtitles"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "expectedDuration": {
+            "step": 1,
+            "path": "selectedAnikage.duration",
+            "unit": "minutes"
+          },
+          "runWhenNoCandidates": true
+        },
+        {
+          "id": "anikage-megaplay-2",
+          "label": "Rescue · AniKage · MegaPlay",
           "runWhenNoCandidates": true,
           "steps": [
             {
@@ -1221,7 +1477,52 @@
                 "parameter": "contentId",
                 "resultField": "selectedAnikage"
               },
-              "cacheWithinAttempt": true
+              "cacheWithinAttempt": true,
+              "responseMatches": [
+                {
+                  "path": "selectedAnikage.anilistId",
+                  "parameter": "contentId"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://anikage.cc",
+                "pathTemplate": {
+                  "template": "/api/media/anime/{{slug}}/episodes",
+                  "values": {
+                    "slug": {
+                      "fromResponse": {
+                        "step": 1,
+                        "path": "selectedAnikage.slug"
+                      }
+                    }
+                  }
+                },
+                "method": "GET",
+                "headers": {
+                  "Accept": "application/json",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "cacheWithinAttempt": true,
+              "jsonRowSelect": {
+                "itemsPath": "",
+                "matchField": "number",
+                "parameter": "episodeNumber",
+                "maxRows": 5000,
+                "resultField": "selectedEpisode"
+              },
+              "responseMatches": [
+                {
+                  "path": "selectedEpisode.number",
+                  "parameter": "episodeNumber"
+                }
+              ]
             },
             {
               "request": {
@@ -1236,13 +1537,16 @@
                       }
                     },
                     "episode": {
-                      "parameter": "episodeNumber"
+                      "fromResponse": {
+                        "step": 2,
+                        "path": "selectedEpisode.number"
+                      }
                     }
                   }
                 },
                 "method": "GET",
                 "query": {
-                  "provider": "wave",
+                  "provider": "koto",
                   "lang": {
                     "parameter": "language"
                   }
@@ -1256,113 +1560,134 @@
               "response": {
                 "format": "json"
               },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
               "cacheWithinAttempt": true,
               "extractUrl": {
-                "path": "embeds",
+                "path": "embedOptions",
                 "select": {
                   "valuePath": "url",
-                  "origin": "https://play.echovideo.ru",
+                  "origin": "https://megaplay.buzz",
                   "pathPrefixes": [
-                    "/embed-1/"
+                    "/stream/"
                   ]
                 },
-                "resultField": "selectedPlayer",
+                "resultField": "selectedEmbed",
                 "fields": {
-                  "player": {
-                    "pathSegment": 0
-                  },
-                  "id": {
+                  "server": {
                     "pathSegment": 1
+                  },
+                  "realId": {
+                    "pathSegment": 2
+                  },
+                  "audio": {
+                    "pathSegment": 3
                   }
                 }
-              }
+              },
+              "responseMatches": [
+                {
+                  "path": "selectedEmbed.audio",
+                  "parameter": "language"
+                }
+              ]
             },
             {
               "request": {
-                "origin": "https://play.echovideo.ru",
-                "pathTemplate": {
-                  "template": "/{{player}}/getSources",
-                  "values": {
-                    "player": {
-                      "fromResponse": {
-                        "step": 2,
-                        "path": "selectedPlayer.player"
-                      }
-                    }
+                "urlFromResponse": {
+                  "fromResponse": {
+                    "step": 3,
+                    "path": "selectedEmbed.url"
                   }
                 },
+                "method": "GET",
+                "headers": {
+                  "Accept": "text/html,*/*",
+                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://anikage.cc/"
+                }
+              },
+              "response": {
+                "format": "htmlRows",
+                "collectionSelector": "[data-id]",
+                "fields": {
+                  "id": {
+                    "kind": "attribute",
+                    "attribute": "data-id",
+                    "transforms": [
+                      "firstPositiveInteger"
+                    ]
+                  }
+                }
+              },
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://megaplay.buzz",
+                "path": "/stream/getSourcesNew",
                 "method": "GET",
                 "query": {
                   "id": {
                     "fromResponse": {
-                      "step": 2,
-                      "path": "selectedPlayer.id"
+                      "step": 4,
+                      "path": "items.0.id"
                     }
+                  },
+                  "type": {
+                    "parameter": "language"
                   }
                 },
                 "headers": {
-                  "Accept": "application/json,*/*",
+                  "Accept": "application/json, text/plain, */*",
                   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Origin": "https://play.echovideo.ru",
-                  "Referer": "https://play.echovideo.ru/"
+                  "Origin": "https://megaplay.buzz",
+                  "Referer": "https://megaplay.buzz/",
+                  "X-Requested-With": "XMLHttpRequest"
                 }
               },
               "response": {
-                "format": "json"
+                "format": "aesCbcJson",
+                "ciphertextPath": "enc",
+                "keyHex": "693f4c4d5441783051362c3a7d35305500000000000000000000000000000000",
+                "ivHex": "57303b3237546f6155706c5f50252763",
+                "plaintextItemsPath": "sources"
               },
               "cacheWithinAttempt": true
             }
           ],
-          "candidateSources": [
-            {
-              "shape": "objectOrUrl",
-              "path": "sources",
-              "candidate": {
-                "id": {
-                  "value": "primary"
-                },
-                "label": {
-                  "value": "Auto"
-                },
-                "url": {
-                  "kind": "field",
-                  "paths": [
-                    "file",
-                    "url"
-                  ]
-                },
-                "kind": {
-                  "value": "hls"
-                }
-              }
+          "candidatesPath": "items",
+          "candidate": {
+            "id": {
+              "value": "primary"
+            },
+            "label": {
+              "value": "HLS"
+            },
+            "url": {
+              "kind": "field",
+              "paths": [
+                "file",
+                "url",
+                "file.file",
+                "file.url",
+                "sources.0.file",
+                "sources.0.url"
+              ],
+              "baseOrigin": "https://megaplay.buzz"
+            },
+            "kind": {
+              "value": "hls"
             }
-          ],
+          },
           "headers": {
-            "Accept": "application/json,*/*",
+            "Accept": "*/*",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://play.echovideo.ru",
-            "Referer": "https://play.echovideo.ru/"
+            "Origin": "https://megaplay.buzz",
+            "Referer": "https://megaplay.buzz/"
           },
           "subtitlesByLanguage": {
             "sub": {
-              "itemsPath": "tracks",
+              "itemsPath": "envelope.tracks",
               "item": {
                 "id": "label",
                 "label": [
@@ -1379,8 +1704,8 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file",
                     "src",
+                    "file",
                     "url"
                   ]
                 },
@@ -1394,10 +1719,11 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             },
             "dub": {
-              "itemsPath": "tracks",
+              "itemsPath": "envelope.tracks",
               "item": {
                 "id": "label",
                 "label": [
@@ -1414,8 +1740,8 @@
                 "url": {
                   "kind": "field",
                   "paths": [
-                    "file",
                     "src",
+                    "file",
                     "url"
                   ]
                 },
@@ -1429,12 +1755,15 @@
                     ]
                   }
                 ]
-              }
+              },
+              "responseOrigins": true
             }
           },
-          "variants": [
-            "sub"
-          ]
+          "expectedDuration": {
+            "step": 1,
+            "path": "selectedAnikage.duration",
+            "unit": "minutes"
+          }
         },
         {
           "id": "anikage",
@@ -1564,602 +1893,6 @@
                 "id": {
                   "value": "direct"
                 },
-                "label": [
-                  "quality",
-                  "label",
-                  "type"
-                ],
-                "url": {
-                  "kind": "field",
-                  "paths": "url"
-                },
-                "kind": {
-                  "value": "hls"
-                }
-              }
-            }
-          ],
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://anikage.cc",
-            "Referer": "https://anikage.cc/"
-          }
-        },
-        {
-          "id": "anikage-wave-direct",
-          "label": "Rescue · AniKage · Wave direct",
-          "runWhenNoCandidates": true,
-          "steps": [
-            {
-              "request": {
-                "origin": "https://graphql.anilist.co",
-                "path": "/",
-                "method": "POST",
-                "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
-                  "variables": {
-                    "id": {
-                      "parameter": "contentId"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "data.Media.id",
-                  "parameter": "contentId"
-                }
-              ],
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "path": "/api/media/anime/browse",
-                "method": "GET",
-                "query": {
-                  "q": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "data.Media.title.native"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "jsonRowSelect": {
-                "itemsPath": "data",
-                "matchField": "anilistId",
-                "parameter": "contentId",
-                "resultField": "selectedAnikage"
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "pathTemplate": {
-                  "template": "/api/media/anime/{{slug}}/episodes/{{episode}}/sources",
-                  "values": {
-                    "slug": {
-                      "fromResponse": {
-                        "step": 1,
-                        "path": "selectedAnikage.slug"
-                      }
-                    },
-                    "episode": {
-                      "parameter": "episodeNumber"
-                    }
-                  }
-                },
-                "method": "GET",
-                "query": {
-                  "provider": "wave",
-                  "lang": {
-                    "parameter": "language"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidateSources": [
-            {
-              "shape": "array",
-              "path": "sources",
-              "preferBoolean": {
-                "path": "isM3U8",
-                "value": true
-              },
-              "candidate": {
-                "id": "quality",
-                "label": [
-                  "quality",
-                  "label",
-                  "type"
-                ],
-                "url": {
-                  "kind": "field",
-                  "paths": "url"
-                },
-                "kind": {
-                  "value": "hls"
-                }
-              }
-            }
-          ],
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://anikage.cc",
-            "Referer": "https://anikage.cc/"
-          }
-        },
-        {
-          "id": "anikage-zen-direct",
-          "label": "Rescue · AniKage · Zen direct",
-          "runWhenNoCandidates": true,
-          "steps": [
-            {
-              "request": {
-                "origin": "https://graphql.anilist.co",
-                "path": "/",
-                "method": "POST",
-                "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
-                  "variables": {
-                    "id": {
-                      "parameter": "contentId"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "data.Media.id",
-                  "parameter": "contentId"
-                }
-              ],
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "path": "/api/media/anime/browse",
-                "method": "GET",
-                "query": {
-                  "q": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "data.Media.title.native"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "jsonRowSelect": {
-                "itemsPath": "data",
-                "matchField": "anilistId",
-                "parameter": "contentId",
-                "resultField": "selectedAnikage"
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "pathTemplate": {
-                  "template": "/api/media/anime/{{slug}}/episodes/{{episode}}/sources",
-                  "values": {
-                    "slug": {
-                      "fromResponse": {
-                        "step": 1,
-                        "path": "selectedAnikage.slug"
-                      }
-                    },
-                    "episode": {
-                      "parameter": "episodeNumber"
-                    }
-                  }
-                },
-                "method": "GET",
-                "query": {
-                  "provider": "zen",
-                  "lang": {
-                    "parameter": "language"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidateSources": [
-            {
-              "shape": "array",
-              "path": "sources",
-              "preferBoolean": {
-                "path": "isM3U8",
-                "value": true
-              },
-              "candidate": {
-                "id": "quality",
-                "label": [
-                  "quality",
-                  "label",
-                  "type"
-                ],
-                "url": {
-                  "kind": "field",
-                  "paths": "url"
-                },
-                "kind": {
-                  "value": "hls"
-                }
-              }
-            }
-          ],
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://anikage.cc",
-            "Referer": "https://anikage.cc/"
-          }
-        },
-        {
-          "id": "anikage-dib-direct",
-          "label": "Rescue · AniKage · Dib direct",
-          "runWhenNoCandidates": true,
-          "steps": [
-            {
-              "request": {
-                "origin": "https://graphql.anilist.co",
-                "path": "/",
-                "method": "POST",
-                "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
-                  "variables": {
-                    "id": {
-                      "parameter": "contentId"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "data.Media.id",
-                  "parameter": "contentId"
-                }
-              ],
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "path": "/api/media/anime/browse",
-                "method": "GET",
-                "query": {
-                  "q": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "data.Media.title.native"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "jsonRowSelect": {
-                "itemsPath": "data",
-                "matchField": "anilistId",
-                "parameter": "contentId",
-                "resultField": "selectedAnikage"
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "pathTemplate": {
-                  "template": "/api/media/anime/{{slug}}/episodes/{{episode}}/sources",
-                  "values": {
-                    "slug": {
-                      "fromResponse": {
-                        "step": 1,
-                        "path": "selectedAnikage.slug"
-                      }
-                    },
-                    "episode": {
-                      "parameter": "episodeNumber"
-                    }
-                  }
-                },
-                "method": "GET",
-                "query": {
-                  "provider": "dib",
-                  "lang": {
-                    "parameter": "language"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidateSources": [
-            {
-              "shape": "array",
-              "path": "sources",
-              "preferBoolean": {
-                "path": "isM3U8",
-                "value": true
-              },
-              "candidate": {
-                "id": "quality",
-                "label": [
-                  "quality",
-                  "label",
-                  "type"
-                ],
-                "url": {
-                  "kind": "field",
-                  "paths": "url"
-                },
-                "kind": {
-                  "value": "hls"
-                },
-                "filterLanguage": "type"
-              }
-            }
-          ],
-          "headers": {
-            "Accept": "application/vnd.apple.mpegurl,application/json,*/*",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-            "Origin": "https://anikage.cc",
-            "Referer": "https://anikage.cc/"
-          },
-          "variants": [
-            "sub"
-          ]
-        },
-        {
-          "id": "anikage-neko-direct",
-          "label": "Rescue · AniKage · Neko direct",
-          "runWhenNoCandidates": true,
-          "steps": [
-            {
-              "request": {
-                "origin": "https://graphql.anilist.co",
-                "path": "/",
-                "method": "POST",
-                "body": {
-                  "query": "query($id:Int){Media(id:$id,type:ANIME){id idMal title{romaji native}}}",
-                  "variables": {
-                    "id": {
-                      "parameter": "contentId"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "data.Media.id",
-                  "parameter": "contentId"
-                }
-              ],
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "path": "/api/media/anime/browse",
-                "method": "GET",
-                "query": {
-                  "q": {
-                    "fromResponse": {
-                      "step": 0,
-                      "path": "data.Media.title.native"
-                    }
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "jsonRowSelect": {
-                "itemsPath": "data",
-                "matchField": "anilistId",
-                "parameter": "contentId",
-                "resultField": "selectedAnikage"
-              },
-              "cacheWithinAttempt": true
-            },
-            {
-              "request": {
-                "origin": "https://anikage.cc",
-                "pathTemplate": {
-                  "template": "/api/media/anime/{{slug}}/episodes/{{episode}}/sources",
-                  "values": {
-                    "slug": {
-                      "fromResponse": {
-                        "step": 1,
-                        "path": "selectedAnikage.slug"
-                      }
-                    },
-                    "episode": {
-                      "parameter": "episodeNumber"
-                    }
-                  }
-                },
-                "method": "GET",
-                "query": {
-                  "provider": "neko",
-                  "lang": {
-                    "parameter": "language"
-                  }
-                },
-                "headers": {
-                  "Accept": "application/json",
-                  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
-                  "Referer": "https://anikage.cc/"
-                }
-              },
-              "response": {
-                "format": "json"
-              },
-              "responseMatches": [
-                {
-                  "path": "slug",
-                  "fromResponse": {
-                    "step": 1,
-                    "path": "selectedAnikage.slug"
-                  }
-                },
-                {
-                  "path": "number",
-                  "parameter": "episodeNumber"
-                },
-                {
-                  "path": "subType",
-                  "parameter": "language"
-                }
-              ],
-              "cacheWithinAttempt": true
-            }
-          ],
-          "candidateSources": [
-            {
-              "shape": "array",
-              "path": "sources",
-              "preferBoolean": {
-                "path": "isM3U8",
-                "value": true
-              },
-              "candidate": {
-                "id": "quality",
                 "label": [
                   "quality",
                   "label",

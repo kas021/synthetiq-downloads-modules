@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "anipm-v1",
   "name": "AniPM",
-  "version": "0.1.0-experimental.4",
-  "minHostVersion": 11,
+  "version": "0.1.0-experimental.5",
+  "minHostVersion": 17,
   "moduleFamilyId": "anipm-v1",
   "moduleIdentity": "SP-VID-084-ANIPM",
   "contentType": "anime",
@@ -23,7 +23,9 @@
     "https://fetch.nexabloom.top",
     "https://*.broforgotsave.online",
     "https://*.eclipseharbor.space",
-    "https://*.oakhorizon.space"
+    "https://*.oakhorizon.space",
+    "https://embed.settlar.io",
+    "https://media.settlar.io"
   ],
   "references": {
     "title": {
@@ -171,6 +173,482 @@
     "download": {
       "alternatives": [
         {
+          "id": "anipm-settlar-sub",
+          "label": "AniPM SUB (experimental) \u00b7 Japanese audio, English captions",
+          "variants": [
+            "sub"
+          ],
+          "languageValues": {
+            "sub": "sub",
+            "dub": "dub"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/series/{{id}}",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "phase": "core"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                }
+              ],
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/playback-bootstrap/{{source}}/{{id}}",
+                  "values": {
+                    "source": {
+                      "fromResponse": {
+                        "step": 0,
+                        "path": "source"
+                      }
+                    },
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  },
+                  "backup": "1"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "availability.sub",
+                  "value": true
+                },
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "requestedLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "effectiveLanguage",
+                  "parameter": "language"
+                }
+              ],
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "path": "/api/anime/settlar/session",
+                "method": "GET",
+                "query": {
+                  "selection": {
+                    "fromResponse": {
+                      "step": 1,
+                      "path": "settlarSelection"
+                    }
+                  },
+                  "provider": "anipm",
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "channel": {
+                    "parameter": "language"
+                  },
+                  "telemetry": "0"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "extractUrl": {
+                "queryParameter": {
+                  "valuePath": "embedUrl",
+                  "origin": "https://embed.settlar.io",
+                  "pathPrefix": "/embed/v1",
+                  "name": "t"
+                },
+                "resultField": "embedSession"
+              },
+              "responseMatches": [
+                {
+                  "path": "provider",
+                  "value": "anipm"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://embed.settlar.io",
+                "path": "/api/embed/session",
+                "method": "GET",
+                "query": {
+                  "t": {
+                    "fromCapture": {
+                      "step": 2,
+                      "field": "embedSession"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json",
+                  "Origin": "https://embed.settlar.io",
+                  "Referer": "https://embed.settlar.io/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "kind",
+                  "value": "hls"
+                },
+                {
+                  "path": "provider",
+                  "value": "anipm"
+                },
+                {
+                  "path": "audioLang",
+                  "value": "ja"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "objectOrUrl",
+              "path": "source",
+              "candidate": {
+                "id": {
+                  "value": "settlar"
+                },
+                "label": {
+                  "value": "AniPM"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "audioLanguage": {
+                  "value": "jpn"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "Origin": "https://embed.settlar.io",
+            "Referer": "https://embed.settlar.io/"
+          },
+          "subtitlesByLanguage": {
+            "sub": {
+              "itemsPath": "subtitles",
+              "item": {
+                "id": [
+                  "label",
+                  "srclang"
+                ],
+                "label": [
+                  "label",
+                  "srclang"
+                ],
+                "language": "srclang",
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "default": "default"
+              }
+            }
+          }
+        },
+        {
+          "id": "anipm-settlar-dub",
+          "label": "AniPM DUB (experimental) \u00b7 English audio",
+          "variants": [
+            "dub"
+          ],
+          "languageValues": {
+            "sub": "sub",
+            "dub": "dub"
+          },
+          "steps": [
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/series/{{id}}",
+                  "values": {
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "phase": "core"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                }
+              ],
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "pathTemplate": {
+                  "template": "/api/anime/playback-bootstrap/{{source}}/{{id}}",
+                  "values": {
+                    "source": {
+                      "fromResponse": {
+                        "step": 0,
+                        "path": "source"
+                      }
+                    },
+                    "id": {
+                      "parameter": "sourceId"
+                    }
+                  }
+                },
+                "method": "GET",
+                "query": {
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "lang": {
+                    "parameter": "language"
+                  },
+                  "backup": "1"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "availability.dub",
+                  "value": true
+                },
+                {
+                  "path": "id",
+                  "parameter": "sourceId"
+                },
+                {
+                  "path": "episode",
+                  "parameter": "episodeNumber"
+                },
+                {
+                  "path": "requestedLanguage",
+                  "parameter": "language"
+                },
+                {
+                  "path": "effectiveLanguage",
+                  "parameter": "language"
+                }
+              ],
+              "cacheWithinAttempt": true
+            },
+            {
+              "request": {
+                "origin": "https://ani.pm",
+                "path": "/api/anime/settlar/session",
+                "method": "GET",
+                "query": {
+                  "selection": {
+                    "fromResponse": {
+                      "step": 1,
+                      "path": "settlarSelection"
+                    }
+                  },
+                  "provider": "anipm",
+                  "ep": {
+                    "parameter": "episodeNumber"
+                  },
+                  "channel": {
+                    "parameter": "language"
+                  },
+                  "telemetry": "0"
+                },
+                "headers": {
+                  "Accept": "application/json, text/plain, */*",
+                  "Referer": "https://ani.pm/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "extractUrl": {
+                "queryParameter": {
+                  "valuePath": "embedUrl",
+                  "origin": "https://embed.settlar.io",
+                  "pathPrefix": "/embed/v1",
+                  "name": "t"
+                },
+                "resultField": "embedSession"
+              },
+              "responseMatches": [
+                {
+                  "path": "provider",
+                  "value": "anipm"
+                }
+              ]
+            },
+            {
+              "request": {
+                "origin": "https://embed.settlar.io",
+                "path": "/api/embed/session",
+                "method": "GET",
+                "query": {
+                  "t": {
+                    "fromCapture": {
+                      "step": 2,
+                      "field": "embedSession"
+                    }
+                  }
+                },
+                "headers": {
+                  "Accept": "application/json",
+                  "Origin": "https://embed.settlar.io",
+                  "Referer": "https://embed.settlar.io/"
+                }
+              },
+              "response": {
+                "format": "json"
+              },
+              "responseMatches": [
+                {
+                  "path": "kind",
+                  "value": "hls"
+                },
+                {
+                  "path": "provider",
+                  "value": "anipm"
+                },
+                {
+                  "path": "audioLang",
+                  "value": "en"
+                }
+              ]
+            }
+          ],
+          "candidateSources": [
+            {
+              "shape": "objectOrUrl",
+              "path": "source",
+              "candidate": {
+                "id": {
+                  "value": "settlar"
+                },
+                "label": {
+                  "value": "AniPM"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "file"
+                },
+                "kind": {
+                  "value": "hls"
+                },
+                "audioLanguage": {
+                  "value": "en"
+                }
+              }
+            }
+          ],
+          "headers": {
+            "Accept": "*/*",
+            "Origin": "https://embed.settlar.io",
+            "Referer": "https://embed.settlar.io/"
+          },
+          "subtitlesByLanguage": {
+            "dub": {
+              "itemsPath": "subtitles",
+              "item": {
+                "id": [
+                  "label",
+                  "srclang"
+                ],
+                "label": [
+                  "label",
+                  "srclang"
+                ],
+                "language": "srclang",
+                "format": {
+                  "value": "vtt"
+                },
+                "url": {
+                  "kind": "field",
+                  "paths": "url"
+                },
+                "default": "default"
+              }
+            }
+          }
+        },
+        {
           "id": "anipm-megaplay-sub",
           "label": "AniPM MegaPlay SUB (experimental)",
           "languageValues": {
@@ -206,7 +684,8 @@
                   "path": "id",
                   "parameter": "sourceId"
                 }
-              ]
+              ],
+              "cacheWithinAttempt": true
             },
             {
               "request": {
@@ -293,7 +772,8 @@
                     }
                   }
                 }
-              ]
+              ],
+              "cacheWithinAttempt": true
             },
             {
               "request": {
@@ -473,7 +953,8 @@
           },
           "variants": [
             "sub"
-          ]
+          ],
+          "runWhenNoCandidates": true
         },
         {
           "id": "anipm-megaplay-dub",
@@ -511,7 +992,8 @@
                   "path": "id",
                   "parameter": "sourceId"
                 }
-              ]
+              ],
+              "cacheWithinAttempt": true
             },
             {
               "request": {
@@ -598,7 +1080,8 @@
                     }
                   }
                 }
-              ]
+              ],
+              "cacheWithinAttempt": true
             },
             {
               "request": {
@@ -778,7 +1261,8 @@
           },
           "variants": [
             "dub"
-          ]
+          ],
+          "runWhenNoCandidates": true
         }
       ]
     }

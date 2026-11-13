@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "justanime-v1",
   "name": "JustAnime",
-  "version": "0.1.0-experimental.2",
+  "version": "0.1.0-experimental.3",
   "minHostVersion": 16,
   "moduleFamilyId": "justanime_v1",
   "moduleIdentity": "SP-VID-091-JUSTANIME",
@@ -59,7 +59,7 @@
       "primary": {
         "request": {
           "origin": "https://core.justanime.to",
-          "path": "/api/search/suggestions",
+          "path": "/api/search",
           "method": "GET",
           "query": {
             "query": {
@@ -75,9 +75,10 @@
         "response": {
           "format": "json"
         },
-        "itemsPath": "data",
+        "itemsPath": "results",
         "item": {
           "id": "id",
+          "anilistId": "id",
           "href": {
             "kind": "template",
             "origin": "https://justanime.to",
@@ -105,7 +106,7 @@
         {
           "request": {
             "origin": "https://core.justanime.to",
-            "path": "/api/search",
+            "path": "/api/search/suggestions",
             "method": "GET",
             "query": {
               "query": {
@@ -118,9 +119,13 @@
               "Origin": "https://justanime.to"
             }
           },
-          "itemsPath": "results",
+          "response": {
+            "format": "json"
+          },
+          "itemsPath": "data",
           "item": {
             "id": "id",
+            "anilistId": "id",
             "href": {
               "kind": "template",
               "origin": "https://justanime.to",
@@ -186,7 +191,8 @@
         "genres": "genres",
         "status": "status",
         "format": "format",
-        "episodeCount": "episodes"
+        "episodeCount": "episodes",
+        "externalId": "idMal"
       }
     },
     "episodes": {

@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.14",
+      "version": "1.3.15",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "c951e38c9afb576c153ed0fdf8053839d79f77fb47ababb75199bb7094b63517",
+      "sha256": "5afe3caec3665de914a1c91f62c853222acafecc892ce2a3ab353345a98d1358",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,10 +23,11 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
+        "1.3.15: English DUB restored through an explicitly DUB route (the provider no longer echoes slug/number/subType); removed providers that no longer exist; dead routes run last. Host 16 unchanged. See SOURCE_REPAIR_2026_11_13.md.",
         "1.3.14: verified canonical title and numbered episode before the current Koto SUB request; bounded relative video/caption URLs and duration check. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.3.13: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
         "Disable unverified EchoVideo DUB: Joe 2 E21 SUB/DUB returned identical Japanese media; other declared DUB routes remain available.",
-        "Add the two exact observed EchoVideo CDN origins for Tomorrow\u2019s Joe 2 episode 21.",
+        "Add the two exact observed EchoVideo CDN origins for Tomorrow’s Joe 2 episode 21.",
         "Full workstation route transfer/decode passed; EchoVideo DUB audio acceptance failed; native offline playback remains unverified.",
         "1.3.11: Host 13 permits up to 24 explicit declared origins. Adds only observed Black Clover E1 SUB o3izr.stellarfrontier.space and DUB n953x.midnightvoyage.site CDN origins; Jikan fallback Referer reuses its declared API origin. Preserves exact episode/audio routes and all existing server alternatives. Experimental/non-recommended; native acceptance remains unverified.",
         "1.3.10: Requires Host 11 quality selection before inspection, strict saved quality caps and bounded cancellable caption transfer. Response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes; unknown hosts need a data update. Existing Anime route IDs and exact SUB/DUB selection remain unchanged.",
@@ -38,17 +39,18 @@
     },
     {
       "file": "modules-data/anipm-downloads.smod.json",
-      "version": "0.1.0-experimental.4",
-      "minHostVersion": 11,
-      "minAppVersion": "1.0.91",
-      "sha256": "d6b6054170e4de6000c138e23e8be5afb25262b56f9c3c577aeebd80ef292fa0",
+      "version": "0.1.0-experimental.5",
+      "minHostVersion": 17,
+      "minAppVersion": "1.0.158",
+      "sha256": "bee9559db739c70c40645593bc58679c5ca666276d88edbf1219751f382af5bb",
       "presentation": {
         "category": "Anime",
-        "language": "SUB / DUB",
+        "language": "English SUB / DUB",
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/anipm.png"
       },
       "changelog": [
+        "0.1.0-experimental.5: Current session route with explicit Japanese (SUB, captions mapped) and English (DUB) audio. Requires Downloads 1.0.158 / Host 17 for bounded query-parameter capture. Unverified on a device; desktop HTTP clients receive a bot challenge.",
         "0.1.0-experimental.4: Publishes the observed caption and media CDN suffix declarations so installed experimental.3 clients receive the update. Exact source/audio identities and Host 11 compatibility are unchanged; unknown origins remain rejected. Experimental pending physical acceptance.",
         "0.1.0-experimental.3: Requires Host 11 quality inspection and bounded caption cancellation; response media, caption and playlist hosts require module-declared exact origins or strict DNS suffixes. Preserves exact-language muxed MegaPlay routes and source identity. Current Player 0.1.0-beta.4 also prioritizes muxed MegaPlay.",
         "2026-10-08 workstation One Piece E1 requested DUB full transfer: 321/321 segments; 233,048,184 bytes; H.264 1440x1080 + AAC; 1477.976 seconds; 285 English WebVTT cues; full decode exited 0 without errors. SUB and DUB live route inspections passed.",
@@ -96,7 +98,7 @@
       "presentation": {
         "category": "Anime",
         "purpose": "AnimeAV1 downloads (experimental)",
-        "language": "Spanish subtitles \u00b7 SUB only",
+        "language": "Spanish subtitles · SUB only",
         "languages": [
           "sub"
         ],
@@ -121,11 +123,12 @@
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/moviedb.png"
       },
-      "version": "0.1.0-experimental.4",
+      "version": "0.1.0-experimental.5",
       "minHostVersion": 12,
       "minAppVersion": "1.0.92",
-      "sha256": "90b48741c6bcf244708cfef76614cab371f0a5801a62f6bc68d231531aa8c26a",
+      "sha256": "5f667dbd785071511fcdd47f808b8a1e4918a3ac33f8edefd7f5211cf535c00b",
       "changelog": [
+        "0.1.0-experimental.5: Declares three current media origins for the TV fallback route. Films remain unavailable (see Alpha Movies).",
         "Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data.",
         "Fallback preserves TMDB title, season, episode and runtime; manual server selection remains pinned.",
         "0.1.0-experimental.3: Maps beta.14 IPCloud source.url HLS separately from MovieBox direct-file qualities, keeps exact movie/TV identity and only observed CDN origins. TV/movie resolver inspections passed; full transfer, caption cues and native offline playback remain unverified. Experimental/non-recommended.",
@@ -147,11 +150,12 @@
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/alpha-movies.png"
       },
-      "version": "0.1.0-experimental.4",
+      "version": "0.1.0-experimental.5",
       "minHostVersion": 12,
       "minAppVersion": "1.0.92",
-      "sha256": "806fcd4ed09cc3f031f5de80f97862d68073cff38e05bbb2a7135ed7e7f10ff7",
+      "sha256": "98f3ef0c1c8d490d6cec77d817feb922d9a5f0454b2bbf30e9736fba25825fb7",
       "changelog": [
+        "0.1.0-experimental.5: Declares three current media origins so TV episodes resolve again. Films remain unavailable: the provider serves them only as image-wrapped segments, which Downloads rejects.",
         "Declare only the two observed Luna/Orion CDN origins; keep advertised quality and exact TMDB identity checks.",
         "Experimental: complete transfer and native playback evidence are recorded separately.",
         "0.1.0-experimental.3: Adds only observed Vidrock Orion carbonphantom.live CDN origin for exact TMDB TV 5920 season 2 episode 1. Keeps Host 12, explicit TMDB metadata and Alpha-only media identity. Experimental/non-recommended; native acceptance remains unverified.",
@@ -163,10 +167,10 @@
     },
     {
       "file": "modules-data/synthetiq-flux.smod.json",
-      "version": "1.0.0-experimental.5",
+      "version": "1.0.0-experimental.6",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "ea4dc77e0b5a1c10e37d32bf0e3a784aba7d2344cd531d324d5c29a72fc810fd",
+      "sha256": "5a0227ac93b1262fe383692aa6a15d2f78b996bda141ec9b965fa1e88a38cb0d",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Flux downloads (experimental)",
@@ -179,6 +183,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-flux.png"
       },
       "changelog": [
+        "1.0.0-experimental.6: English DUB rescue routes added after the SUB route; removed providers that no longer exist. Host 16 unchanged. See SOURCE_REPAIR_2026_11_13.md.",
         "Experimental.5: current exact-episode Koto SUB route and compatible English-group DUB fallback; no unverified DUB substitution. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.0.0-experimental.4: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
         "Try the Anikage routes before the Vidhawk servers: Vidhawk requests were timing out after about 12 s and delaying the first download; Vidhawk remains as a fallback.",
@@ -191,10 +196,10 @@
     },
     {
       "file": "modules-data/justanime-downloads.smod.json",
-      "version": "0.1.0-experimental.2",
+      "version": "0.1.0-experimental.3",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "d7c67bae6d6390c15f749046c21e77b8cfb7566a2f30ffda05c359565eb4b975",
+      "sha256": "e8dcf43cfd6899b8ed00909e10dfc86581dba5224ae2222d00d7426b5c3de723",
       "presentation": {
         "category": "Anime",
         "language": "English",
@@ -202,6 +207,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/justanime.png"
       },
       "changelog": [
+        "0.1.0-experimental.3: Search rows carry the provider's AniList ID and details its stated MAL ID; full search is primary so exact titles are not dropped.",
         "Experimental.2: real page-number lookup, observed caption CDN policy, English presentation group and sidecars for SUB/DUB. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.1: First Downloads port of JustAnime. Search, details, episodes and SUB/DUB resolve verified live on Naruto, One Piece, Frieren, Jujutsu Kaisen and Solo Leveling (HLS playlists reachable). Streams use the MegaPlay CDN, so this is an independent catalogue rather than an independent video host. Episode lists show the first 100 episodes only. Experimental pending physical acceptance."
       ]
@@ -226,10 +232,10 @@
     },
     {
       "file": "modules-data/kickassanime-downloads.smod.json",
-      "version": "0.1.0-experimental.4",
+      "version": "0.1.0-experimental.5",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "283fc480f538df7fd088240a3ce4607c6c4b74d7d65483190902cf9b85000af7",
+      "sha256": "1b9aed9a911f17bebab67c30f7fb696b786fcf45307ab9ea418eefa453d55cb6",
       "presentation": {
         "category": "Anime",
         "language": "English",
@@ -237,7 +243,8 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/kickassanime.png"
       },
       "changelog": [
-        "Experimental.4: jump via the provider\u2019s numbered page ranges and join the English presentation group; keep strict audio selection. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
+        "0.1.0-experimental.5: SUB routes now map the provider's subtitle documents (two caption origins declared) and require the Japanese episode record; DUB unchanged.",
+        "Experimental.4: jump via the provider’s numbered page ranges and join the English presentation group; keep strict audio selection. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "0.1.0-experimental.3: English DUB from the stream's English audio track when it has one (strict language match, never Japanese). Needs content host 15.",
         "0.1.0-experimental.2: First Downloads port of KickAssAnime. Its own video servers (krussdomi), independent of MegaPlay. SUB (Japanese audio) via separate-audio muxing; needs app 1.0.131+ (content host 14). Verified Frieren, Solo Leveling and One Piece through inspection. Episode lists stop at 100."
       ]

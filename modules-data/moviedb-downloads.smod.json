@@ -2,7 +2,7 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "moviedb-wiki-v1",
   "name": "MovieDB",
-  "version": "0.1.0-experimental.4",
+  "version": "0.1.0-experimental.5",
   "minHostVersion": 12,
   "moduleFamilyId": "moviedb_wiki_v1",
   "moduleIdentity": "SP-VID-083-MOVIEDB",
@@ -26,7 +26,10 @@
     "https://c.ravenflix.st",
     "https://vidrock.net",
     "https://b.amsterdam-ece.workers.dev",
-    "https://crmseraph.site"
+    "https://crmseraph.site",
+    "https://cdn2.slowcloud.live",
+    "https://ultravioletnomad.lol",
+    "https://parallelmisfit.xyz"
   ],
   "references": {
     "title": {
