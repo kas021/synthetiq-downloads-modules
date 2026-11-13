@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Technical mapping of selected Player identities to ten installable Downloads data definitions; unsupported identities remain explicit.",
-  "hostRequirement": 16,
+  "hostRequirement": 17,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
     {
