@@ -1,50 +1,49 @@
 # Synthetiq Downloads Modules
 
-This is the dedicated source catalogue for Synthetiq Downloads. On phones,
-Settings → Modules → GitHub browses `kas021/synthetiq-downloads-modules`.
+Data-only source definitions for Synthetiq Downloads. Sources are explicitly installed by the user; a fresh app does not include this repository.
 
-## Published repair — 7 November 2026
+## Install or update
 
-The default catalogue now contains the reviewed Host 16 repairs. Update Downloads
-before updating these modules: the five repaired definitions require **1.0.147
-(build148) or later**. The latest tested app hardening is **1.0.148 (build149)**.
-Existing media and saved module identities are preserved. Sources remain explicit
-user imports; this catalogue does not add any source to a fresh app automatically.
+In Downloads, open **Settings → Modules & Sources → Add module**, paste this link and choose **Install**:
 
-See [publication and validation](SOURCE_PUBLICATION_2026_11_07.md) and the
-[original repair evidence](SOURCE_REPAIR_2026_11_05.md).
+```text
+https://github.com/kas021/synthetiq-downloads-modules
+```
+
+Direct catalogue URL:
+
+```text
+https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/catalogue.json
+```
+
+Compatible entries install automatically. For existing installations, use the module's update/check action. Do not delete downloads or reinstall the app to update a definition.
+
+## 14 November 2026 repairs
+
+Anime/Flux remove dead routes and compare media duration with the episode's stated runtime. Earlier repairs cover DUB routing, subtitle mapping, title identity and movie media origins. See [13 November details](SOURCE_REPAIR_2026_11_13.md) and [14 November details](SOURCE_REPAIR_2026_11_14.md).
+
+Update the app first: **1.0.159 (160)** includes host17 and the current subtitle-less SUB handling. Module definitions alone cannot supply missing host features. Host floors remain per-entry; AniPM requires host17/app1.0.158 or newer.
 
 ## Current phone catalogue
 
-Ten experimental data-only definitions are available:
-
-| Source | Downloads module version | Minimum host / app |
+| Source | Module version | Minimum content host |
 | --- | --- | --- |
-| Synthetiq Anime | 1.3.14 | 16 / 1.0.147 |
-| AniPM | 0.1.0-experimental.4 | 11 / 1.0.91 |
-| Synthetiq Movies | 1.0.1-experimental.4 | 6 / 1.0.75 |
-| AnimeAV1 | 0.1.0-experimental.1 | 9 / 1.0.84 |
-| MovieDB | 0.1.0-experimental.4 | 12 / 1.0.92 |
-| Alpha Movies | 0.1.0-experimental.4 | 12 / 1.0.92 |
-| Synthetiq Flux | 1.0.0-experimental.5 | 16 / 1.0.147 |
-| JustAnime | 0.1.0-experimental.2 | 16 / 1.0.147 |
-| AnimeKai | 0.1.0-experimental.2 | 16 / 1.0.147 |
-| KickAssAnime | 0.1.0-experimental.4 | 16 / 1.0.147 |
+| Synthetiq Anime | 1.3.16 | 16 |
+| AniPM | 0.1.0-experimental.5 | 17 |
+| Synthetiq Movies | 1.0.1-experimental.4 | 6 |
+| AnimeAV1 | 0.1.0-experimental.1 | 9 |
+| MovieDB | 0.1.0-experimental.5 | 12 |
+| Alpha Movies | 0.1.0-experimental.5 | 12 |
+| Synthetiq Flux | 1.0.0-experimental.7 | 16 |
+| JustAnime | 0.1.0-experimental.3 | 16 |
+| AnimeKai | 0.1.0-experimental.3 | 16 |
+| KickAssAnime | 0.1.0-experimental.5 | 16 |
 
-All entries remain experimental and non-recommended. Successful complete Mac
-transfers, native builds, physical transfers and offline playback are recorded
-separately. A valid catalogue hash establishes exact bytes, not provider uptime
-or certification. English fallback declarations do not assert that every title
-has a DUB or complete dialogue captions. Known failed routes remain documented.
+All entries remain experimental and non-recommended. Definitions passing fixtures or resolving a candidate does not guarantee a full download or provider uptime. Known limits include DNS-dependent media hosts, AniPM's desktop bot challenge, AnimeAV1 origin-policy failures, Synthetiq Movies HTTP451, and rejection of image-wrapped film segments. Flux shares upstreams with Anime and is not an independent supplier.
 
-The maximum host requirement is 16; individual entries retain the compatibility
-floor in the table. Older applications must not install unsupported definitions.
-Do not delete existing downloads or reinstall the app to update a module.
+Complete workstation transfers and physical-device acceptance are separate. Build160 has been installed and launched on the owner's iPhone; this does not certify downloads, background operation, spoken audio, captions or offline playback on that device. SUB may be saved without a subtitle file when captioned alternatives fail; the app labels this and does not infer verified burned-in captions from a missing track.
 
-The historical executable archives in `modules/` and `src/` are not offered in
-the phone catalogue. Public Downloads builds interpret bounded data definitions
-and do not execute those archives. The dated sections below retain historical
-evidence and are not current availability guarantees.
+The public app interprets bounded `.smod.json` data definitions and does not execute the historical Player ZIP/JavaScript archives. Preserve stable module identities and existing saved media. No keys, signed media links or personal data belong in this public repository.
 
 ## Files
 
