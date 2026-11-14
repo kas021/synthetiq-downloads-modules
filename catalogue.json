@@ -7,10 +7,10 @@
   "modules": [
     {
       "file": "modules-data/synthetiq-anime.smod.json",
-      "version": "1.3.15",
+      "version": "1.3.16",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "5afe3caec3665de914a1c91f62c853222acafecc892ce2a3ab353345a98d1358",
+      "sha256": "a4e3cd1d38cd4a1daf0bf4efcc1e076527c2f1c31619c8f311b2244d268e404f",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Anime downloads (experimental)",
@@ -23,6 +23,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-anime.png"
       },
       "changelog": [
+        "1.3.16: Removes routes to a provider that no longer answers (the cause of 12-second waits before fallback) and two routes that can no longer match; episode length is checked against the episode's own stated runtime. Host 16 unchanged. See SOURCE_REPAIR_2026_11_14.md.",
         "1.3.15: English DUB restored through an explicitly DUB route (the provider no longer echoes slug/number/subType); removed providers that no longer exist; dead routes run last. Host 16 unchanged. See SOURCE_REPAIR_2026_11_13.md.",
         "1.3.14: verified canonical title and numbered episode before the current Koto SUB request; bounded relative video/caption URLs and duration check. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.3.13: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
@@ -167,10 +168,10 @@
     },
     {
       "file": "modules-data/synthetiq-flux.smod.json",
-      "version": "1.0.0-experimental.6",
+      "version": "1.0.0-experimental.7",
       "minHostVersion": 16,
       "minAppVersion": "1.0.147",
-      "sha256": "5a0227ac93b1262fe383692aa6a15d2f78b996bda141ec9b965fa1e88a38cb0d",
+      "sha256": "779b2744bcc1246fb64274c5956ef335b5e3a60b47ddc9c6ce1d915e28bec120",
       "presentation": {
         "category": "Anime",
         "purpose": "Synthetiq Flux downloads (experimental)",
@@ -183,6 +184,7 @@
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/synthetiq-flux.png"
       },
       "changelog": [
+        "1.0.0-experimental.7: Removes routes to a provider that no longer answers and a route that can no longer match; episode length is checked against the episode's own stated runtime. Host 16 unchanged.",
         "1.0.0-experimental.6: English DUB rescue routes added after the SUB route; removed providers that no longer exist. Host 16 unchanged. See SOURCE_REPAIR_2026_11_13.md.",
         "Experimental.5: current exact-episode Koto SUB route and compatible English-group DUB fallback; no unverified DUB substitution. Requires Downloads 1.0.147 / Host 16. See SOURCE_REPAIR_2026_11_05.md.",
         "1.0.0-experimental.4: AniKage routes search by native title; its search ignores short punctuated romaji such as K-ON! and returned unrelated titles.",
