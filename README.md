@@ -24,11 +24,13 @@ Anime/Flux remove dead routes and compare media duration with the episode's stat
 
 Update the app first: **1.0.159 (160)** includes host17 and the current subtitle-less SUB handling. Module definitions alone cannot supply missing host features. Host floors remain per-entry; AniPM requires host17/app1.0.158 or newer.
 
-## 16 November 2026 movie paging (candidate, unpublished)
+## 15 November 2026 movie paging (published)
 
 MovieDB and Alpha Movies 0.1.0-experimental.6 declare the provider's own next-page control, so browse and search continue past the first page and stop where the provider stops. This needs host18 / app **1.0.162** or newer. Older apps skip these two entries and keep the experimental.5 definitions they already have installed; they cannot newly install either source until the app is updated. Module identities, saved references and media routes are unchanged.
 
-## 15 November 2026 sweep (candidate, unpublished)
+## 15 November 2026 sweep (published)
+
+MovieDB experimental.7 and Alpha Movies experimental.6 were published to `main` on 15 November after 10 focused paging/route-order tests passed and all ten catalogue hashes were checked. All ten public exact-commit raw definitions were read back and their hashes matched; GitHub may briefly cache the previous `main` catalogue. Publication does not change the source-availability limits below.
 
 Every source was checked on its own, with no help from another source. Results and evidence are in [SOURCE_SWEEP_2026_11_15.md](SOURCE_SWEEP_2026_11_15.md).
 
