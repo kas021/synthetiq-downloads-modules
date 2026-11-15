@@ -41,7 +41,9 @@ for (const stem of STEMS) {
   test(`${stem}: host 18 next-page marker, identity and catalogue entry`, () => {
     const definition = load(stem);
     assert.ok(CONTENT_HOST_VERSION >= 18, 'run against an app checkout with content host 18 or later');
-    assert.equal(definition.version, '0.1.0-experimental.6');
+    // Paging arrived in experimental.6; MovieDB has since moved to experimental.7 (route order only).
+    const version = { 'moviedb-downloads': '0.1.0-experimental.7', 'alpha-movies-downloads': '0.1.0-experimental.6' }[stem];
+    assert.equal(definition.version, version);
     assert.equal(definition.minHostVersion, 18);
     assert.deepEqual(definition.capabilities.search.primary.pagination,
       { nextSelector: 'nav.pagination a[rel="next"]', nextDisabledSelector: 'nav.pagination a.is-disabled[rel="next"]' });
@@ -50,7 +52,7 @@ for (const stem of STEMS) {
     assert.deepEqual([definition.id, definition.moduleFamilyId, definition.moduleIdentity], identity);
     const entry = JSON.parse(text('catalogue.json')).modules.find(module => module.file === `modules-data/${stem}.smod.json`);
     assert.equal(entry.sha256, createHash('sha256').update(readFileSync(new URL(`../modules-data/${stem}.smod.json`, import.meta.url))).digest('hex'), 'catalogue hash is of the exact published bytes');
-    assert.deepEqual([entry.version, entry.minHostVersion, entry.minAppVersion], ['0.1.0-experimental.6', 18, '1.0.162']);
+    assert.deepEqual([entry.version, entry.minHostVersion, entry.minAppVersion], [version, 18, '1.0.162']);
     // An app on an earlier host must refuse this definition rather than misread it.
     const lowered = JSON.parse(text(`modules-data/${stem}.smod.json`)); lowered.minHostVersion = 17;
     assert.throws(() => parseContentModuleDefinition(JSON.stringify(lowered)), /HTML next-page markers require minHostVersion 18 or later/);

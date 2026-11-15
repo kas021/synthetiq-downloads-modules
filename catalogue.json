@@ -124,11 +124,12 @@
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/moviedb.png"
       },
-      "version": "0.1.0-experimental.6",
+      "version": "0.1.0-experimental.7",
       "minHostVersion": 18,
       "minAppVersion": "1.0.162",
-      "sha256": "2da01166752c5848971151e807ad3370c63766d9dc108bb0948409da726e3b49",
+      "sha256": "f29589ef30935142fb6cde0496d3e84a22a3647b9f774cc1d5c506e9398acfd5",
       "changelog": [
+        "0.1.0-experimental.7: The Vidrock routes are tried first. The VidLove routes stay, with the same IDs, and run afterwards: their host name has not resolved since 13 November 2026. Identity, runtime and origin checks unchanged. Host 18 unchanged. See SOURCE_SWEEP_2026_11_15.md.",
         "0.1.0-experimental.6: Browse and search continue past the first page; the end is read from the provider's own next-page control. Requires Downloads 1.0.162 / Host 18. Media routes unchanged.",
         "0.1.0-experimental.5: Declares three current media origins for the TV fallback route. Films remain unavailable (see Alpha Movies).",
         "Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data.",
