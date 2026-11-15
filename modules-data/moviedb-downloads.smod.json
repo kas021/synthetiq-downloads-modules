@@ -2,8 +2,8 @@
   "schema": "synthetiq-downloads/content-module/3",
   "id": "moviedb-wiki-v1",
   "name": "MovieDB",
-  "version": "0.1.0-experimental.5",
-  "minHostVersion": 12,
+  "version": "0.1.0-experimental.6",
+  "minHostVersion": 18,
   "moduleFamilyId": "moviedb_wiki_v1",
   "moduleIdentity": "SP-VID-083-MOVIEDB",
   "metadataProvider": "tmdb",
@@ -138,7 +138,10 @@
             }
           }
         },
-        "pagination": {}
+        "pagination": {
+          "nextSelector": "nav.pagination a[rel=\"next\"]",
+          "nextDisabledSelector": "nav.pagination a.is-disabled[rel=\"next\"]"
+        }
       }
     },
     "details": {

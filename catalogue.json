@@ -124,11 +124,12 @@
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/moviedb.png"
       },
-      "version": "0.1.0-experimental.5",
-      "minHostVersion": 12,
-      "minAppVersion": "1.0.92",
-      "sha256": "5f667dbd785071511fcdd47f808b8a1e4918a3ac33f8edefd7f5211cf535c00b",
+      "version": "0.1.0-experimental.6",
+      "minHostVersion": 18,
+      "minAppVersion": "1.0.162",
+      "sha256": "2da01166752c5848971151e807ad3370c63766d9dc108bb0948409da726e3b49",
       "changelog": [
+        "0.1.0-experimental.6: Browse and search continue past the first page; the end is read from the provider's own next-page control. Requires Downloads 1.0.162 / Host 18. Media routes unchanged.",
         "0.1.0-experimental.5: Declares three current media origins for the TV fallback route. Films remain unavailable (see Alpha Movies).",
         "Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data.",
         "Fallback preserves TMDB title, season, episode and runtime; manual server selection remains pinned.",
@@ -151,11 +152,12 @@
         "recommended": false,
         "iconUrl": "https://raw.githubusercontent.com/kas021/synthetiq-downloads-modules/main/assets/module-icons/alpha-movies.png"
       },
-      "version": "0.1.0-experimental.5",
-      "minHostVersion": 12,
-      "minAppVersion": "1.0.92",
-      "sha256": "98f3ef0c1c8d490d6cec77d817feb922d9a5f0454b2bbf30e9736fba25825fb7",
+      "version": "0.1.0-experimental.6",
+      "minHostVersion": 18,
+      "minAppVersion": "1.0.162",
+      "sha256": "3750939ef7596aba53c7cf8f2201c99998f401a3c1d988faa27d5133446e0b7c",
       "changelog": [
+        "0.1.0-experimental.6: Browse and search continue past the first page; the end is read from the provider's own next-page control. Requires Downloads 1.0.162 / Host 18. Media routes unchanged.",
         "0.1.0-experimental.5: Declares three current media origins so TV episodes resolve again. Films remain unavailable: the provider serves them only as image-wrapped segments, which Downloads rejects.",
         "Declare only the two observed Luna/Orion CDN origins; keep advertised quality and exact TMDB identity checks.",
         "Experimental: complete transfer and native playback evidence are recorded separately.",

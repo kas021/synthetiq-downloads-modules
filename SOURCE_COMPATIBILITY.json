@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "Technical mapping of selected Player identities to ten installable Downloads data definitions; unsupported identities remain explicit.",
-  "hostRequirement": 17,
+  "hostRequirement": 18,
   "offlineAcceptancePolicy": "All entries remain experimental and non-recommended until native device acceptance is recorded.",
   "sources": [
     {
@@ -35,11 +35,11 @@
       "identity": "SP-VID-079-ALPHA-MOVIES",
       "publishedVersion": "0.2.0-beta.3",
       "playerDevelopmentVersion": "0.2.0-beta.3",
-      "downloadsDefinitionVersion": "0.1.0-experimental.4",
+      "downloadsDefinitionVersion": "0.1.0-experimental.6",
       "implementation": "host12-bounded-source-definition",
       "recommended": false,
       "capabilities": {
-        "browse": "shared-MovieDB-TMDB-ID-search-first-page;generic-browse-facets-unmapped",
+        "browse": "shared-MovieDB-TMDB-ID-search-paged-by-declared-next-page-marker-host18;live-pages-1-5-checked-2026-11-15;generic-browse-facets-unmapped",
         "details": "exact-title-and-media-type-preflight",
         "seasons": "declared-season-list",
         "episodes": "exact-sourceEpisodeId-season-and-episode-number-preflight",
@@ -50,7 +50,7 @@
         "offlineAcceptance": "workstation-TV-transfer-decode-passed-542segments-2026-10-08;native-unverified"
       },
       "technicalGap": "2026-10-17: Declare only the two observed Luna/Orion CDN origins; keep advertised quality and exact TMDB identity checks. Experimental: complete transfer and native playback evidence are recorded separately.",
-      "minimumContentHostVersion": 12
+      "minimumContentHostVersion": 18
     },
     {
       "name": "X-Stream",
@@ -200,7 +200,7 @@
       "identity": "SP-VID-083-MOVIEDB",
       "playerDevelopmentVersion": "0.1.0-beta.14",
       "capabilities": {
-        "browse": "shared-MovieDB-TMDB-ID-search-first-page;generic-browse-facets-unmapped",
+        "browse": "shared-MovieDB-TMDB-ID-search-paged-by-declared-next-page-marker-host18;live-pages-1-5-checked-2026-11-15;generic-browse-facets-unmapped",
         "details": "exact-title-and-media-type-preflight",
         "seasons": "declared-season-list",
         "episodes": "exact-sourceEpisodeId-season-and-episode-number-preflight",
@@ -211,8 +211,8 @@
         "offlineAcceptance": "current-inspection-passed;historic-placeholder-failed;native-full-transfer-unverified"
       },
       "publishedVersion": "0.1.0-beta.14",
-      "downloadsDefinitionVersion": "0.1.0-experimental.4",
-      "minimumContentHostVersion": 12,
+      "downloadsDefinitionVersion": "0.1.0-experimental.6",
+      "minimumContentHostVersion": 18,
       "recommended": false,
       "technicalGap": "2026-10-17: Retain MovieDB routes and add an explicitly labelled Vidrock fallback when upstream returns empty source data. Fallback preserves TMDB title, season, episode and runtime; manual server selection remains pinned.",
       "implementation": "host12-bounded-source-definition"

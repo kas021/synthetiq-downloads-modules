@@ -24,6 +24,10 @@ Anime/Flux remove dead routes and compare media duration with the episode's stat
 
 Update the app first: **1.0.159 (160)** includes host17 and the current subtitle-less SUB handling. Module definitions alone cannot supply missing host features. Host floors remain per-entry; AniPM requires host17/app1.0.158 or newer.
 
+## 16 November 2026 movie paging (candidate, unpublished)
+
+MovieDB and Alpha Movies 0.1.0-experimental.6 declare the provider's own next-page control, so browse and search continue past the first page and stop where the provider stops. This needs host18 / app **1.0.162** or newer. Older apps skip these two entries and keep the experimental.5 definitions they already have installed; they cannot newly install either source until the app is updated. Module identities, saved references and media routes are unchanged.
+
 ## Current phone catalogue
 
 | Source | Module version | Minimum content host |
@@ -32,8 +36,8 @@ Update the app first: **1.0.159 (160)** includes host17 and the current subtitle
 | AniPM | 0.1.0-experimental.5 | 17 |
 | Synthetiq Movies | 1.0.1-experimental.4 | 6 |
 | AnimeAV1 | 0.1.0-experimental.1 | 9 |
-| MovieDB | 0.1.0-experimental.5 | 12 |
-| Alpha Movies | 0.1.0-experimental.5 | 12 |
+| MovieDB | 0.1.0-experimental.6 | 18 |
+| Alpha Movies | 0.1.0-experimental.6 | 18 |
 | Synthetiq Flux | 1.0.0-experimental.7 | 16 |
 | JustAnime | 0.1.0-experimental.3 | 16 |
 | AnimeKai | 0.1.0-experimental.3 | 16 |
