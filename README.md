@@ -28,6 +28,16 @@ Update the app first: **1.0.159 (160)** includes host17 and the current subtitle
 
 MovieDB and Alpha Movies 0.1.0-experimental.6 declare the provider's own next-page control, so browse and search continue past the first page and stop where the provider stops. This needs host18 / app **1.0.162** or newer. Older apps skip these two entries and keep the experimental.5 definitions they already have installed; they cannot newly install either source until the app is updated. Module identities, saved references and media routes are unchanged.
 
+## 15 November 2026 sweep (candidate, unpublished)
+
+Every source was checked on its own, with no help from another source. Results and evidence are in [SOURCE_SWEEP_2026_11_15.md](SOURCE_SWEEP_2026_11_15.md).
+
+- Complete downloads verified from the workstation: Synthetiq Anime, Synthetiq Flux, JustAnime.
+- Resolves but no complete download verified: KickAssAnime (workstation packaging limit), MovieDB and Alpha Movies (their one usable media host went down during the test).
+- Not working or not checkable from the test network: AnimeKai (provider not answering), AniPM (desktop bot challenge), AnimeAV1 (media-origin policy), Synthetiq Movies (HTTP 451).
+
+MovieDB 0.1.0-experimental.7 only changes route order: the provider that answers is tried first. Host 18 / app 1.0.162, as for experimental.6.
+
 ## Current phone catalogue
 
 | Source | Module version | Minimum content host |
@@ -36,7 +46,7 @@ MovieDB and Alpha Movies 0.1.0-experimental.6 declare the provider's own next-pa
 | AniPM | 0.1.0-experimental.5 | 17 |
 | Synthetiq Movies | 1.0.1-experimental.4 | 6 |
 | AnimeAV1 | 0.1.0-experimental.1 | 9 |
-| MovieDB | 0.1.0-experimental.6 | 18 |
+| MovieDB | 0.1.0-experimental.7 | 18 |
 | Alpha Movies | 0.1.0-experimental.6 | 18 |
 | Synthetiq Flux | 1.0.0-experimental.7 | 16 |
 | JustAnime | 0.1.0-experimental.3 | 16 |
